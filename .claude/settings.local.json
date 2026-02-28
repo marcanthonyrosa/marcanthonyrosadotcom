@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:paulstamatiou.com)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --yes 2>&1)",
+      "Bash(npx create-next-app@latest /tmp/mar-site --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --yes 2>&1 && echo \"DONE\")",
+      "Bash(cp -r /tmp/mar-site/. /Users/marcrosa/Desktop/marc-anthony-rosa-dot-com/ 2>&1 && echo \"Copied\" && ls /Users/marcrosa/Desktop/marc-anthony-rosa-dot-com/)",
+      "Bash(npm install framer-motion next-themes lucide-react 2>&1 | tail -5)",
+      "Bash(rm -rf node_modules package-lock.json && npm install 2>&1 | tail -8)",
+      "Bash(npm run build 2>&1)",
+      "Bash(sleep 3 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(open http://localhost:3000)",
+      "Bash(lsof -ti :3000)",
+      "Bash(kill 14682 14701 2>&1 && echo \"Killed\")",
+      "Bash(npm run dev 2>&1)",
+      "Bash(pkill -f \"next dev\" 2>&1; lsof -ti :3000 | xargs kill -9 2>/dev/null; rm -f /Users/marcrosa/Desktop/marc-anthony-rosa-dot-com/.next/dev/lock; echo \"Cleaned up\")",
+      "Bash(sleep 4 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "WebFetch(domain:brianlovin.com)",
+      "Bash(cp \"/Users/marcrosa/Desktop/Linkedin/Marc Rosa fill.png\" /Users/marcrosa/Desktop/marc-anthony-rosa-dot-com/public/headshot.png && echo \"Copied\" && identify \"/Users/marcrosa/Desktop/Linkedin/Marc Rosa fill.png\" 2>/dev/null || file \"/Users/marcrosa/Desktop/Linkedin/Marc Rosa fill.png\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/about)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/does-not-exist)",
+      "Bash(pkill -f \"next dev\" 2>/dev/null; sleep 1; echo \"killed\")"
+    ]
+  }
+}
