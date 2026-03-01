@@ -3,6 +3,9 @@ import { Inter, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Sidebar } from "@/components/Sidebar";
+import { PostHogProvider } from "@/components/PostHogProvider";
+import { PostHogPageview } from "@/components/PostHogPageview";
+import { Suspense } from "react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -45,12 +48,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${instrumentSans.variable} ${jetbrainsMono.variable} antialiased`}>
-        <Providers>
-          <Sidebar />
-          <main className="min-h-screen">
-            {children}
-          </main>
-        </Providers>
+        <PostHogProvider>
+          <Providers>
+            <Suspense>
+              <PostHogPageview />
+            </Suspense>
+            <Sidebar />
+            <main className="min-h-screen">
+              {children}
+            </main>
+          </Providers>
+        </PostHogProvider>
       </body>
     </html>
   );
