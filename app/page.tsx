@@ -87,16 +87,16 @@ export default function Home() {
         />
         <div className="prose max-w-none">
           <p>
-            I lead product organizations and help companies turn early traction into durable, scalable platforms.
+            I lead product organizations and help early startups become scalable businesses.
           </p>
           <p>
-            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>, where I joined at seed stage and helped grow the company to Series A by expanding a narrow IT ticketing tool into a multi-product AI service platform and driving 10× revenue growth.
+            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>, joining at seed stage and helping grow the company to Series A. We transformed a point solution into a multi-product platform, drove 10× revenue growth, and became a category leader in the MSP market.
           </p>
           <p>
-            Before that, I led product at Zipwhip during a period of rapid adoption in 2020, leading up to its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
+            Previously, I led product at Zipwhip through its rapid 2020 growth and <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
           </p>
           <p>
-            My work focuses on creating clarity — in strategy, operating systems, and the teams that execute them.
+            My focus is on building opinionated software: products with a clear point of view that solve real problems and hold up as they scale.
           </p>
         </div>
 
