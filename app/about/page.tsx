@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import HeadshotOrGame from "@/components/game/HeadshotOrGame";
 
 export const metadata: Metadata = {
   title: "About",
@@ -80,15 +80,7 @@ export default function About() {
         >
           About
         </h1>
-        <Image
-          src="/headshot.jpeg"
-          alt="Marc Anthony Rosa"
-          width={611}
-          height={611}
-          className="w-full mb-8"
-          style={{ borderRadius: "16px" }}
-          priority
-        />
+        <HeadshotOrGame />
         <div className="prose max-w-none">
           <p>
             I&apos;m Marc Rosa. I lead product organizations and help companies turn early traction into scalable, durable platforms.

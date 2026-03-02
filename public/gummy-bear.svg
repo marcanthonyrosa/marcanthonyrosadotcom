@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
+  <!-- body -->
+  <ellipse cx="12" cy="18" rx="7" ry="8" fill="#e74c3c"/>
+  <!-- head -->
+  <circle cx="12" cy="9" r="6" fill="#e74c3c"/>
+  <!-- ears -->
+  <circle cx="7.5" cy="4.5" r="2.5" fill="#e74c3c"/>
+  <circle cx="16.5" cy="4.5" r="2.5" fill="#e74c3c"/>
+  <!-- belly -->
+  <ellipse cx="12" cy="19" rx="3.5" ry="4" fill="#ff8a80" opacity="0.6"/>
+  <!-- eyes -->
+  <circle cx="9.5" cy="8.5" r="1.2" fill="#1a1a2e"/>
+  <circle cx="14.5" cy="8.5" r="1.2" fill="#1a1a2e"/>
+  <!-- eye shine -->
+  <circle cx="10" cy="8" r="0.4" fill="white"/>
+  <circle cx="15" cy="8" r="0.4" fill="white"/>
+  <!-- nose -->
+  <ellipse cx="12" cy="10.5" r="1" ry="0.7" fill="#c0392b"/>
+  <!-- smile -->
+  <path d="M9.5 12 Q12 14 14.5 12" stroke="#c0392b" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+  <!-- arms -->
+  <ellipse cx="5.5" cy="17" rx="2" ry="3.5" fill="#e74c3c" transform="rotate(-20 5.5 17)"/>
+  <ellipse cx="18.5" cy="17" rx="2" ry="3.5" fill="#e74c3c" transform="rotate(20 18.5 17)"/>
+  <!-- legs -->
+  <ellipse cx="9" cy="25" rx="2.5" ry="2" fill="#e74c3c"/>
+  <ellipse cx="15" cy="25" rx="2.5" ry="2" fill="#e74c3c"/>
+</svg>

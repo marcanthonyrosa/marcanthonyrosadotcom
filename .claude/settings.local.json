@@ -23,7 +23,8 @@
       "Bash(pkill -f \"next dev\" 2>/dev/null; sleep 1; echo \"killed\")",
       "Bash(npm install posthog-js)",
       "Bash(lsof -i :3000 | head -20)",
-      "Bash(lsof -p 33056 | grep cwd)"
+      "Bash(lsof -p 33056 | grep cwd)",
+      "Bash(npx tsc --noEmit 2>&1 | head -40)"
     ]
   }
 }
