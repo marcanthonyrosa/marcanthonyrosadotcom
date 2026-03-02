@@ -189,8 +189,11 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
 
   // touch swipe
   useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
     let sx = 0, sy = 0;
-    const ts = (e: TouchEvent) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; };
+    const ts = (e: TouchEvent) => { e.preventDefault(); sx = e.touches[0].clientX; sy = e.touches[0].clientY; };
+    const tm = (e: TouchEvent) => { e.preventDefault(); };
     const te = (e: TouchEvent) => {
       const dx = e.changedTouches[0].clientX - sx;
       const dy = e.changedTouches[0].clientY - sy;
@@ -200,9 +203,10 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
           ? (dx > 0 ? "RIGHT" : "LEFT")
           : (dy > 0 ? "DOWN"  : "UP");
     };
-    window.addEventListener("touchstart", ts);
-    window.addEventListener("touchend", te);
-    return () => { window.removeEventListener("touchstart", ts); window.removeEventListener("touchend", te); };
+    canvas.addEventListener("touchstart", ts, { passive: false });
+    canvas.addEventListener("touchmove", tm, { passive: false });
+    canvas.addEventListener("touchend", te);
+    return () => { canvas.removeEventListener("touchstart", ts); canvas.removeEventListener("touchmove", tm); canvas.removeEventListener("touchend", te); };
   }, []);
 
   const tick = useCallback((ts: number) => {
