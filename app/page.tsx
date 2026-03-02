@@ -90,7 +90,7 @@ export default function Home() {
             I lead product teams and help early startups become scalable businesses.
           </p>
           <p>
-            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>, joining at seed stage and helping grow the company to Series A. We transformed a point solution into a multi-product platform, drove 10× revenue growth, and became a category leader in the MSP market.
+            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We transformed a single feature into a multi-product platform, drove 10× revenue growth, raised our Series A, and became a category leader in the MSP market.
           </p>
           <p>
             Previously, I led product at Zipwhip leading to its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
