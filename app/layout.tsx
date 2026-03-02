@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     url: "https://marcanthonyrosa.com",
     siteName: "Marc Anthony Rosa",
   },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
