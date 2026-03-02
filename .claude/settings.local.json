@@ -24,7 +24,10 @@
       "Bash(npm install posthog-js)",
       "Bash(lsof -i :3000 | head -20)",
       "Bash(lsof -p 33056 | grep cwd)",
-      "Bash(npx tsc --noEmit 2>&1 | head -40)"
+      "Bash(npx tsc --noEmit 2>&1 | head -40)",
+      "Bash(node -e \"\nconst CS = 28;\nconst GHOST_SPEED = 2.0;\n\nfunction toCol\\(px\\) { return Math.round\\(\\(px - CS/2\\) / CS\\); }\nfunction toRow\\(py\\) { return Math.round\\(\\(py - CS/2\\) / CS\\); }\nfunction cellCenter\\(c, r\\) { return { x: c*CS+CS/2, y: r*CS+CS/2 }; }\n\n// Blinky starts at col=10, row=9\nlet g = { x: 294, y: 266, dir: 'LEFT' };\nconsole.log\\('--- Blinky first 5 ticks ---'\\);\nfor \\(let t = 0; t < 5; t++\\) {\n  const col = toCol\\(g.x\\), row = toRow\\(g.y\\);\n  const cx = cellCenter\\(col, row\\);\n  const aligned = Math.abs\\(g.x - cx.x\\) < GHOST_SPEED+1 && Math.abs\\(g.y - cx.y\\) < GHOST_SPEED+1;\n  console.log\\('tick', t, 'pos=\\('+g.x+','+g.y+'\\) col='+col+' aligned='+aligned+' cx.x='+cx.x\\);\n  if \\(aligned\\) { g.x = cx.x; g.y = cx.y; } // snap\n  g.x += -1 * GHOST_SPEED; // move LEFT\n}\n\")",
+      "Bash(node -e \"\nconst CS = 28, GHOST_SPEED = 2.0;\nfunction toCol\\(px\\) { return Math.round\\(\\(px - CS/2\\) / CS\\); }\nfunction cellCenter\\(c, r\\) { return { x: c*CS+CS/2, y: r*CS+CS/2 }; }\n\nlet gx = 294, gy = 266; // Blinky start\nconst dx = -1; // LEFT\nconsole.log\\('--- Blinky first 20 ticks \\(< 1.0 threshold\\) ---'\\);\nfor \\(let t = 0; t < 20; t++\\) {\n  const col = toCol\\(gx\\), cy = cellCenter\\(col, 9\\).x;\n  const dist = Math.abs\\(gx - cy\\);\n  if \\(dist < 1.0\\) { gx = cy; } // snap\n  gx += dx * GHOST_SPEED;\n  if \\(t < 6 || t > 17\\) console.log\\('tick', t, 'x='+gx.toFixed\\(1\\), 'col='+toCol\\(gx\\)\\);\n}\n\")",
+      "Bash(npx tsc --noEmit 2>&1)"
     ]
   }
 }

@@ -35,10 +35,10 @@ export const PLAYER_START = { col: 10, row: 22 };
 
 // Ghosts start inside the ghost house (cols 8–13, rows 10–11)
 export const GHOST_STARTS = [
-  { col: 10, row: 9,  color: "#FF0000", scatter: { x: 20, y: 0  } }, // Blinky – top-right
-  { col: 8,  row: 11, color: "#FFB8FF", scatter: { x: 0,  y: 0  } }, // Pinky  – top-left
-  { col: 10, row: 11, color: "#00FFFF", scatter: { x: 20, y: 23 } }, // Inky   – bottom-right
-  { col: 12, row: 11, color: "#FFB852", scatter: { x: 0,  y: 23 } }, // Clyde  – bottom-left
+  { col: 10, row: 9,  color: "#FF0000", scatter: { x: 20, y: 0  } }, // Blinky – top-right (outside house)
+  { col: 9,  row: 11, color: "#FFB8FF", scatter: { x: 0,  y: 0  } }, // Pinky  – top-left
+  { col: 10, row: 11, color: "#00FFFF", scatter: { x: 20, y: 23 } }, // Inky   – centre
+  { col: 11, row: 11, color: "#FFB852", scatter: { x: 0,  y: 23 } }, // Clyde  – right (col 12 is a wall)
 ];
 
 export const GHOST_HOUSE_EXIT = { col: 10, row: 8 };

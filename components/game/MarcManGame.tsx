@@ -322,46 +322,26 @@ function updateGhosts(s: GameState, dt: number) {
     const col = toCol(g.x);
     const row = toRow(g.y);
     const cx  = cellCenter(col, row);
-
-    // Are we currently inside the ghost house?
     const inHouse = s.maze[row]?.[col] === CELL.GHOST_HOUSE;
 
-    // At each cell centre, pick a new direction
-    const aligned =
-      Math.abs(g.x - cx.x) < GHOST_SPEED + 1 &&
-      Math.abs(g.y - cx.y) < GHOST_SPEED + 1;
-
-    if (aligned) {
-      g.x = cx.x; g.y = cx.y;
+    // ── Snap + re-evaluate direction only when within 1 px of a cell centre.
+    // Using a tight threshold (< 1.0) prevents the old bug where a 2px/frame
+    // ghost was always "within GHOST_SPEED+1" of centre and got snapped back
+    // every single tick, making it oscillate in place.
+    if (Math.hypot(g.x - cx.x, g.y - cx.y) < 1.0) {
+      g.x = cx.x;
+      g.y = cx.y;
       g.dir = chooseGhostDir(g, s.maze, s.player.x, s.player.y, inHouse);
     }
 
-    // ── Key fix: check the INTEGER CELL ahead, not the pixel destination ──
-    // This avoids the "destination still in ghost-house cell" false-block
-    // that happened when ghost moves only ~2px per frame.
+    // Move unconditionally — direction is already validated at each cell centre.
     const { dx, dy } = dirVec(g.dir);
-    const nextCol = wrapCol(col + dx);
-    const nextRow = row + dy;
-
-    const blocked =
-      isWall(s.maze, nextCol, nextRow) ||
-      // outside the house, can't re-enter
-      (!inHouse && s.maze[nextRow]?.[nextCol] === CELL.GHOST_HOUSE);
-
-    if (!blocked) {
-      g.x += dx * GHOST_SPEED;
-      g.y += dy * GHOST_SPEED;
-      if (g.x < 0) g.x = CW - 1;
-      if (g.x >= CW) g.x = 1;
-    } else {
-      // snap and re-route
-      g.x = cx.x; g.y = cy(col, row);
-      g.dir = chooseGhostDir(g, s.maze, s.player.x, s.player.y, inHouse);
-    }
+    g.x += dx * GHOST_SPEED;
+    g.y += dy * GHOST_SPEED;
+    if (g.x < 0) g.x = CW - 1;
+    if (g.x >= CW) g.x = 1;
   }
 }
-
-function cy(col: number, row: number) { return cellCenter(col, row).y; }
 
 /* ─── Collision ──────────────────────────────────────────── */
 function checkCollisions(s: GameState) {
