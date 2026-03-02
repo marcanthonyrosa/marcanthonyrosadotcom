@@ -76,7 +76,7 @@ export default function Work() {
   if (process.env.NODE_ENV !== "development") notFound();
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-16 sm:px-10 sm:py-24">
+    <div className="max-w-2xl mx-auto px-6 py-16 sm:px-10">
       {/* ── Header ── */}
       <section className="mb-12">
         <h1
