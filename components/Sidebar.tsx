@@ -225,23 +225,27 @@ function ThemeToggle() {
 export function Sidebar() {
   return (
     <nav
-      className="z-40 flex flex-col gap-1"
-      style={{
-        position: "fixed",
-        top: "9.5rem",
-        left: "3vw",
-        width: "auto",
-        alignItems: "flex-start",
-        paddingTop: "calc(var(--spacing, 4px) * 0)",
-      }}
+      className={[
+        "z-40 fixed flex items-center",
+        // Mobile: horizontal top bar
+        "top-0 left-0 right-0 px-2 h-14",
+        "bg-[var(--bg)]",
+        // Desktop: vertical sidebar
+        "min-[750px]:flex-col min-[750px]:items-start min-[750px]:gap-1",
+        "min-[750px]:top-[9.5rem] min-[750px]:left-[3vw] min-[750px]:right-auto",
+        "min-[750px]:h-auto min-[750px]:w-auto min-[750px]:px-0",
+        "min-[750px]:bg-transparent min-[750px]:border-0",
+      ].join(" ")}
     >
       {/* Nav items */}
-      {NAV_ITEMS.map((item) => (
-        <NavItem key={item.href} {...item} />
-      ))}
+      <div className="flex items-center gap-1 min-[750px]:flex-col min-[750px]:gap-1">
+        {NAV_ITEMS.map((item) => (
+          <NavItem key={item.href} {...item} />
+        ))}
+      </div>
 
-      {/* Theme toggle with a small gap above */}
-      <div style={{ marginTop: "0.75rem" }}>
+      {/* Theme toggle: right-aligned on mobile, below nav on desktop */}
+      <div className="ml-auto min-[750px]:ml-0 min-[750px]:mt-3">
         <ThemeToggle />
       </div>
     </nav>

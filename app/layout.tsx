@@ -54,7 +54,7 @@ export default function RootLayout({
               <PostHogPageview />
             </Suspense>
             <Sidebar />
-            <main className="min-h-screen">
+            <main className="min-h-screen pt-7 min-[750px]:pt-0">
               {children}
             </main>
           </Providers>
