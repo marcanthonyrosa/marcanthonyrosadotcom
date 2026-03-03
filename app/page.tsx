@@ -9,32 +9,25 @@ export const metadata: Metadata = {
 
 const RECENT_WRITING = [
   {
-    slug: "product-strategy-that-actually-works",
-    title: "Product strategy that actually works",
-    date: "January 2026",
+    slug: "fixed-a-bug-at-the-car-wash",
+    title: "Fixed a bug at the car wash",
+    date: "March 2026",
     description:
-      "Most product strategies are mission statements dressed up in a slide deck. Here's how to write one that drives daily decisions.",
+      "I shipped a production fix from my phone while waiting for a car wash using Claude Code on iOS. The barrier between idea and live code keeps collapsing.",
   },
   {
-    slug: "the-product-manager-as-editor",
-    title: "The product manager as editor",
-    date: "November 2025",
+    slug: "stop-shipping-fast",
+    title: "Stop shipping fast. Make it actually hold up.",
+    date: "February 2026",
     description:
-      "The best PMs I know share a skill with great editors: they make things smaller, not bigger. On the discipline of cutting.",
+      "A Thread partner's counterintuitive advice: in the age of AI-generated vaporware, quality and support are the new competitive moat.",
   },
   {
-    slug: "how-i-run-user-research",
-    title: "How I run user research as a team of one",
-    date: "August 2025",
+    slug: "your-market-will-show-you",
+    title: "Your market will show you the right one",
+    date: "February 2026",
     description:
-      "When you can't afford a dedicated researcher, you have to become one. A practical system for discovery without a research team.",
-  },
-  {
-    slug: "north-star-metric-trap",
-    title: "The north star metric trap",
-    date: "May 2025",
-    description:
-      "Picking a single north star metric is good advice — until it isn't. How I learned to hold metrics more loosely.",
+      "After 2.5 years at Thread, the market taught me where the real opportunity was. Your customers will show you — if you're willing to watch.",
   },
 ];
 
