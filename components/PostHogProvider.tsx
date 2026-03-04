@@ -8,6 +8,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     posthog.init("phc_q48SkxIjWWCMVjD1ydL8Oos0EHlsp6P4wYhi1Qd46TT", {
       api_host: "https://us.i.posthog.com",
+      defaults: "2026-01-30",
       person_profiles: "identified_only",
       capture_pageview: false, // handled manually via usePathname
     });
