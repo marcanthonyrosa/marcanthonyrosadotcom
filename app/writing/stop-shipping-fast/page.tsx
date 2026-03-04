@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import ArticleImage from "@/components/ArticleImage";
 
 export const metadata: Metadata = {
   title: "Stop shipping fast. Make it actually hold up.",
@@ -47,6 +48,8 @@ export default function StopShippingFast() {
       </header>
 
       <hr style={{ borderColor: "var(--border)" }} className="mb-10" />
+
+      <ArticleImage src="/stop-shipping-fast.jpg" alt="Product research session with Albert, a Thread partner" />
 
       {/* Body */}
       <article

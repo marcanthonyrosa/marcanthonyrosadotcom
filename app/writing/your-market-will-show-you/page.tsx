@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import ArticleImage from "@/components/ArticleImage";
 
 export const metadata: Metadata = {
   title: "Your market will show you the right one",
@@ -47,6 +48,8 @@ export default function YourMarketWillShowYou() {
       </header>
 
       <hr style={{ borderColor: "var(--border)" }} className="mb-10" />
+
+      <ArticleImage src="/your-market-will-show-you.jpg" alt="Marc Anthony Rosa at a Thread conference booth" />
 
       {/* Body */}
       <article
