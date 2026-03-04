@@ -54,22 +54,27 @@ export default function FixedABugAtTheCarWash() {
         style={{ color: "var(--text-2)", fontSize: "1.05rem" }}
       >
         <p>
-          Today I got to live in the future for about 15 very ordinary minutes: sitting in the
-          waiting room of a car wash. I had a truly mission-critical issue on my personal website:
-          the Pac-Man Easter egg (where you play as "Marcman" and eat gummy bears) was bouncing the
-          entire screen when you swiped to move. Peak severity. Clearly could not wait.
+          Today I got to live in the future for about 15 very ordinary minutes sitting in the
+          waiting room of a car wash.
         </p>
 
         <p>
-          At the same time, I'd been listening to Boris Cherny's chat with Lenny Rachitsky on
+          When using from my phone, I discovered a mission-critical bug on my personal website: the
+          Pac-Man easter egg game (where you play as "Marcman" and eat gummy bears) would bounce
+          around when using swipe gestures to move up/down/left/right. Urgent issue. Clearly could
+          not wait.
+        </p>
+
+        <p>
+          At the same moment, I was listening to Boris Cherny's chat with Lenny Rachitsky on
           Lenny's Newsletter that something like a third of the code he writes now comes from the
-          Claude iOS app. That's obviously crazy, how does that happen?! I couldn't quite picture
-          how that actually worked in practice.
+          Claude iOS app. How's that possible?! I couldn't quite picture how that actually worked in
+          practice.
         </p>
 
         <p>
           So I opened Claude on my phone, tapped Code, started a session, and wrote one very
-          specific instruction:
+          specific instruction to see if I could work like Boris:
         </p>
 
         <blockquote
@@ -92,14 +97,13 @@ export default function FixedABugAtTheCarWash() {
 
         <p>
           Bug fixed. Deployed to production. All from my phone. While waiting for a car wash, with
-          no terminal or IDE or fancy dev tool in sight.
+          no terminal or IDE or fancy dev tool in sight. 🤯
         </p>
 
         <p>
-          What struck me wasn't just the novelty; it was how normal it felt. This wasn't a demo
-          moment or a staged "AI magic" workflow. It was just… fixing something annoying while I
-          had a few idle minutes. It felt like answering a few emails or approving a doc, except the
-          output was code in prod.
+          What struck me was how the moment felt a combination of being magical and normal. It
+          was just… fixing something annoying while I had a few idle minutes. It felt like answering
+          a few emails or approving a doc, except the output was code in prod.
         </p>
 
         <p>
