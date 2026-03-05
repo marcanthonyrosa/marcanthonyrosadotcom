@@ -35,6 +35,11 @@ export interface GameState {
   lives: number;
   pelletsLeft: number;
   frightenedTimer: number; // global countdown
+  ghostEatChain: number;   // ghosts eaten during current power pellet (resets each power pellet)
+  modePhase: number;       // index into the scatter/chase cycle
+  modeTimer: number;       // ms remaining in current cycle phase
+  fruit: { x: number; y: number; timer: number; points: number; color: string } | null;
+  fruitSpawned: number;    // how many times fruit has spawned this level (0–2)
   player: Player;
   ghosts: Ghost[];
   maze: number[][];        // mutable copy consumed as game progresses
