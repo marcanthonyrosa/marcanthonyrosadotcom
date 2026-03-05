@@ -1,6 +1,6 @@
 export type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT" | "NONE";
 export type GhostMode = "CHASE" | "SCATTER" | "FRIGHTENED" | "EATEN";
-export type GamePhase = "IDLE" | "PLAYING" | "PAUSED" | "WIN" | "LOSE";
+export type GamePhase = "IDLE" | "PLAYING" | "PAUSED" | "WIN" | "LOSE" | "DYING" | "LEVEL_COMPLETE";
 
 export interface Vec2 {
   x: number;
@@ -38,6 +38,9 @@ export interface GameState {
   ghostEatChain: number;   // ghosts eaten during current power pellet (resets each power pellet)
   modePhase: number;       // index into the scatter/chase cycle
   modeTimer: number;       // ms remaining in current cycle phase
+  level: number;
+  dyingTimer: number;      // ms remaining in death animation
+  levelTimer: number;      // ms remaining in level-complete flash
   fruit: { x: number; y: number; timer: number; points: number; color: string } | null;
   fruitSpawned: number;    // how many times fruit has spawned this level (0–2)
   player: Player;

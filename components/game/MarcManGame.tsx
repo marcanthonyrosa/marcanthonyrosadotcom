@@ -18,6 +18,19 @@ const EATEN_SPEED  = 4.0;   // eyes fly back to house at 2× normal
 const TUNNEL_SPEED = 1.5;   // visibly slower in tunnels; must stay > 1.0 (the snap threshold)
 const FRIGHTEN_MS  = 7000;
 const LIVES_START  = 3;
+const DYING_MS       = 1200;
+const LEVEL_FLASH_MS = 2000;
+
+const LEVEL_CONFIGS = [
+  { ghostSpeed: 2.0, frightenMs: 7000 },  // Level 1
+  { ghostSpeed: 2.2, frightenMs: 5000 },  // Level 2
+  { ghostSpeed: 2.4, frightenMs: 3000 },  // Level 3
+  { ghostSpeed: 2.6, frightenMs: 2000 },  // Level 4
+  { ghostSpeed: 2.8, frightenMs: 1000 },  // Level 5+
+];
+function getLevelConfig(level: number) {
+  return LEVEL_CONFIGS[Math.min(level - 1, LEVEL_CONFIGS.length - 1)];
+}
 
 // Scatter ↔ Chase cycle (Level 1 timing). Final Chase phase runs indefinitely.
 const MODE_PHASES: { mode: "SCATTER" | "CHASE"; ms: number }[] = [
@@ -151,6 +164,9 @@ function makeInitialState(): GameState {
     phase: "PLAYING",
     score: 0,
     lives: LIVES_START,
+    level: 1,
+    dyingTimer: 0,
+    levelTimer: 0,
     pelletsLeft: countPellets(maze),
     frightenedTimer: 0,
     ghostEatChain: 0,
@@ -342,7 +358,59 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
       updatePlayer(s);
       updateGhosts(s, dt);
       checkCollisions(s);
-      if (s.pelletsLeft === 0) s.phase = "WIN";
+      if (s.pelletsLeft === 0) {
+        s.phase = "LEVEL_COMPLETE";
+        s.levelTimer = LEVEL_FLASH_MS;
+      }
+      phaseRef.current = s.phase;
+    } else if (s.phase === "DYING") {
+      s.dyingTimer -= dt;
+      if (s.dyingTimer <= 0) {
+        s.dyingTimer = 0;
+        if (s.lives <= 0) {
+          s.phase = "LOSE";
+        } else {
+          const pc = cellCenter(PLAYER_START.col, PLAYER_START.row);
+          s.player.x = pc.x; s.player.y = pc.y;
+          s.player.dir = "NONE"; s.player.nextDir = "LEFT";
+          s.modePhase = 0; s.modeTimer = MODE_PHASES[0].ms;
+          GHOST_STARTS.forEach((gs, i) => {
+            const gc = cellCenter(gs.col, gs.row);
+            s.ghosts[i].x = gc.x; s.ghosts[i].y = gc.y;
+            s.ghosts[i].dir = (["LEFT", "LEFT", "RIGHT", "RIGHT"] as Direction[])[i];
+            s.ghosts[i].mode = i === 0 ? "CHASE" : "SCATTER";
+            s.ghosts[i].frightenedTimer = 0;
+          });
+          s.phase = "PLAYING";
+        }
+      }
+      phaseRef.current = s.phase;
+    } else if (s.phase === "LEVEL_COMPLETE") {
+      s.levelTimer -= dt;
+      if (s.levelTimer <= 0) {
+        s.level++;
+        const freshMaze = cloneMaze(MAZE_TEMPLATE);
+        s.maze = freshMaze;
+        s.pelletsLeft = countPellets(freshMaze);
+        s.fruitSpawned = 0;
+        s.fruit = null;
+        s.frightenedTimer = 0;
+        s.ghostEatChain = 0;
+        s.modePhase = 0;
+        s.modeTimer = MODE_PHASES[0].ms;
+        s.levelTimer = 0;
+        const pc = cellCenter(PLAYER_START.col, PLAYER_START.row);
+        s.player.x = pc.x; s.player.y = pc.y;
+        s.player.dir = "NONE"; s.player.nextDir = "LEFT";
+        GHOST_STARTS.forEach((gs, i) => {
+          const gc = cellCenter(gs.col, gs.row);
+          s.ghosts[i].x = gc.x; s.ghosts[i].y = gc.y;
+          s.ghosts[i].dir = (["LEFT", "LEFT", "RIGHT", "RIGHT"] as Direction[])[i];
+          s.ghosts[i].mode = i === 0 ? "CHASE" : "SCATTER";
+          s.ghosts[i].frightenedTimer = 0;
+        });
+        s.phase = "PLAYING";
+      }
       phaseRef.current = s.phase;
     }
     render(canvasRef.current, s, imgRef.current);
@@ -428,11 +496,11 @@ function updatePlayer(s: GameState) {
     } else if (cell === CELL.POWER) {
       s.maze[row][col] = CELL.EMPTY;
       s.score += 50; s.pelletsLeft--;
-      s.frightenedTimer = FRIGHTEN_MS;
+      s.frightenedTimer = getLevelConfig(s.level).frightenMs;
       s.ghostEatChain = 0;
       s.ghosts.forEach(g => {
         g.mode = "FRIGHTENED";
-        g.frightenedTimer = FRIGHTEN_MS;
+        g.frightenedTimer = getLevelConfig(s.level).frightenMs;
         g.dir = opposite(g.dir);
       });
     }
@@ -506,7 +574,7 @@ function updateGhosts(s: GameState, dt: number) {
 
     const speed = g.mode === "EATEN"
       ? EATEN_SPEED
-      : isInTunnel(col, row) ? TUNNEL_SPEED : GHOST_SPEED;
+      : isInTunnel(col, row) ? TUNNEL_SPEED : getLevelConfig(s.level).ghostSpeed;
 
     // Snap threshold uses current speed so a ghost can never get stuck in a
     // parity deadlock (e.g. after a speed change mid-cell, the ghost might
@@ -545,23 +613,9 @@ function checkCollisions(s: GameState) {
       g.frightenedTimer = 0;
     } else if (g.mode !== "EATEN") {
       s.lives--;
-      s.fruit = null; // clear active fruit on death
-      if (s.lives <= 0) {
-        s.phase = "LOSE";
-      } else {
-        const pc = cellCenter(PLAYER_START.col, PLAYER_START.row);
-        p.x = pc.x; p.y = pc.y; p.dir = "NONE"; p.nextDir = "LEFT";
-        s.modePhase = 0;
-        s.modeTimer = MODE_PHASES[0].ms;
-        GHOST_STARTS.forEach((gs, i) => {
-          const gc = cellCenter(gs.col, gs.row);
-          const dirs: Direction[] = ["LEFT", "LEFT", "RIGHT", "RIGHT"];
-          s.ghosts[i].x = gc.x; s.ghosts[i].y = gc.y;
-          s.ghosts[i].dir = dirs[i];
-          s.ghosts[i].mode = i === 0 ? "CHASE" : "SCATTER";
-          s.ghosts[i].frightenedTimer = 0;
-        });
-      }
+      s.fruit = null;
+      s.phase = "DYING";
+      s.dyingTimer = DYING_MS;
     }
   }
 }
@@ -579,12 +633,15 @@ function render(
   ctx.fillStyle = "#0d0d1a";
   ctx.fillRect(0, 0, CW, CH);
 
+  const isLevelComplete = s.phase === "LEVEL_COMPLETE";
+  const flashWall = isLevelComplete && Math.floor(s.levelTimer / 250) % 2 === 0;
+
   // maze cells
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c < COLS; c++) {
       const cell = s.maze[r][c];
       if (cell === CELL.WALL) {
-        drawWall(ctx, c, r, s.maze);
+        drawWall(ctx, c, r, s.maze, flashWall ? "#ffffff" : undefined);
       } else if (cell === CELL.PELLET) {
         const color = BEAR_COLORS[(c * 7 + r * 3) % BEAR_COLORS.length];
         drawBear(ctx, c * CS + CS * 0.13, r * CS + CS * 0.04, CS * 0.74, color);
@@ -595,30 +652,39 @@ function render(
     }
   }
 
-  // Fruit — drawn larger than a power pellet, flashes in final 2 seconds
-  if (s.fruit) {
-    const { x, y, timer, color } = s.fruit;
-    const visible = timer > 2000 || Math.floor(timer / 250) % 2 === 0;
-    if (visible) {
-      const fSize = CS * 1.1;
-      drawBear(ctx, x - fSize * 0.31, y - fSize * 0.5, fSize, color);
+  if (!isLevelComplete) {
+    // Fruit — drawn larger than a power pellet, flashes in final 2 seconds
+    if (s.fruit) {
+      const { x, y, timer, color } = s.fruit;
+      const visible = timer > 2000 || Math.floor(timer / 250) % 2 === 0;
+      if (visible) {
+        const fSize = CS * 1.1;
+        drawBear(ctx, x - fSize * 0.31, y - fSize * 0.5, fSize, color);
+      }
+    }
+
+    s.ghosts.forEach(g => drawGhost(ctx, g));
+    if (s.phase === "DYING") {
+      const progress = 1 - s.dyingTimer / DYING_MS;
+      drawPlayerDying(ctx, s.player, head, progress);
+    } else {
+      drawPlayer(ctx, s.player, head);
     }
   }
 
-  s.ghosts.forEach(g => drawGhost(ctx, g));
-  drawPlayer(ctx, s.player, head);
   drawHUD(ctx, s);
   if (s.phase === "WIN" || s.phase === "LOSE") drawOverlay(ctx, s.phase, s.score);
+  if (isLevelComplete) drawLevelCompleteOverlay(ctx, s.level);
 }
 
 /* ─── Wall ───────────────────────────────────────────────── */
-function drawWall(ctx: CanvasRenderingContext2D, c: number, r: number, maze: number[][]) {
+function drawWall(ctx: CanvasRenderingContext2D, c: number, r: number, maze: number[][], overrideColor?: string) {
   const px = c * CS, py = r * CS;
-  ctx.fillStyle = "#1a1aff";
+  ctx.fillStyle = overrideColor ?? "#1a1aff";
   ctx.fillRect(px, py, CS, CS);
 
   const pad = 3;
-  ctx.strokeStyle = "#5566ff";
+  ctx.strokeStyle = overrideColor ? "#cccccc" : "#5566ff";
   ctx.lineWidth = 1.5;
   ctx.beginPath();
   const N = maze[r-1]?.[c] === CELL.WALL;
@@ -778,6 +844,36 @@ function drawPlayer(
   ctx.restore();
 }
 
+/* ─── Player: Death Animation ────────────────────────────── */
+function drawPlayerDying(
+  ctx: CanvasRenderingContext2D,
+  p: GameState["player"],
+  head: HTMLImageElement | null,
+  progress: number, // 0 (just died) → 1 (fully shrunk)
+) {
+  const r = CS * 0.44 * (1 - progress);
+  if (r <= 0) return;
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+  ctx.clip();
+  if (head) {
+    ctx.drawImage(head, p.x - r, p.y - r, r * 2, r * 2);
+  } else {
+    ctx.fillStyle = "#f1c40f";
+    ctx.fill();
+  }
+  ctx.restore();
+  // Red overlay that grows more opaque as player shrinks
+  ctx.save();
+  ctx.globalAlpha = progress * 0.7;
+  ctx.fillStyle = "#e74c3c";
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, r + 2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
 /* ─── HUD ────────────────────────────────────────────────── */
 function drawHUD(ctx: CanvasRenderingContext2D, s: GameState) {
   const y = CS * 0.68;
@@ -786,6 +882,8 @@ function drawHUD(ctx: CanvasRenderingContext2D, s: GameState) {
   ctx.fillStyle = "#ffffff";
   ctx.textAlign = "left";
   ctx.fillText(`Score: ${s.score}`, 6, y);
+  ctx.textAlign = "center";
+  ctx.fillText(`Lvl ${s.level}`, CW / 2, y);
   ctx.textAlign = "right";
   ctx.fillText("♥".repeat(s.lives), CW - 6, y);
 }
@@ -805,4 +903,18 @@ function drawOverlay(ctx: CanvasRenderingContext2D, phase: GamePhase, score: num
   ctx.fillStyle = "#aaaaaa";
   ctx.font = "14px 'Courier New', monospace";
   ctx.fillText("R to restart · ESC to exit", CW / 2, CH / 2 + 44);
+}
+
+/* ─── Level Complete Overlay ─────────────────────────────── */
+function drawLevelCompleteOverlay(ctx: CanvasRenderingContext2D, level: number) {
+  ctx.fillStyle = "rgba(0,0,0,0.55)";
+  ctx.fillRect(0, 0, CW, CH);
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#f1c40f";
+  ctx.font = "bold 28px 'Courier New', monospace";
+  ctx.fillText("LEVEL COMPLETE!", CW / 2, CH / 2 - 20);
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "18px 'Courier New', monospace";
+  ctx.fillText(`Level ${level}`, CW / 2, CH / 2 + 16);
 }
