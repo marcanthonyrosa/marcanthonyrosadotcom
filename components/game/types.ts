@@ -43,6 +43,7 @@ export interface GameState {
   levelTimer: number;      // ms remaining in level-complete flash
   fruit: { x: number; y: number; timer: number; points: number; color: string } | null;
   fruitSpawned: number;    // how many times fruit has spawned this level (0–2)
+  spawnGrace: number;      // frames remaining where collisions are suppressed (set on level start)
   player: Player;
   ghosts: Ghost[];
   maze: number[][];        // mutable copy consumed as game progresses
