@@ -14,67 +14,77 @@ On level 1→2 transition, ghosts freeze. Root cause is two compounding issues:
 
 ---
 
-## Exact Fixes Required
+## Changes Already Applied (DO NOT RE-APPLY)
 
-### Fix 1 — Add early-exit guard in `checkCollisions`
+The following fixes have already been implemented. Do not add them again.
 
-**File:** (your game file — the one containing `checkCollisions`)  
-**Find this pattern** (inside the ghost iteration loop in `checkCollisions`):
+### Fix 1 — Early-exit guard in `checkCollisions` ✅ DONE
 
-```js
-// somewhere inside the loop that iterates over ghosts:
-s.lives--;
-s.phase = "DYING";
-```
-
-**Replace with:**
+In `components/game/MarcManGame.tsx`, inside the ghost loop in `checkCollisions`:
 
 ```js
-s.lives--;
-s.phase = "DYING";
-break; // ADD THIS LINE — prevents subsequent ghosts from overwriting phase/lives
+} else if (g.mode !== "EATEN") {
+  s.lives--;
+  s.fruit = null;
+  s.phase = "DYING";
+  s.dyingTimer = DYING_MS;
+  break; // prevents subsequent ghosts from overwriting phase/lives
+}
 ```
 
----
+### Fix 2 — Reset `s.phase` on level transition ✅ DONE
 
-### Fix 2 — Reset `s.phase` on level transition
-
-**Find the block that runs on level completion / level reset** (where `s.modeTimer` is set):
-
-```js
-s.modeTimer = MODE_PHASES[0].ms;
-```
-
-**Immediately after that line, add:**
+In the LEVEL_COMPLETE reset block (after `s.modeTimer = MODE_PHASES[0].ms`):
 
 ```js
 s.phase = "PLAYING"; // Ensure clean phase state on level start
 ```
 
----
+### Fix 3 — Spawn-grace period ✅ DONE
 
-### Fix 3 — Add spawn-grace period to prevent tick-1 collisions
+Three parts, all applied:
 
-**Find the level reset block** (same area as Fix 2). Add a grace timer:
-
+1. In the LEVEL_COMPLETE reset block:
 ```js
 s.spawnGrace = 180; // ~3 seconds at 60fps — no collision checks during this window
 ```
 
-**Then in `checkCollisions`, wrap the entire function body:**
-
+2. At the top of `checkCollisions`:
 ```js
-function checkCollisions(s) {
-  if (s.spawnGrace > 0) return; // ADD THIS GUARD at the very top
-  // ... rest of existing function unchanged
-}
+if (s.spawnGrace > 0) return; // no collision checks during spawn grace window
 ```
 
-**And in the main game tick/update function, add the grace timer countdown** (near where `s.modeTimer -= dt` happens):
-
+3. In `updateGhosts`, near `s.modeTimer -= dt`:
 ```js
 if (s.spawnGrace > 0) s.spawnGrace--;
 ```
+
+### Fix 4 — `spawnGrace` added to `GameState` type ✅ DONE
+
+In `components/game/types.ts`, `spawnGrace: number` was added to the `GameState` interface.
+
+In `makeInitialState()` in `MarcManGame.tsx`, `spawnGrace: 0` was added to the initial state object.
+
+---
+
+## Outstanding Problem — Ghosts Still Freeze on Level 2
+
+All four fixes above are confirmed in the code and the build compiles cleanly. However, **ghosts still visually freeze when the game transitions to level 2**. The root cause has not been fully resolved.
+
+### What is known:
+- Ghost movement is driven by `updateGhosts(s, dt)`, called only when `s.phase === "PLAYING"`
+- Ghost snap/direction logic is in `chooseGhostDir`; the snap threshold is `speed` (px)
+- Level 2 ghost speed is `2.2` (up from `2.0` at level 1) per `getLevelConfig`
+- Ghosts start at `GHOST_STARTS` positions (from `mazeConfig.ts`):
+  - Ghost 0 (Blinky): col 10, row 9 — **outside** the ghost house
+  - Ghosts 1–3 (Pinky, Inky, Clyde): col 9–11, row 11 — **inside** the ghost house (CELL.GHOST_HOUSE)
+- Ghost house exit is at col 10, row 8
+
+### What to investigate next:
+The freeze occurs despite phase and grace being reset. Likely candidates:
+- Ghost direction or mode state left over from level 1 end (e.g., a ghost that was `EATEN` mid-transit)
+- The `inHouse` logic in `chooseGhostDir` not correctly routing ghosts out
+- A snap threshold or position parity issue at the new `ghostSpeed = 2.2`
 
 ---
 
@@ -82,17 +92,16 @@ if (s.spawnGrace > 0) s.spawnGrace--;
 
 - Do NOT refactor `chooseGhostDir` — the UP-return logic for in-house ghosts is correct.
 - Do NOT change `GHOST_SPEED` or `getLevelConfig` — the snap threshold behavior is intentional.
-- Do NOT rewrite the level reset logic — only add the three targeted insertions above.
-- Do NOT read files other than the single game logic file containing these functions.
+- Do NOT rewrite the level reset logic — only add targeted insertions.
 
 ---
 
-## Verification
+## Verified State of the Code
 
-After making changes, confirm:
-1. `checkCollisions` has a `break` statement after `s.phase = "DYING"`
-2. The level reset block sets `s.phase = "PLAYING"` and `s.spawnGrace = 180`
-3. `checkCollisions` returns early if `s.spawnGrace > 0`
-4. The main tick decrements `s.spawnGrace` each frame
-
-That's the complete fix. No other changes are needed.
+1. ✅ `checkCollisions` has a `break` statement after `s.phase = "DYING"`
+2. ✅ The level reset block sets `s.phase = "PLAYING"` and `s.spawnGrace = 180`
+3. ✅ `checkCollisions` returns early if `s.spawnGrace > 0`
+4. ✅ `updateGhosts` decrements `s.spawnGrace` each frame
+5. ✅ `spawnGrace: number` is in the `GameState` type and initialized to `0` in `makeInitialState()`
+6. ✅ Build compiles cleanly — no TypeScript errors
+7. ❌ Ghosts still freeze on level 1→2 transition (bug not resolved)
