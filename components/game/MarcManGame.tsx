@@ -174,6 +174,7 @@ function makeInitialState(): GameState {
     modeTimer: MODE_PHASES[0].ms,
     fruit: null,
     fruitSpawned: 0,
+    spawnGrace: 0,
     player: {
       x: pc.x, y: pc.y,
       dir: "NONE", nextDir: "LEFT",
