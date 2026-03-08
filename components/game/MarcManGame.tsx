@@ -398,6 +398,8 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
         s.ghostEatChain = 0;
         s.modePhase = 0;
         s.modeTimer = MODE_PHASES[0].ms;
+        s.phase = "PLAYING"; // Ensure clean phase state on level start
+        s.spawnGrace = 180; // ~3 seconds at 60fps — no collision checks during this window
         s.levelTimer = 0;
         const pc = cellCenter(PLAYER_START.col, PLAYER_START.row);
         s.player.x = pc.x; s.player.y = pc.y;
@@ -534,6 +536,7 @@ function updateGhosts(s: GameState, dt: number) {
   }
 
   // ── Scatter/Chase mode cycle ──────────────────────────────
+  if (s.spawnGrace > 0) s.spawnGrace--;
   s.modeTimer -= dt;
   if (s.modeTimer <= 0 && s.modePhase < MODE_PHASES.length - 1) {
     s.modePhase++;
@@ -595,6 +598,7 @@ function updateGhosts(s: GameState, dt: number) {
 
 /* ─── Collision ──────────────────────────────────────────── */
 function checkCollisions(s: GameState) {
+  if (s.spawnGrace > 0) return; // no collision checks during spawn grace window
   const p = s.player;
 
   // Fruit pickup
@@ -616,6 +620,7 @@ function checkCollisions(s: GameState) {
       s.fruit = null;
       s.phase = "DYING";
       s.dyingTimer = DYING_MS;
+      break; // prevents subsequent ghosts from overwriting phase/lives
     }
   }
 }
