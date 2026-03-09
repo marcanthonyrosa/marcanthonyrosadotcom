@@ -5,17 +5,31 @@ export const metadata: Metadata = {
   title: "Writing",
 };
 
-const POSTS_BY_YEAR: Record<string, { slug: string; title: string; date: string }[]> = {
-  "2026": [
-    { slug: "fixed-a-bug-at-the-car-wash", title: "Fixed a bug at the car wash", date: "March 2, 2026" },
-    { slug: "stop-shipping-fast", title: "Stop shipping fast. Make it actually hold up.", date: "February 12, 2026" },
-    { slug: "your-market-will-show-you", title: "Your market will show you the right one", date: "February 10, 2026" },
-  ],
-};
+const RECENT_WRITING = [
+  {
+    slug: "fixed-a-bug-at-the-car-wash",
+    title: "Fixed a bug at the car wash",
+    date: "March 2026",
+    description:
+      "I shipped a production fix from my phone while waiting for a car wash using Claude Code on iOS. The barrier between idea and live code keeps collapsing.",
+  },
+  {
+    slug: "stop-shipping-fast",
+    title: "Stop shipping fast. Make it actually hold up.",
+    date: "February 2026",
+    description:
+      "A Thread partner's counterintuitive advice: in the age of AI-generated vaporware, quality and support are the new competitive moat.",
+  },
+  {
+    slug: "your-market-will-show-you",
+    title: "Your market will show you the right one",
+    date: "February 2026",
+    description:
+      "After 2.5 years at Thread, the market taught me where the real opportunity was. Your customers will show you — if you're willing to watch.",
+  },
+];
 
 export default function Writing() {
-  const years = Object.keys(POSTS_BY_YEAR).sort((a, b) => Number(b) - Number(a));
-
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 sm:px-10">
       {/* ── Header ── */}
@@ -38,36 +52,27 @@ export default function Writing() {
 
       <hr style={{ borderColor: "var(--border)" }} className="mb-10" />
 
-      {/* ── Posts by year ── */}
-      <div className="flex flex-col gap-12">
-        {years.map((year) => (
-          <section key={year}>
-            <h2
-              className="text-xs font-semibold uppercase tracking-widest mb-5"
-              style={{ color: "var(--text-3)" }}
+      {/* ── Posts ── */}
+      <div className="flex flex-col gap-8">
+        {RECENT_WRITING.map((post) => (
+          <article key={post.slug}>
+            <Link
+              href={`/writing/${post.slug}`}
+              className="font-medium transition-opacity hover:opacity-70 leading-snug"
+              style={{ color: "var(--text-1)", fontSize: "1.1rem" }}
             >
-              {year}
-            </h2>
-            <ul className="flex flex-col gap-4">
-              {POSTS_BY_YEAR[year].map((post) => (
-                <li key={post.slug} className="group flex items-baseline justify-between gap-4">
-                  <Link
-                    href={`/writing/${post.slug}`}
-                    className="leading-snug transition-opacity hover:opacity-70 flex-1"
-                    style={{ color: "var(--text-1)", fontSize: "1.05rem" }}
-                  >
-                    {post.title}
-                  </Link>
-                  <span
-                    className="tabular-nums shrink-0"
-                    style={{ color: "var(--text-3)", fontSize: "0.875rem" }}
-                  >
-                    {post.date.split(",")[0]}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
+              {post.title}
+            </Link>
+            <p
+              className="leading-relaxed mt-1.5 mb-2"
+              style={{ color: "var(--text-2)", fontSize: "1rem" }}
+            >
+              {post.description}
+            </p>
+            <span style={{ color: "var(--text-3)", fontSize: "0.875rem" }}>
+              {post.date}
+            </span>
+          </article>
         ))}
       </div>
 
@@ -75,7 +80,7 @@ export default function Writing() {
         className="pt-16 pb-8"
         style={{ color: "var(--text-3)", fontSize: "0.875rem" }}
       >
-        {Object.values(POSTS_BY_YEAR).flat().length} posts · Handcrafted by Marc · {new Date().getFullYear()}
+        {RECENT_WRITING.length} posts · Handcrafted by Marc · {new Date().getFullYear()}
       </footer>
     </div>
   );
