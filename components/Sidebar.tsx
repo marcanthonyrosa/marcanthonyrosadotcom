@@ -223,8 +223,8 @@ export function Sidebar() {
     <nav
       className={[
         "z-40 fixed flex items-center",
-        // Mobile: horizontal top bar
-        "top-0 left-0 right-0 px-2 h-14",
+        // Mobile: horizontal top bar — offset below the sticky JohnnyBanner (~40px)
+        "top-10 left-0 right-0 px-2 h-14",
         "bg-[var(--bg)]",
         // Desktop: vertical sidebar
         "min-[750px]:flex-col min-[750px]:items-start min-[750px]:gap-1",

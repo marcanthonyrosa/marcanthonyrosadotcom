@@ -57,7 +57,7 @@ export default function RootLayout({
             </Suspense>
             <JohnnyBanner />
             <Sidebar />
-            <main className="min-h-screen pt-7 min-[750px]:pt-0">
+            <main className="min-h-screen pt-14 min-[750px]:pt-0">
               {children}
             </main>
           </Providers>
