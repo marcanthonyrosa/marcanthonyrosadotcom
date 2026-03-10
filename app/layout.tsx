@@ -3,6 +3,7 @@ import { Inter, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Sidebar } from "@/components/Sidebar";
+import { JohnnyBanner } from "@/components/JohnnyBanner";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { PostHogPageview } from "@/components/PostHogPageview";
 import { Suspense } from "react";
@@ -54,6 +55,7 @@ export default function RootLayout({
             <Suspense>
               <PostHogPageview />
             </Suspense>
+            <JohnnyBanner />
             <Sidebar />
             <main className="min-h-screen pt-7 min-[750px]:pt-0">
               {children}
