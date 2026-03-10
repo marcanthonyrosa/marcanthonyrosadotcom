@@ -117,11 +117,16 @@
       .nav-links { gap: 16px; }
     }
     .nav-logo {
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.85);
-      letter-spacing: -0.01em;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
     }
     .nav-links {
       display: flex;
@@ -667,11 +672,11 @@
 
   <!-- ── NAV ── -->
   <nav>
-    <a class="nav-logo" href="/">marcanthonyrosa.com</a>
+    <a class="nav-logo" href="/"><img src="/headshot.jpeg" alt="Marc Anthony Rosa" /></a>
     <div class="nav-links">
       <a href="#features">Features</a>
       <a href="#specs">Specs</a>
-      <a href="#issues">Known Issues</a>
+      <a href="#issues">Bugs</a>
       <a href="#cta">Meet John</a>
     </div>
   </nav>
@@ -897,7 +902,7 @@
        KNOWN ISSUES
   ══════════════════════════════════════════ -->
   <section id="issues">
-    <div class="section-label">Known Issues</div>
+    <div class="section-label">Bugs</div>
     <h2 class="section-title">Full transparency.</h2>
     <p class="section-sub">We ship with honesty. Here's everything we know about v1.0 at launch.</p>
 
