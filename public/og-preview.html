@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OG Preview — /johnny</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #111;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      padding: 40px 24px;
+      color: #f0f2f8;
+    }
+    h2 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6b7599;
+      margin-bottom: 20px;
+    }
+    .section { margin-bottom: 60px; }
+
+    /* ── OG IMAGE (1200×630 at 50% scale) ── */
+    .og-wrap {
+      width: 600px;
+      height: 315px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 24px 60px rgba(0,0,0,0.6);
+    }
+    .og-image {
+      width: 1200px;
+      height: 630px;
+      transform: scale(0.5);
+      transform-origin: top left;
+      background: #06080f;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .og-glow {
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 520px;
+      background: radial-gradient(ellipse, rgba(124,92,252,0.22) 0%, rgba(79,142,247,0.1) 40%, transparent 70%);
+      pointer-events: none;
+    }
+    .og-glow-br {
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 400px; height: 300px;
+      background: radial-gradient(circle, rgba(6,200,180,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .og-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(124,92,252,0.12);
+      border: 1px solid rgba(124,92,252,0.35);
+      border-radius: 24px;
+      padding: 8px 18px 8px 12px;
+      margin-bottom: 36px;
+      z-index: 1;
+    }
+    .og-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #a78bfa;
+    }
+    .og-eyebrow-text {
+      font-size: 16px;
+      color: #a78bfa;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .og-body {
+      display: flex;
+      width: 100%;
+      align-items: flex-start;
+      justify-content: space-between;
+      z-index: 1;
+    }
+    .og-left { flex: 1; }
+    .og-introducing {
+      font-size: 28px;
+      font-weight: 400;
+      color: #6b7599;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .og-name {
+      font-size: 76px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 14px;
+    }
+    .og-version {
+      font-size: 26px;
+      font-weight: 300;
+      color: #6b7599;
+      letter-spacing: -0.01em;
+      margin-bottom: 22px;
+    }
+    .og-tagline {
+      font-size: 19px;
+      color: #9099bb;
+      line-height: 1.5;
+      max-width: 560px;
+    }
+    .og-tagline strong { color: #f0f2f8; font-weight: 500; }
+    .og-emoji {
+      font-size: 140px;
+      line-height: 1;
+      padding-left: 40px;
+      flex-shrink: 0;
+    }
+    .og-stats {
+      display: flex;
+      width: 100%;
+      margin-top: 44px;
+      padding-top: 28px;
+      border-top: 1px solid #1e2540;
+      z-index: 1;
+    }
+    .og-stat {
+      flex: 1;
+      text-align: center;
+      border-right: 1px solid #1e2540;
+      padding: 0 16px;
+    }
+    .og-stat:last-child { border-right: none; }
+    .og-stat-num {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .og-stat-label {
+      font-size: 12px;
+      color: #6b7599;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .og-domain {
+      position: absolute;
+      bottom: 36px; right: 80px;
+      font-size: 14px;
+      color: #2a3050;
+      letter-spacing: 0.04em;
+      z-index: 1;
+    }
+
+    /* ── SOCIAL CARD MOCKS ── */
+    .cards-row {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    /* Twitter/X card */
+    .twitter-card {
+      width: 508px;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #2f3336;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .twitter-card-img {
+      width: 508px;
+      height: 254px;
+      overflow: hidden;
+      position: relative;
+    }
+    .twitter-card-img .og-image {
+      width: 1200px; height: 630px;
+      transform: scale(0.423);
+      transform-origin: top left;
+    }
+    .twitter-card-meta {
+      padding: 12px 14px;
+      border-top: 1px solid #2f3336;
+    }
+    .twitter-card-domain {
+      font-size: 13px;
+      color: #71767b;
+      margin-bottom: 2px;
+    }
+    .twitter-card-title {
+      font-size: 14px;
+      color: #e7e9ea;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* iMessage / Apple card */
+    .imessage-card {
+      width: 284px;
+      background: #1c1c1e;
+      border-radius: 16px;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    }
+    .imessage-card-img {
+      width: 284px;
+      height: 149px;
+      overflow: hidden;
+      position: relative;
+    }
+    .imessage-card-img .og-image {
+      width: 1200px; height: 630px;
+      transform: scale(0.237);
+      transform-origin: top left;
+    }
+    .imessage-card-meta {
+      padding: 10px 12px;
+    }
+    .imessage-domain {
+      font-size: 10px;
+      color: #636366;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 2px;
+    }
+    .imessage-title {
+      font-size: 12px;
+      color: #e5e5ea;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .imessage-desc {
+      font-size: 11px;
+      color: #8e8e93;
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    /* LinkedIn card */
+    .linkedin-card {
+      width: 508px;
+      background: #1b1f23;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #30373f;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .linkedin-card-img {
+      width: 508px;
+      height: 265px;
+      overflow: hidden;
+      position: relative;
+      background: #06080f;
+    }
+    .linkedin-card-img .og-image {
+      width: 1200px; height: 630px;
+      transform: scale(0.423);
+      transform-origin: top left;
+    }
+    .linkedin-card-meta {
+      padding: 12px 14px;
+    }
+    .linkedin-source {
+      font-size: 11px;
+      color: #8b98a5;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .linkedin-title {
+      font-size: 14px;
+      color: #e7e9ea;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .linkedin-desc {
+      font-size: 12px;
+      color: #8b98a5;
+      line-height: 1.4;
+    }
+
+    .label-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(124,92,252,0.15);
+      border: 1px solid rgba(124,92,252,0.3);
+      color: #a78bfa;
+      padding: 3px 9px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── OG IMAGE ─── -->
+  <div class="section">
+    <h2>OG Image · 1200 × 630 (shown at 50% scale)</h2>
+    <div class="og-wrap">
+      <div class="og-image">
+        <div class="og-glow"></div>
+        <div class="og-glow-br"></div>
+
+        <div class="og-eyebrow">
+          <div class="og-dot"></div>
+          <span class="og-eyebrow-text">Live — Available Now</span>
+        </div>
+
+        <div class="og-body">
+          <div class="og-left">
+            <div class="og-introducing">Introducing</div>
+            <div class="og-name">John McKeon Rosa</div>
+            <div class="og-version">Version 1.0</div>
+            <div class="og-tagline">Three trimesters in the making.<br><strong>The most significant release of 2026.</strong></div>
+          </div>
+          <div class="og-emoji">👶</div>
+        </div>
+
+        <div class="og-stats">
+          <div class="og-stat">
+            <div class="og-stat-num">8.69</div>
+            <div class="og-stat-label">lbs at launch</div>
+          </div>
+          <div class="og-stat">
+            <div class="og-stat-num">40</div>
+            <div class="og-stat-label">week dev cycle</div>
+          </div>
+          <div class="og-stat">
+            <div class="og-stat-num">24/7</div>
+            <div class="og-stat-label">uptime</div>
+          </div>
+          <div class="og-stat">
+            <div class="og-stat-num">∞</div>
+            <div class="og-stat-label">projected ROI</div>
+          </div>
+        </div>
+
+        <div class="og-domain">marcanthonyrosa.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SOCIAL CARD PREVIEWS ─── -->
+  <div class="section">
+    <h2>Social Card Previews</h2>
+    <div class="cards-row">
+
+      <!-- Twitter/X -->
+      <div>
+        <div class="label-tag">Twitter / X</div>
+        <div class="twitter-card">
+          <div class="twitter-card-img">
+            <div class="og-image">
+              <div class="og-glow"></div>
+              <div class="og-glow-br"></div>
+              <div class="og-eyebrow">
+                <div class="og-dot"></div>
+                <span class="og-eyebrow-text">Live — Available Now</span>
+              </div>
+              <div class="og-body">
+                <div class="og-left">
+                  <div class="og-introducing">Introducing</div>
+                  <div class="og-name">John McKeon Rosa</div>
+                  <div class="og-version">Version 1.0</div>
+                  <div class="og-tagline">Three trimesters in the making.<br><strong>The most significant release of 2026.</strong></div>
+                </div>
+                <div class="og-emoji">👶</div>
+              </div>
+              <div class="og-stats">
+                <div class="og-stat"><div class="og-stat-num">8.69</div><div class="og-stat-label">lbs at launch</div></div>
+                <div class="og-stat"><div class="og-stat-num">40</div><div class="og-stat-label">week dev cycle</div></div>
+                <div class="og-stat"><div class="og-stat-num">24/7</div><div class="og-stat-label">uptime</div></div>
+                <div class="og-stat"><div class="og-stat-num">∞</div><div class="og-stat-label">projected ROI</div></div>
+              </div>
+              <div class="og-domain">marcanthonyrosa.com</div>
+            </div>
+          </div>
+          <div class="twitter-card-meta">
+            <div class="twitter-card-domain">marcanthonyrosa.com</div>
+            <div class="twitter-card-title">Introducing John McKeon Rosa — Available Now</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- iMessage -->
+      <div>
+        <div class="label-tag">iMessage</div>
+        <div class="imessage-card">
+          <div class="imessage-card-img">
+            <div class="og-image">
+              <div class="og-glow"></div>
+              <div class="og-eyebrow">
+                <div class="og-dot"></div>
+                <span class="og-eyebrow-text">Live — Available Now</span>
+              </div>
+              <div class="og-body">
+                <div class="og-left">
+                  <div class="og-introducing">Introducing</div>
+                  <div class="og-name">John McKeon Rosa</div>
+                  <div class="og-version">Version 1.0</div>
+                  <div class="og-tagline">Three trimesters in the making.<br><strong>The most significant release of 2026.</strong></div>
+                </div>
+                <div class="og-emoji">👶</div>
+              </div>
+              <div class="og-stats">
+                <div class="og-stat"><div class="og-stat-num">8.69</div><div class="og-stat-label">lbs at launch</div></div>
+                <div class="og-stat"><div class="og-stat-num">40</div><div class="og-stat-label">week dev cycle</div></div>
+                <div class="og-stat"><div class="og-stat-num">24/7</div><div class="og-stat-label">uptime</div></div>
+                <div class="og-stat"><div class="og-stat-num">∞</div><div class="og-stat-label">projected ROI</div></div>
+              </div>
+              <div class="og-domain">marcanthonyrosa.com</div>
+            </div>
+          </div>
+          <div class="imessage-card-meta">
+            <div class="imessage-domain">marcanthonyrosa.com</div>
+            <div class="imessage-title">Introducing John McKeon Rosa — Available Now</div>
+            <div class="imessage-desc">Three trimesters in the making. The most significant release of 2026.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LinkedIn -->
+      <div>
+        <div class="label-tag">LinkedIn</div>
+        <div class="linkedin-card">
+          <div class="linkedin-card-img">
+            <div class="og-image">
+              <div class="og-glow"></div>
+              <div class="og-glow-br"></div>
+              <div class="og-eyebrow">
+                <div class="og-dot"></div>
+                <span class="og-eyebrow-text">Live — Available Now</span>
+              </div>
+              <div class="og-body">
+                <div class="og-left">
+                  <div class="og-introducing">Introducing</div>
+                  <div class="og-name">John McKeon Rosa</div>
+                  <div class="og-version">Version 1.0</div>
+                  <div class="og-tagline">Three trimesters in the making.<br><strong>The most significant release of 2026.</strong></div>
+                </div>
+                <div class="og-emoji">👶</div>
+              </div>
+              <div class="og-stats">
+                <div class="og-stat"><div class="og-stat-num">8.69</div><div class="og-stat-label">lbs at launch</div></div>
+                <div class="og-stat"><div class="og-stat-num">40</div><div class="og-stat-label">week dev cycle</div></div>
+                <div class="og-stat"><div class="og-stat-num">24/7</div><div class="og-stat-label">uptime</div></div>
+                <div class="og-stat"><div class="og-stat-num">∞</div><div class="og-stat-label">projected ROI</div></div>
+              </div>
+              <div class="og-domain">marcanthonyrosa.com</div>
+            </div>
+          </div>
+          <div class="linkedin-card-meta">
+            <div class="linkedin-source">marcanthonyrosa.com</div>
+            <div class="linkedin-title">Introducing John McKeon Rosa — Available Now</div>
+            <div class="linkedin-desc">Three trimesters in the making. The most significant release of 2026.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── META TAGS PREVIEW ─── -->
+  <div class="section">
+    <h2>Meta Tags to be added to /johnny</h2>
+    <pre style="background:#0d1120;border:1px solid #1e2540;border-radius:8px;padding:24px;font-size:13px;color:#9099bb;line-height:1.7;overflow-x:auto;"><code><span style="color:#6b7599">&lt;!-- Primary Meta --&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> name=<span style="color:#34d399">"description"</span> content=<span style="color:#34d399">"Three trimesters in the making. The most significant release of 2026. 8 lbs, 11 oz. Arrived March 6, 2026."</span> <span style="color:#7c5cfc">/&gt;</span>
+
+<span style="color:#6b7599">&lt;!-- Open Graph --&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> property=<span style="color:#34d399">"og:type"</span>        content=<span style="color:#34d399">"website"</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> property=<span style="color:#34d399">"og:url"</span>         content=<span style="color:#34d399">"https://marcanthonyrosa.com/johnny"</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> property=<span style="color:#34d399">"og:title"</span>       content=<span style="color:#34d399">"Introducing John McKeon Rosa — Available Now"</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> property=<span style="color:#34d399">"og:description"</span> content=<span style="color:#34d399">"Three trimesters in the making. The most significant release of 2026. 8 lbs, 11 oz. Arrived March 6, 2026."</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> property=<span style="color:#34d399">"og:image"</span>       content=<span style="color:#34d399">"https://marcanthonyrosa.com/api/og/johnny"</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> property=<span style="color:#34d399">"og:image:width"</span> content=<span style="color:#34d399">"1200"</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> property=<span style="color:#34d399">"og:image:height"</span> content=<span style="color:#34d399">"630"</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> property=<span style="color:#34d399">"og:site_name"</span>  content=<span style="color:#34d399">"Marc Anthony Rosa"</span> <span style="color:#7c5cfc">/&gt;</span>
+
+<span style="color:#6b7599">&lt;!-- Twitter / X --&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> name=<span style="color:#34d399">"twitter:card"</span>        value=<span style="color:#34d399">"summary_large_image"</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> name=<span style="color:#34d399">"twitter:site"</span>        content=<span style="color:#34d399">"@marcanthonyrosa"</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> name=<span style="color:#34d399">"twitter:title"</span>       content=<span style="color:#34d399">"Introducing John McKeon Rosa — Available Now"</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> name=<span style="color:#34d399">"twitter:description"</span> content=<span style="color:#34d399">"Three trimesters in the making. The most significant release of 2026. 8 lbs, 11 oz. Arrived March 6, 2026."</span> <span style="color:#7c5cfc">/&gt;</span>
+<span style="color:#7c5cfc">&lt;meta</span> name=<span style="color:#34d399">"twitter:image"</span>       content=<span style="color:#34d399">"https://marcanthonyrosa.com/api/og/johnny"</span> <span style="color:#7c5cfc">/&gt;</span></code></pre>
+  </div>
+
+  <!-- ─── IMPLEMENTATION PLAN ─── -->
+  <div class="section">
+    <h2>Implementation Plan</h2>
+    <pre style="background:#0d1120;border:1px solid #1e2540;border-radius:8px;padding:24px;font-size:13px;color:#9099bb;line-height:1.9;overflow-x:auto;"><code><span style="color:#a78bfa">1.</span> Create  <span style="color:#f0f2f8">app/api/og/johnny/route.tsx</span>
+        → Next.js Edge route using <span style="color:#60a5fa">ImageResponse</span> from <span style="color:#60a5fa">next/og</span>
+        → Renders the image above as a real 1200×630 PNG
+        → No extra packages needed (built into Next.js 13+)
+
+<span style="color:#a78bfa">2.</span> Update  <span style="color:#f0f2f8">public/johnny.html</span>
+        → Add the meta tags shown above to &lt;head&gt;
+
+<span style="color:#a78bfa">3.</span> Commit + push to  <span style="color:#f0f2f8">claude/add-og-meta-tags-NI4qm</span></code></pre>
+  </div>
+
+</body>
+</html>
