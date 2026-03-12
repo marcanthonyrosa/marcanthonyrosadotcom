@@ -7,6 +7,13 @@ export const metadata: Metadata = {
 
 const RECENT_WRITING = [
   {
+    slug: "after-9-months-of-development",
+    title: "After 9 months of development",
+    date: "March 2026",
+    description:
+      "The Rosa Family has a new launch to share. Shipping above projections. Immediately disruptive. Not yet taking meetings.",
+  },
+  {
     slug: "fixed-a-bug-at-the-car-wash",
     title: "Fixed a bug at the car wash",
     date: "March 2026",
