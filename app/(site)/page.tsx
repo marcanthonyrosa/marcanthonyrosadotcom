@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 const POSTS_BY_YEAR: Record<string, { slug: string; title: string; date: string }[]> = {
   "2026": [
+    { slug: "after-9-months-of-development", title: "After 9 months of development", date: "March 6, 2026" },
     { slug: "fixed-a-bug-at-the-car-wash", title: "Fixed a bug at the car wash", date: "March 2, 2026" },
     { slug: "stop-shipping-fast", title: "Stop shipping fast. Make it actually hold up.", date: "February 12, 2026" },
     { slug: "your-market-will-show-you", title: "Your market will show you the right one", date: "February 10, 2026" },
@@ -64,16 +65,16 @@ export default function Home() {
         />
         <div className="prose max-w-none">
           <p>
-            I lead product teams and help startups turn into scalable businesses.
+            I&apos;m a product leader who helps early products grow up into real companies.
           </p>
           <p>
-            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a feature into an AI platform, grew revenue 10x, and became a category leader in the MSP market.
+            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a feature into an AI platform, grew revenue 10×, raised a Series A, and became a category leader in the MSP market.
           </p>
           <p>
-            Previously, I led product at Zipwhip leading to its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
+            Previously, I led product at Zipwhip through its rapid growth and <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
           </p>
           <p>
-            I love building Opinionated Software — products with a clear point of view — that are resilient enough for scale.
+            I&apos;m drawn to building <strong>opinionated software</strong>: products with a clear point of view that solve real problems and still hold up once they start to scale.
           </p>
         </div>
 
