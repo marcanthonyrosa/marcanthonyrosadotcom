@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 const POSTS_BY_YEAR: Record<string, { slug: string; title: string; date: string }[]> = {
   "2026": [
+    { slug: "after-9-months-of-development", title: "After 9 months of development", date: "March 6, 2026" },
     { slug: "fixed-a-bug-at-the-car-wash", title: "Fixed a bug at the car wash", date: "March 2, 2026" },
     { slug: "stop-shipping-fast", title: "Stop shipping fast. Make it actually hold up.", date: "February 12, 2026" },
     { slug: "your-market-will-show-you", title: "Your market will show you the right one", date: "February 10, 2026" },
