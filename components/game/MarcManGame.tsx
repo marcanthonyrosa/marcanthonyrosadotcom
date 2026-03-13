@@ -583,7 +583,13 @@ function updateGhosts(s: GameState, dt: number) {
     // Snap threshold uses current speed so a ghost can never get stuck in a
     // parity deadlock (e.g. after a speed change mid-cell, the ghost might
     // always land exactly 1.0 px from every center with a fixed threshold).
-    if (Math.hypot(g.x - cx.x, g.y - cx.y) < speed) {
+    //
+    // Using a small epsilon and <= comparison guards against floating-point
+    // edge cases at higher speeds (e.g. level 2+ ghostSpeed) where the ghost
+    // might land exactly on the threshold and never be considered "close
+    // enough" to resnap and choose a new direction.
+    const snapDist = Math.hypot(g.x - cx.x, g.y - cx.y);
+    if (snapDist <= speed + 0.001) {
       g.x = cx.x;
       g.y = cx.y;
       g.dir = chooseGhostDir(g, s.maze, s.player.x, s.player.y, s.player.dir, s.ghosts, inHouse);
