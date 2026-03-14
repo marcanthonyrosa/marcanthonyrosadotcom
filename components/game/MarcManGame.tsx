@@ -407,7 +407,12 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
         s.player.dir = "NONE"; s.player.nextDir = "LEFT";
         GHOST_STARTS.forEach((gs, i) => {
           const gc = cellCenter(gs.col, gs.row);
-          s.ghosts[i].x = gc.x; s.ghosts[i].y = gc.y;
+          // Tiny, per-ghost sub-pixel offset breaks perfect parity with the
+          // grid so that, when level-specific speeds change (e.g. 2.0 → 2.2),
+          // ghosts never get stuck perpetually just outside the snap radius.
+          const jitter = 0.01 * (i + 1);
+          s.ghosts[i].x = gc.x + jitter;
+          s.ghosts[i].y = gc.y + jitter;
           s.ghosts[i].dir = (["LEFT", "LEFT", "RIGHT", "RIGHT"] as Direction[])[i];
           s.ghosts[i].mode = i === 0 ? "CHASE" : "SCATTER";
           s.ghosts[i].frightenedTimer = 0;
@@ -580,10 +585,22 @@ function updateGhosts(s: GameState, dt: number) {
       ? EATEN_SPEED
       : isInTunnel(col, row) ? TUNNEL_SPEED : getLevelConfig(s.level).ghostSpeed;
 
-    // Snap threshold uses current speed so a ghost can never get stuck in a
-    // parity deadlock (e.g. after a speed change mid-cell, the ghost might
-    // always land exactly 1.0 px from every center with a fixed threshold).
-    if (Math.hypot(g.x - cx.x, g.y - cx.y) < speed) {
+    // Snap threshold uses current speed so we only snap when "close" to cell
+    // center. For fractional speeds (level 2+), use threshold slightly *below*
+    // speed so that after one step (distance = speed) we are outside the snap
+    // radius; otherwise we'd snap back every frame and the ghost would never
+    // move (parity deadlock). We do NOT change threshold in tunnels or for
+    // EATEN ghosts.
+    const snapDist = Math.hypot(g.x - cx.x, g.y - cx.y);
+    let snapThreshold = speed;
+    const usingLevelSpeed = !isInTunnel(col, row) && g.mode !== "EATEN";
+    if (usingLevelSpeed) {
+      const levelSpeed = getLevelConfig(s.level).ghostSpeed;
+      if (levelSpeed % 1 !== 0) {
+        snapThreshold = speed - 0.001;
+      }
+    }
+    if (snapDist < snapThreshold) {
       g.x = cx.x;
       g.y = cx.y;
       g.dir = chooseGhostDir(g, s.maze, s.player.x, s.player.y, s.player.dir, s.ghosts, inHouse);
