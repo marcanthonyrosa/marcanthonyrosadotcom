@@ -40,7 +40,19 @@
       "Bash(ls /Users/marcrosa/.claude/projects/-Users-marcrosa-Desktop-marc-anthony-rosa-dot-com/*.jsonl 2>/dev/null | head -10)",
       "Bash(python3 -c \"\nimport json\nwith open\\('/Users/marcrosa/.claude/projects/-Users-marcrosa-Desktop-marc-anthony-rosa-dot-com/a59596eb-df00-4afc-8ba0-54460649cb33.jsonl'\\) as f:\n    for line in f:\n        try:\n            obj = json.loads\\(line\\)\n            msg = obj.get\\('message', {}\\)\n            if msg.get\\('role'\\) == 'user':\n                content = msg.get\\('content', ''\\)\n                if isinstance\\(content, list\\):\n                    for block in content:\n                        if isinstance\\(block, dict\\) and 'text' in block:\n                            text = block['text']\n                            if '#1' in text or '#2' in text or 'change' in text.lower\\(\\):\n                                print\\('USER:', text[:500]\\)\n                                print\\('---'\\)\n                elif isinstance\\(content, str\\) and \\('#1' in content or 'change' in content.lower\\(\\)\\):\n                    print\\('USER:', content[:500]\\)\n                    print\\('---'\\)\n        except:\n            pass\n\" 2>/dev/null | head -200)",
       "Bash(python3 -c \"\nimport json\nwith open\\('/Users/marcrosa/.claude/projects/-Users-marcrosa-Desktop-marc-anthony-rosa-dot-com/a59596eb-df00-4afc-8ba0-54460649cb33.jsonl'\\) as f:\n    lines = f.readlines\\(\\)\n\n# Get line 1594 assistant message \\(the full differences list\\)\nobj = json.loads\\(lines[1594]\\)\nmsg = obj.get\\('message', {}\\)\ncontent = msg.get\\('content', ''\\)\nif isinstance\\(content, list\\):\n    for block in content:\n        if isinstance\\(block, dict\\) and 'text' in block:\n            print\\(block['text'][:5000]\\)\nelif isinstance\\(content, str\\):\n    print\\(content[:5000]\\)\n\" 2>/dev/null)",
-      "Bash(sleep 4 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/johnny)"
+      "Bash(sleep 4 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/johnny)",
+      "Bash(npm install @vercel/kv 2>&1 | tail -5)",
+      "Bash(node -e \"require\\('@vercel/kv'\\)\" 2>&1 | head -3)",
+      "Bash(npm uninstall @vercel/kv && npm install @upstash/redis 2>&1 | tail -5)",
+      "Bash(sleep 4 && curl -s http://localhost:3000/api/leaderboard)",
+      "Bash(curl -s \"https://ipwho.is/\" | head -c 300)",
+      "Bash(curl -sI \"https://ipwho.is/\" | grep -i \"access-control\\\\|cors\")",
+      "Bash(curl -s \"https://ipapi.co/json/\" | python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d.get\\('city'\\), d.get\\('region_code'\\), d.get\\('country_code'\\)\\)\")",
+      "Bash(curl -s \"https://ipapi.co/json/\" | python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(list\\(d.keys\\(\\)\\)[:10]\\)\")",
+      "Bash(curl -s \"https://ipapi.co/json/\" | python3 -c \"import sys,json; print\\(json.load\\(sys.stdin\\)\\)\")",
+      "Bash(curl -s \"https://ip-api.com/json/\" | python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d\\)\")",
+      "Bash(curl -s \"http://ip-api.com/json/\" | python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d.get\\('city'\\), d.get\\('regionName'\\), d.get\\('countryCode'\\)\\)\")",
+      "Bash(curl -s \"http://ip-api.com/json/\" | python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\({k:v for k,v in d.items\\(\\) if 'region' in k.lower\\(\\) or k in ['city','country','countryCode']}\\)\")"
     ]
   }
 }
