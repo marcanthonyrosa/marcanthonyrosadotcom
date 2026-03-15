@@ -188,39 +188,6 @@ export default function About() {
         </div>
       </section>
 
-      <hr style={{ borderColor: "var(--border)" }} className="mb-12" />
-
-      {/* ── Contact ── */}
-      <section className="mb-12">
-        <h2
-          className="text-xs font-semibold uppercase tracking-widest mb-4"
-          style={{ color: "var(--text-3)" }}
-        >
-          Get in touch
-        </h2>
-        <p
-          className="leading-relaxed mb-4"
-          style={{ color: "var(--text-2)", fontSize: "1rem" }}
-        >
-          I&apos;m always happy to chat about product, give feedback on a strategy doc,
-          or connect with early-stage founders figuring out their product motion.
-          The best way to reach me is by email.
-        </p>
-        <a
-          href="mailto:marc.anthony.rosa@gmail.com"
-          className="inline-flex items-center gap-2 font-medium transition-opacity hover:opacity-70"
-          style={{ color: "var(--accent)", fontSize: "0.975rem" }}
-        >
-          marc.anthony.rosa@gmail.com →
-        </a>
-      </section>
-
-      <footer
-        className="pb-8"
-        style={{ color: "var(--text-3)", fontSize: "0.875rem" }}
-      >
-        Handcrafted by Marc · {new Date().getFullYear()}
-      </footer>
     </div>
   );
 }
