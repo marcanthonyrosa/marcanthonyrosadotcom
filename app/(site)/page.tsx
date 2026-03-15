@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { MapPin, Linkedin, Mail } from "lucide-react";
+import { SocialLinks } from "@/components/SocialLinks";
 
 export const metadata: Metadata = {
   title: "Marc Anthony Rosa — Head of Product",
@@ -78,32 +78,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div
-          className="mt-8 flex flex-wrap gap-x-5 gap-y-2 items-center"
-          style={{ color: "var(--text-3)", fontSize: "0.9rem" }}
-        >
-          <span className="flex items-center gap-1.5">
-            <MapPin size={14} strokeWidth={1.75} />
-            Houston, TX
-          </span>
-          <span>·</span>
-          <a
-            href="https://www.linkedin.com/in/marcanthonyrosa/"
-            className="flex items-center justify-center w-9 h-9 rounded-xl transition-colors hover:bg-[var(--nav-item-hover)]"
-            style={{ color: "var(--text-3)" }}
-            aria-label="LinkedIn"
-          >
-            <Linkedin size={18} strokeWidth={1.75} />
-          </a>
-          <a
-            href="mailto:marc.anthony.rosa@gmail.com"
-            className="flex items-center justify-center w-9 h-9 rounded-xl transition-colors hover:bg-[var(--nav-item-hover)]"
-            style={{ color: "var(--text-3)" }}
-            aria-label="Email"
-          >
-            <Mail size={18} strokeWidth={1.75} />
-          </a>
-        </div>
+        <SocialLinks />
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} className="mb-14" />
@@ -220,21 +195,6 @@ export default function Home() {
           </div>
         </section>
       )}
-
-      {/* ── Footer ── */}
-      <footer
-        className="pb-8"
-        style={{ color: "var(--text-3)", fontSize: "0.875rem" }}
-      >
-        Handcrafted by Marc · {new Date().getFullYear()}
-        <span className="mx-2">·</span>
-        <a
-          href="mailto:marc.anthony.rosa@gmail.com"
-          className="hover:opacity-70 transition-opacity"
-        >
-          Get in touch
-        </a>
-      </footer>
     </div>
   );
 }
