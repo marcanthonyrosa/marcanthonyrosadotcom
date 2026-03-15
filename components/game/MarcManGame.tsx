@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import {
   MAZE_TEMPLATE, COLS, ROWS,
   PLAYER_START, GHOST_STARTS, GHOST_HOUSE_EXIT,
@@ -291,6 +291,14 @@ function chooseGhostDir(
   return best;
 }
 
+/* ─── Leaderboard types ──────────────────────────────────── */
+type LeaderboardEntry = {
+  initials: string;
+  location: string;
+  score: number;
+  level: number;
+};
+
 /* ─── Component ──────────────────────────────────────────── */
 export default function MarcManGame({ onExit }: { onExit: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -299,6 +307,57 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
   const lastRef   = useRef<number>(0);
   const imgRef    = useRef<HTMLImageElement | null>(null);
   const phaseRef  = useRef<GamePhase>("PLAYING");
+
+  // ── Leaderboard state ──────────────────────────────────────
+  const [gameOver, setGameOver] = useState<{ score: number; level: number } | null>(null);
+  const [initials, setInitials] = useState("");
+  const [location, setLocation] = useState("detecting…");
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const showLeaderboardRef = useRef(false);
+  showLeaderboardRef.current = showLeaderboard;
+  const gameOverFiredRef = useRef(false);
+  const gameOverActiveRef = useRef(false);
+  // Stable ref so the RAF tick (useCallback []) can trigger React state
+  const setGameOverRef = useRef<(d: { score: number; level: number }) => void>(() => {});
+  setGameOverRef.current = (data) => { gameOverActiveRef.current = true; setGameOver(data); };
+
+  const loadLeaderboard = useCallback(async () => {
+    try {
+      const res = await fetch("/api/leaderboard", { cache: "no-store" });
+      setLeaderboard(await res.json());
+    } catch {}
+  }, []);
+
+  const submitScore = useCallback(async (inits: string, gameScore: number, gameLevel: number) => {
+    setSubmitting(true);
+    try {
+      await fetch("/api/leaderboard", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ initials: inits, location, score: gameScore, level: gameLevel }),
+      });
+      const newEntry = { initials: inits.toUpperCase().slice(0, 3), location, score: gameScore, level: gameLevel, ts: Date.now() };
+      setLeaderboard(prev => {
+        const updated = [...prev, newEntry].sort((a, b) => b.score - a.score).slice(0, 10);
+        return updated;
+      });
+      setSubmitted(true);
+    } catch {}
+    setSubmitting(false);
+  }, [location, loadLeaderboard]);
+
+  // Fetch leaderboard + detect location when game ends
+  useEffect(() => {
+    if (!gameOver) return;
+    loadLeaderboard();
+    fetch("/api/location")
+      .then(r => r.json())
+      .then(d => setLocation(d.location ?? "Unknown"))
+      .catch(() => setLocation("Unknown"));
+  }, [gameOver, loadLeaderboard]);
 
   // pre-load headshot
   useEffect(() => {
@@ -310,10 +369,16 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
   // keyboard
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
+      // Don't intercept shortcuts while the game-over modal or leaderboard overlay is visible
+      if (gameOverActiveRef.current || showLeaderboardRef.current) return;
       if (e.key === "Escape") { onExit(); return; }
       if (e.key === "r" || e.key === "R") {
         stateRef.current = makeInitialState();
         phaseRef.current = "PLAYING";
+        gameOverFiredRef.current = false;
+        setGameOver(null);
+        setInitials("");
+        setSubmitted(false);
         return;
       }
       const map: Record<string, Direction> = {
@@ -421,6 +486,12 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
       }
       phaseRef.current = s.phase;
     }
+    // Trigger leaderboard overlay once when game ends
+    if (s.phase === "LOSE" && !gameOverFiredRef.current) {
+      gameOverFiredRef.current = true;
+      setGameOverRef.current({ score: s.score, level: s.level });
+    }
+
     render(canvasRef.current, s, imgRef.current);
     rafRef.current = requestAnimationFrame(tick);
   }, []);
@@ -434,6 +505,11 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
   function restart() {
     stateRef.current = makeInitialState();
     phaseRef.current = "PLAYING";
+    gameOverFiredRef.current = false;
+    gameOverActiveRef.current = false;
+    setGameOver(null);
+    setInitials("");
+    setSubmitted(false);
   }
 
   return (
@@ -446,6 +522,12 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
         style={{ display: "block", borderRadius: 16, imageRendering: "pixelated" }}
       />
       <div className="absolute top-2 right-2 flex gap-2" style={{ zIndex: 10 }}>
+        <button
+          onClick={() => { loadLeaderboard(); setShowLeaderboard(true); }}
+          className="px-2 py-1 rounded text-xs font-bold"
+          style={{ background: "rgba(0,0,0,0.6)", color: "#fff" }}>
+          ☰ Leaderboard
+        </button>
         <button onClick={restart}
           className="px-2 py-1 rounded text-xs font-bold"
           style={{ background: "rgba(0,0,0,0.6)", color: "#fff" }}>
@@ -457,6 +539,153 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
           ✕ Exit
         </button>
       </div>
+
+      {/* ── Mid-game leaderboard overlay ── */}
+      {showLeaderboard && !gameOver && (
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 20,
+          background: "rgba(8,10,20,0.92)", borderRadius: 16,
+          display: "flex", flexDirection: "column", padding: "24px 20px",
+        }}>
+          <div style={{ color: "#6b7599", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace", marginBottom: 12 }}>
+            Leaderboard
+          </div>
+          <div style={{ flex: 1 }}>
+            {leaderboard.length === 0 ? (
+              <div style={{ color: "#6b7599", fontSize: "0.75rem", fontFamily: "monospace" }}>No scores yet — be the first!</div>
+            ) : (
+              <div className="flex flex-col gap-1">
+                {leaderboard.map((entry, i) => (
+                  <div key={i} className="flex items-center gap-2" style={{
+                    background: i === 0 ? "rgba(124,92,252,0.08)" : "transparent",
+                    borderRadius: 4, padding: "3px 6px",
+                  }}>
+                    <span style={{ color: i === 0 ? "#a78bfa" : "#6b7599", fontSize: "0.7rem", width: 18, fontFamily: "monospace" }}>{i + 1}.</span>
+                    <span style={{ color: "#fff", fontWeight: 700, fontSize: "0.8rem", width: 44, fontFamily: "monospace", letterSpacing: "0.05em" }}>{entry.initials}</span>
+                    <span style={{ color: "#9099bb", fontSize: "0.75rem", flex: 1, fontFamily: "monospace", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{entry.location}</span>
+                    <span style={{ color: "#f1c40f", fontWeight: 700, fontSize: "0.8rem", fontFamily: "monospace" }}>{entry.score}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <button
+            onClick={() => setShowLeaderboard(false)}
+            style={{ marginTop: 16, background: "rgba(255,255,255,0.05)", color: "#fff", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6, padding: "9px", fontWeight: 700, cursor: "pointer", fontSize: "0.8rem", fontFamily: "monospace" }}
+          >
+            ↩ Back to Game
+          </button>
+        </div>
+      )}
+
+      {/* ── Leaderboard overlay ── */}
+      {gameOver && (
+        <div
+          className="absolute inset-0 flex flex-col overflow-y-auto"
+          style={{ background: "rgba(6,8,15,0.97)", borderRadius: 16, padding: "20px 18px", zIndex: 20 }}
+        >
+          {/* Header */}
+          <div className="text-center mb-4">
+            <div style={{ color: "#e74c3c", fontSize: "1.2rem", fontWeight: 800, fontFamily: "'Courier New',monospace", letterSpacing: "0.1em" }}>
+              GAME OVER
+            </div>
+            <div style={{ color: "#fff", fontSize: "0.85rem", marginTop: 4, fontFamily: "'Courier New',monospace" }}>
+              Score: {gameOver.score} · Level {gameOver.level}
+            </div>
+          </div>
+
+          {/* Save score form */}
+          {!submitted ? (
+            <div className="mb-4">
+              <div style={{ color: "#6b7599", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", fontFamily: "monospace", marginBottom: 6 }}>
+                Save your score — enter initials (First · Middle · Last)
+              </div>
+              <div className="flex gap-2">
+                <input
+                  value={initials}
+                  onChange={e => setInitials(e.target.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 3))}
+                  maxLength={3}
+                  placeholder="AAA"
+                  autoFocus
+                  style={{
+                    background: "#0d1120", border: "1px solid #2a3050", color: "#fff",
+                    borderRadius: 6, padding: "7px 8px", fontFamily: "'Courier New',monospace",
+                    fontSize: "1rem", letterSpacing: "0.2em", width: 68, textAlign: "center",
+                    outline: "none", textTransform: "uppercase",
+                  }}
+                />
+                <div style={{
+                  background: "#0d1120", border: "1px solid #2a3050", borderRadius: 6,
+                  padding: "7px 10px", color: "#9099bb", fontSize: "0.75rem", flex: 1,
+                  display: "flex", alignItems: "center", overflow: "hidden", fontFamily: "monospace",
+                }}>
+                  📍 {location}
+                </div>
+                <button
+                  onClick={() => submitScore(initials, gameOver.score, gameOver.level)}
+                  disabled={initials.length !== 3 || submitting}
+                  style={{
+                    background: initials.length === 3 ? "linear-gradient(135deg,#7c5cfc,#4f8ef7)" : "#1e2540",
+                    color: "#fff", border: "none", borderRadius: 6, padding: "7px 14px",
+                    fontWeight: 700, fontSize: "0.8rem", fontFamily: "monospace",
+                    cursor: initials.length === 3 && !submitting ? "pointer" : "not-allowed",
+                    opacity: submitting ? 0.6 : 1,
+                  }}
+                >
+                  {submitting ? "…" : "Save"}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div style={{ color: "#34d399", fontSize: "0.8rem", textAlign: "center", marginBottom: 12, fontFamily: "monospace" }}>
+              ✓ Score saved
+            </div>
+          )}
+
+          {/* Divider */}
+          <div style={{ borderTop: "1px solid #1e2540", marginBottom: 10 }} />
+
+          {/* Top scores */}
+          <div style={{ flex: 1 }}>
+            <div style={{ color: "#6b7599", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "monospace", marginBottom: 8 }}>
+              Leaderboard
+            </div>
+            {leaderboard.length === 0 ? (
+              <div style={{ color: "#6b7599", fontSize: "0.75rem", fontFamily: "monospace" }}>No scores yet — be the first!</div>
+            ) : (
+              <div className="flex flex-col gap-1">
+                {leaderboard.map((entry, i) => (
+                  <div key={i} className="flex items-center gap-2" style={{
+                    background: i === 0 ? "rgba(124,92,252,0.08)" : "transparent",
+                    borderRadius: 4, padding: "3px 6px",
+                  }}>
+                    <span style={{ color: i === 0 ? "#a78bfa" : "#6b7599", fontSize: "0.7rem", width: 18, fontFamily: "monospace" }}>{i + 1}.</span>
+                    <span style={{ color: "#fff", fontWeight: 700, fontSize: "0.8rem", width: 44, fontFamily: "monospace", letterSpacing: "0.05em" }}>{entry.initials}</span>
+                    <span style={{ color: "#9099bb", fontSize: "0.75rem", flex: 1, fontFamily: "monospace", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{entry.location}</span>
+                    <span style={{ color: "#f1c40f", fontWeight: 700, fontSize: "0.8rem", fontFamily: "monospace" }}>{entry.score}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-2 mt-4">
+            <button
+              onClick={restart}
+              style={{ flex: 1, background: "rgba(255,255,255,0.05)", color: "#fff", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6, padding: "9px", fontWeight: 700, cursor: "pointer", fontSize: "0.8rem", fontFamily: "monospace" }}
+            >
+              ↺ Play Again
+            </button>
+            <button
+              onClick={onExit}
+              style={{ flex: 1, background: "transparent", color: "#6b7599", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 6, padding: "9px", fontWeight: 600, cursor: "pointer", fontSize: "0.8rem", fontFamily: "monospace" }}
+            >
+              ✕ Exit
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
