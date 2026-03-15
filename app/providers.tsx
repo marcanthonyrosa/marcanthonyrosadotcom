@@ -1,6 +1,20 @@
 "use client";
 
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider, useTheme } from "next-themes";
+import { useEffect } from "react";
+
+function ThemeSessionReset({ children }: { children: React.ReactNode }) {
+  const { setTheme } = useTheme();
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("theme-session")) {
+      setTheme("system");
+      sessionStorage.setItem("theme-session", "1");
+    }
+  }, [setTheme]);
+
+  return <>{children}</>;
+}
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -10,7 +24,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange={false}
     >
-      {children}
+      <ThemeSessionReset>{children}</ThemeSessionReset>
     </ThemeProvider>
   );
 }

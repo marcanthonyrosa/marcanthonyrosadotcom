@@ -140,24 +140,17 @@ function NavItem({
 }
 
 function ThemeToggle() {
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
   function toggleTheme() {
-    if (theme === "light") {
-      setTheme("dark");
-    } else if (theme === "dark") {
-      setTheme("system");
-    } else {
-      // system mode — toggle to the opposite of what's currently resolved
-      setTheme(resolvedTheme === "dark" ? "light" : "dark");
-    }
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   }
 
-  const nextLabel = theme === "light" ? "Dark" : theme === "dark" ? "System" : resolvedTheme === "dark" ? "Light" : "Dark";
+  const nextLabel = resolvedTheme === "dark" ? "Light" : "Dark";
 
   if (!mounted) {
     return (
@@ -200,7 +193,7 @@ function ThemeToggle() {
         onClick={toggleTheme}
         className="relative flex items-center justify-center w-10 h-10 rounded-xl cursor-pointer"
         style={{ color: "var(--text-3)" }}
-        aria-label={`Switch to ${nextLabel}${theme === "dark" ? "" : " mode"}`}
+        aria-label={`Switch to ${nextLabel} mode`}
       >
         <motion.div
           className="absolute inset-0 rounded-xl"
@@ -214,9 +207,7 @@ function ThemeToggle() {
           whileHover={{ rotate: 35 }}
           transition={{ type: "spring", stiffness: 250, damping: 12 }}
         >
-          {theme === "system" ? (
-            <Monitor size={20} strokeWidth={1.75} />
-          ) : resolvedTheme === "dark" ? (
+          {resolvedTheme === "dark" ? (
             <Moon size={20} strokeWidth={1.75} />
           ) : (
             <Sun size={20} strokeWidth={1.75} />
