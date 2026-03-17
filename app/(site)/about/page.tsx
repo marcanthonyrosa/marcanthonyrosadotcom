@@ -110,9 +110,11 @@ export default function About() {
               key={job.company}
               className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3"
             >
-              {/* Logo + company + role: flex-wrap so on very small screens
-                  the logo stays alone and company+role wrap to the next line */}
-              <div className="flex items-center gap-2 flex-1 min-w-0 flex-wrap">
+              {/* Logo + company + role:
+                  < 480px  → logo / company+role / date each on own row
+                  480–640px → logo+company+role on one row, date below
+                  640px+   → everything on one row (handled by outer sm:flex-row) */}
+              <div className="flex flex-col min-[480px]:flex-row min-[480px]:items-center gap-2 flex-1 min-w-0">
                 <img
                   src={job.logo}
                   alt={job.company}
