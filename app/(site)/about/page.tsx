@@ -104,28 +104,36 @@ export default function About() {
         >
           Experience
         </h2>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-5 sm:gap-4">
           {EXPERIENCE.map((job) => (
-            <div key={job.company} className="flex items-center gap-3">
-              <img
-                src={job.logo}
-                alt={job.company}
-                width={32}
-                height={32}
-                className="rounded-lg flex-shrink-0"
-                style={{ border: "1px solid var(--border)" }}
-              />
-              <div className="flex-1 flex items-baseline gap-2 min-w-0">
-                <span
-                  className="font-semibold"
-                  style={{ color: "var(--text-1)" }}
-                >
-                  {job.company}
-                </span>
-                <span style={{ color: "var(--text-2)", fontSize: "0.9rem" }}>
-                  {job.role}
-                </span>
+            <div
+              key={job.company}
+              className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3"
+            >
+              {/* Logo + company + role: flex-wrap so on very small screens
+                  the logo stays alone and company+role wrap to the next line */}
+              <div className="flex items-center gap-2 flex-1 min-w-0 flex-wrap">
+                <img
+                  src={job.logo}
+                  alt={job.company}
+                  width={32}
+                  height={32}
+                  className="rounded-lg flex-shrink-0"
+                  style={{ border: "1px solid var(--border)" }}
+                />
+                <div className="flex items-baseline gap-2 min-w-0">
+                  <span
+                    className="font-semibold"
+                    style={{ color: "var(--text-1)" }}
+                  >
+                    {job.company}
+                  </span>
+                  <span style={{ color: "var(--text-2)", fontSize: "0.9rem" }}>
+                    {job.role}
+                  </span>
+                </div>
               </div>
+              {/* Date: below the top row on mobile, right-aligned on desktop */}
               <span
                 className="tabular-nums flex-shrink-0"
                 style={{
