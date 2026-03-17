@@ -10,43 +10,37 @@ const EXPERIENCE = [
     role: "Head of Product",
     company: "Thread",
     period: "2023 – Present",
-    description:
-      "Led product through Thread's transition from a single Slack-based IT ticketing tool into a multi-product AI service platform, building and leading a 25+ person product organization and establishing the strategy, roadmaps, and operating rhythms that supported sustained revenue growth.",
+    logo: "/logos/thread.svg",
   },
   {
     role: "Director / Senior Product Manager",
     company: "Tempus AI",
     period: "2021 – 2023",
-    description:
-      "Led development of clinical search products that match complex trial criteria against 30M patient records, improving matching accuracy and enabling research teams to identify eligible patients months faster across large health systems.",
+    logo: "/logos/tempus.svg",
   },
   {
     role: "Product Manager",
     company: "Twilio (Zipwhip)",
     period: "2020 – 2021",
-    description:
-      "Helped scale a business messaging platform by improving shared inbox collaboration and leading the rollout of carrier compliance systems that ensured customers could continue messaging under new industry regulations.",
+    logo: "/logos/twilio.svg",
   },
   {
     role: "Product Manager",
     company: "Getty Images / iStock",
     period: "2016 – 2019",
-    description:
-      "Led contributor platform improvements, growing the mobile contributor ecosystem by enhancing keyword intelligence, search discovery, and upload workflows.",
+    logo: "/logos/getty.svg",
   },
   {
     role: "Product Manager",
     company: "Buffer",
     period: "2016 – 2019",
-    description:
-      "Shipped major publishing capabilities including Social Media Calendar and Video, and helped integrate the Respond acquisition into Buffer's core product workflows.",
+    logo: "/logos/buffer.svg",
   },
   {
     role: "Product Manager",
     company: "Tribune Media (Dose)",
     period: "2014 – 2016",
-    description:
-      "Built consumer apps and content ranking systems that helped scale Dose.com to tens of millions of monthly visitors.",
+    logo: "/logos/tribune.svg",
   },
 ];
 
@@ -110,42 +104,38 @@ export default function About() {
         >
           Experience
         </h2>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-4">
           {EXPERIENCE.map((job) => (
-            <div key={job.company}>
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
-                <div>
-                  <span
-                    className="font-semibold"
-                    style={{ color: "var(--text-1)", fontSize: "1.075rem" }}
-                  >
-                    {job.role}
-                  </span>
-                  <span
-                    className="mx-2"
-                    style={{ color: "var(--text-3)", fontSize: "0.975rem" }}
-                  >
-                    ·
-                  </span>
-                  <span
-                    style={{ color: "var(--text-2)", fontSize: "0.975rem" }}
-                  >
-                    {job.company}
-                  </span>
-                </div>
+            <div key={job.company} className="flex items-center gap-3">
+              <img
+                src={job.logo}
+                alt={job.company}
+                width={32}
+                height={32}
+                className="rounded-lg flex-shrink-0"
+                style={{ border: "1px solid var(--border)" }}
+              />
+              <div className="flex-1 flex items-baseline gap-2 min-w-0">
                 <span
-                  className="tabular-nums"
-                  style={{ color: "var(--text-3)", fontSize: "0.875rem" }}
+                  className="font-semibold"
+                  style={{ color: "var(--text-1)" }}
                 >
-                  {job.period}
+                  {job.company}
+                </span>
+                <span style={{ color: "var(--text-2)", fontSize: "0.9rem" }}>
+                  {job.role}
                 </span>
               </div>
-              <p
-                className="leading-relaxed"
-                style={{ color: "var(--text-2)", fontSize: "1rem" }}
+              <span
+                className="tabular-nums flex-shrink-0"
+                style={{
+                  color: "var(--text-3)",
+                  fontSize: "0.875rem",
+                  fontFamily: "var(--font-mono)",
+                }}
               >
-                {job.description}
-              </p>
+                {job.period}
+              </span>
             </div>
           ))}
         </div>
