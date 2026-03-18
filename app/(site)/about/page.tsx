@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HeadshotOrGame from "@/components/game/HeadshotOrGame";
+import CompanyLogo from "@/components/CompanyLogo";
 
 export const metadata: Metadata = {
   title: "About",
@@ -10,37 +11,37 @@ const EXPERIENCE = [
     role: "Head of Product",
     company: "Thread",
     period: "2023 – Present",
-    logo: "/logos/thread.svg",
+    logo: "/logos/thread.jpeg",
   },
   {
     role: "Director / Senior Product Manager",
     company: "Tempus AI (Deep 6 AI acq)",
     period: "2021 – 2023",
-    logo: "/logos/tempus.svg",
+    logo: "/logos/tempus.jpeg",
   },
   {
     role: "Product Manager",
     company: "Twilio (Zipwhip acq)",
     period: "2020 – 2021",
-    logo: "/logos/twilio.svg",
+    logo: "/logos/twilio.jpeg",
   },
   {
     role: "Product Manager",
     company: "Getty Images / iStock",
     period: "2016 – 2019",
-    logo: "/logos/getty.svg",
+    logo: "/logos/getty.jpeg",
   },
   {
     role: "Product Manager",
     company: "Buffer",
     period: "2016 – 2019",
-    logo: "/logos/buffer.svg",
+    logo: "/logos/buffer.jpeg",
   },
   {
     role: "Product Manager / Associate PM",
     company: "Tribune Media (Dose acq)",
     period: "2014 – 2016",
-    logo: "/logos/tribune.svg",
+    logo: "/logos/tribune.jpeg",
   },
 ];
 
@@ -115,13 +116,11 @@ export default function About() {
                   480–640px → logo+company+role on one row, date below
                   640px+   → everything on one row (handled by outer sm:flex-row) */}
               <div className="flex flex-col min-[480px]:flex-row min-[480px]:items-center gap-2 flex-1 min-w-0">
-                <img
-                  src={job.logo}
-                  alt={job.company}
-                  width={32}
-                  height={32}
-                  className="rounded-lg flex-shrink-0"
-                  style={{ border: "1px solid var(--border)" }}
+                <CompanyLogo
+                  name={job.company}
+                  logoSrc={job.logo}
+                  size={32}
+                  className="flex-shrink-0"
                 />
                 <span className="min-w-0">
                   <span
