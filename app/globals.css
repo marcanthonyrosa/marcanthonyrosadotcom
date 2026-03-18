@@ -95,6 +95,13 @@
   --tag-text:         #94A3B8;
 }
 
+/* ─── Avatar border-travel animation ─── */
+@keyframes border-once {
+  0%   { stroke-dashoffset: 2410; opacity: 1; }
+  78%  { stroke-dashoffset: 0;    opacity: 1; }
+  100% { stroke-dashoffset: 0;    opacity: 0; }
+}
+
 * {
   box-sizing: border-box;
 }
