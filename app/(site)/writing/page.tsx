@@ -9,25 +9,25 @@ const RECENT_WRITING = [
   {
     slug: "after-9-months-of-development",
     title: "After 9 months of development",
-    date: "March 6, 2026",
+    date: "March 6",
     year: 2026,
   },
   {
     slug: "fixed-a-bug-at-the-car-wash",
     title: "Fixed a bug at the car wash",
-    date: "March 2, 2026",
+    date: "March 2",
     year: 2026,
   },
   {
     slug: "stop-shipping-fast",
     title: "Stop shipping fast. Make it actually hold up.",
-    date: "February 12, 2026",
+    date: "February 12",
     year: 2026,
   },
   {
     slug: "your-market-will-show-you",
     title: "Your market will show you the right one",
-    date: "February 10, 2026",
+    date: "February 10",
     year: 2026,
   },
 ];
