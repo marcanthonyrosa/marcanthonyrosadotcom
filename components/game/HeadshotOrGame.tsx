@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
@@ -8,6 +8,15 @@ const MarcManGame = dynamic(() => import("./MarcManGame"), { ssr: false });
 
 export default function HeadshotOrGame() {
   const [playing, setPlaying] = useState(false);
+  const [mobileHint, setMobileHint] = useState(false);
+
+  useEffect(() => {
+    if ("ontouchstart" in window) {
+      setMobileHint(true);
+      const t = setTimeout(() => setMobileHint(false), 2000);
+      return () => clearTimeout(t);
+    }
+  }, []);
 
   if (playing) {
     return (
@@ -32,9 +41,9 @@ export default function HeadshotOrGame() {
         style={{ borderRadius: "16px" }}
         priority
       />
-      {/* hover hint */}
+      {/* hover hint + mobile auto-hint */}
       <div
-        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${mobileHint ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
         style={{ borderRadius: "16px", background: "rgba(0,0,0,0.45)" }}
       >
         <span
@@ -43,6 +52,13 @@ export default function HeadshotOrGame() {
         >
           👾 Play MarcMan
         </span>
+      </div>
+      {/* always-visible corner badge */}
+      <div
+        className="absolute bottom-2 right-2 bg-black/60 rounded-full px-2 py-1 text-sm select-none pointer-events-none"
+        aria-hidden="true"
+      >
+        👾
       </div>
     </div>
   );
