@@ -14,7 +14,7 @@ export default function HeadshotOrGame() {
   const [borderVisible, setBorderVisible] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setBorderVisible(false), 1700);
+    const t = setTimeout(() => setBorderVisible(false), 1000);
     return () => clearTimeout(t);
   }, []);
 
@@ -67,15 +67,21 @@ export default function HeadshotOrGame() {
           viewBox="0 0 611 611"
           xmlns="http://www.w3.org/2000/svg"
         >
+          <defs>
+            <linearGradient id="border-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#a855f7" />
+              <stop offset="100%" stopColor="#ef4444" />
+            </linearGradient>
+          </defs>
           <rect
             x="2" y="2" width="607" height="607" rx="14" ry="14"
             fill="none"
-            stroke="rgba(255,255,255,0.85)"
-            strokeWidth="4"
+            stroke="url(#border-grad)"
+            strokeWidth="2"
             strokeDasharray={PERIMETER}
             style={{
-              animation: "border-once 1.6s ease-in-out forwards",
-              filter: "drop-shadow(0 0 6px rgba(255,255,255,0.5))",
+              animation: "border-once 0.9s linear forwards",
+              filter: "drop-shadow(0 0 4px #a855f7)",
             }}
           />
         </svg>
