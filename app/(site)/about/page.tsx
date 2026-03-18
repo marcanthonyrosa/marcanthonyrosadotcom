@@ -14,13 +14,13 @@ const EXPERIENCE = [
   },
   {
     role: "Director / Senior Product Manager",
-    company: "Tempus AI",
+    company: "Tempus AI (Deep 6 AI acq)",
     period: "2021 – 2023",
     logo: "/logos/tempus.svg",
   },
   {
     role: "Product Manager",
-    company: "Twilio (Zipwhip)",
+    company: "Twilio (Zipwhip acq)",
     period: "2020 – 2021",
     logo: "/logos/twilio.svg",
   },
@@ -37,8 +37,8 @@ const EXPERIENCE = [
     logo: "/logos/buffer.svg",
   },
   {
-    role: "Product Manager",
-    company: "Tribune Media (Dose)",
+    role: "Product Manager / Associate PM",
+    company: "Tribune Media (Dose acq)",
     period: "2014 – 2016",
     logo: "/logos/tribune.svg",
   },
@@ -46,8 +46,8 @@ const EXPERIENCE = [
 
 const VALUES = [
   {
-    title: "Clarity over cleverness",
-    body: "A clear strategy beats a sophisticated one. A simple product beats a feature-rich one. I try to make things that don't need an explanation.",
+    title: "Software should be opinionated",
+    body: "Build products with a clear point of view on how they should be used. Tools that try to do everything end up doing nothing well.",
   },
   {
     title: "Users first, metrics second",
@@ -102,7 +102,7 @@ export default function About() {
           className="text-xs font-semibold uppercase tracking-widest mb-8"
           style={{ color: "var(--text-3)" }}
         >
-          Experience
+          Work
         </h2>
         <div className="flex flex-col gap-5 sm:gap-4">
           {EXPERIENCE.map((job) => (
@@ -123,17 +123,18 @@ export default function About() {
                   className="rounded-lg flex-shrink-0"
                   style={{ border: "1px solid var(--border)" }}
                 />
-                <div className="flex items-baseline gap-2 min-w-0">
+                <span className="min-w-0">
                   <span
                     className="font-semibold"
                     style={{ color: "var(--text-1)" }}
                   >
                     {job.company}
                   </span>
+                  {" "}
                   <span style={{ color: "var(--text-2)", fontSize: "0.9rem" }}>
                     {job.role}
                   </span>
-                </div>
+                </span>
               </div>
               {/* Date: below the top row on mobile, right-aligned on desktop */}
               <span
