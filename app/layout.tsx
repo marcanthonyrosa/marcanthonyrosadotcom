@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { PostHogPageview } from "@/components/PostHogPageview";
 import { Suspense } from "react";
 
-const inter = Inter({
-  variable: "--font-inter",
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
 });
 
-const instrumentSans = Instrument_Sans({
-  variable: "--font-instrument-sans",
+const ibmPlexSerif = IBM_Plex_Serif({
+  variable: "--font-ibm-plex-serif",
   subsets: ["latin"],
-  weight: ["700"],
+  weight: ["600"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -47,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${instrumentSans.variable} ${jetbrainsMono.variable} antialiased`}>
+      <body className={`${ibmPlexSans.variable} ${ibmPlexSerif.variable} ${jetbrainsMono.variable} antialiased`}>
         <PostHogProvider>
           <Providers>
             <Suspense>
