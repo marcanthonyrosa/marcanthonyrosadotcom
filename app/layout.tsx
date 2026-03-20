@@ -46,8 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${publicSans.variable} ${fraunces.variable} ${jetbrainsMono.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning className={`${publicSans.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}>
+      <body className="antialiased">
         <PostHogProvider>
           <Providers>
             <Suspense>
