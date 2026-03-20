@@ -46,8 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${dmSans.variable} ${outfit.variable} ${jetbrainsMono.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning className={`${dmSans.variable} ${outfit.variable} ${jetbrainsMono.variable}`}>
+      <body className="antialiased">
         <PostHogProvider>
           <Providers>
             <Suspense>
