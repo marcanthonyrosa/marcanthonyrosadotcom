@@ -15,7 +15,7 @@ const inter = Inter({
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
   subsets: ["latin"],
-  weight: ["700"],
+  weight: ["600", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -46,8 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${instrumentSans.variable} ${jetbrainsMono.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${instrumentSans.variable} ${jetbrainsMono.variable}`}>
+      <body className="antialiased">
         <PostHogProvider>
           <Providers>
             <Suspense>
