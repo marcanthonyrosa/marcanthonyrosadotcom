@@ -114,7 +114,7 @@ export default function Home() {
                   <Link
                     href={`/writing/${post.slug}`}
                     className="leading-snug transition-opacity hover:opacity-70 flex-1"
-                    style={{ color: "var(--text-1)", fontSize: "1.05rem" }}
+                    style={{ color: "var(--text-1)", fontSize: "1.1rem" }}
                   >
                     {post.title}
                   </Link>
