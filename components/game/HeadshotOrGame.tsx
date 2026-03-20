@@ -19,36 +19,27 @@ export default function HeadshotOrGame() {
   }
 
   return (
-    <div className="w-full mb-8">
-      <div
-        className="relative w-full group cursor-pointer"
-        onClick={() => setPlaying(true)}
-        title="Click to play MarcMan 👾"
-      >
-        <Image
-          src="/headshot.jpeg"
-          alt="Marc Anthony Rosa"
-          width={611}
-          height={611}
-          className="w-full"
-          style={{ borderRadius: "16px" }}
-          priority
-        />
-        {/* hover hint */}
-        <div
-          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-          style={{ borderRadius: "16px", background: "rgba(0,0,0,0.45)" }}
-        >
-          <span
-            className="text-white font-semibold text-lg"
-            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.6)" }}
-          >
-            👾 Play MarcMan
-          </span>
-        </div>
-      </div>
-      <div className="flex justify-center mt-4">
+    <div className="relative w-full mb-8">
+      <Image
+        src="/headshot.jpeg"
+        alt="Marc Anthony Rosa"
+        width={611}
+        height={611}
+        className="w-full"
+        style={{ borderRadius: "16px" }}
+        priority
+      />
+      <style>{`
+        @keyframes turbo-pulse {
+          0%, 100% { box-shadow: 0 3px 0 rgb(30 75 70 / 0.7), 0 5px 14px rgb(0 0 0 / 0.3), 0 0 8px rgb(107 194 183 / 0.2); }
+          50% { box-shadow: 0 3px 0 rgb(30 75 70 / 0.7), 0 5px 20px rgb(0 0 0 / 0.3), 0 0 18px rgb(107 194 183 / 0.45); }
+        }
+        .turbo-btn { animation: turbo-pulse 2.4s ease-in-out infinite; }
+        .turbo-btn:hover { animation: none; box-shadow: 0 3px 0 rgb(30 75 70 / 0.7), 0 5px 20px rgb(0 0 0 / 0.3), 0 0 24px rgb(107 194 183 / 0.6) !important; }
+      `}</style>
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
         <button
+          className={pressed ? undefined : "turbo-btn"}
           onMouseDown={() => setPressed(true)}
           onMouseUp={() => {
             setPressed(false);
@@ -65,26 +56,28 @@ export default function HeadshotOrGame() {
             setPlaying(true);
           }}
           style={{
-            padding: "10px 28px",
-            borderRadius: "10px",
-            fontSize: "13px",
-            fontWeight: 900,
-            letterSpacing: "0.1em",
+            padding: "8px 20px",
+            borderRadius: "8px",
+            fontSize: "12px",
+            fontWeight: 800,
+            letterSpacing: "0.08em",
             textTransform: "uppercase",
-            background: "linear-gradient(180deg, #e83030 0%, #a81010 100%)",
+            background: "rgb(107 194 183 / 38%)",
             color: "#fff",
-            border: "none",
+            border: "1px solid rgb(107 194 183 / 55%)",
             cursor: "pointer",
-            textShadow: "0 1px 3px rgba(0,0,0,0.4)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            whiteSpace: "nowrap",
+            textShadow: "0 1px 3px rgba(0,0,0,0.35)",
             boxShadow: pressed
-              ? "0 1px 0 #6b0000, 0 2px 6px rgba(0,0,0,0.3)"
-              : "0 4px 0 #6b0000, 0 6px 14px rgba(0,0,0,0.35)",
-            transform: pressed ? "translateY(3px)" : "translateY(0)",
-            transition: "box-shadow 0.07s, transform 0.07s, filter 0.15s",
-            filter: pressed ? "brightness(0.9)" : "brightness(1)",
+              ? "0 1px 0 rgb(30 75 70 / 0.7), 0 2px 6px rgba(0,0,0,0.25)"
+              : undefined,
+            transform: pressed ? "translateY(2px)" : "translateY(0)",
+            transition: "box-shadow 0.07s, transform 0.07s",
           }}
         >
-          ⚡ TURBO MODE
+          🕹️ TURBO MODE
         </button>
       </div>
     </div>
