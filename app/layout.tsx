@@ -46,8 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${hankenGrotesk.variable} ${dmSerifDisplay.variable} ${jetbrainsMono.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning className={`${hankenGrotesk.variable} ${dmSerifDisplay.variable} ${jetbrainsMono.variable}`}>
+      <body className="antialiased">
         <PostHogProvider>
           <Providers>
             <Suspense>
