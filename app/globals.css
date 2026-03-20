@@ -12,6 +12,7 @@
   h1 {
     font-family: var(--font-instrument-sans), var(--font-inter), sans-serif;
     font-weight: 700;
+    letter-spacing: -0.025em;
   }
 }
 
@@ -134,8 +135,8 @@ body {
 /* ─── Prose styles ─── */
 .prose {
   color: var(--text-2);
-  line-height: 1.8;
-  font-size: 1.125rem;
+  line-height: 1.75;
+  font-size: 1.25rem;
   font-weight: 400;
 }
 .prose p { margin-bottom: 1.35rem; }
@@ -147,14 +148,14 @@ body {
 }
 .prose a:hover { color: var(--accent-hover); }
 .prose h2 {
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-1);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
 .prose h3 {
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: var(--text-1);
   margin-top: 1.75rem;
