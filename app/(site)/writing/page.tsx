@@ -62,7 +62,7 @@ export default function Writing() {
                   <Link
                     href={`/writing/${post.slug}`}
                     className="font-medium transition-opacity hover:opacity-70 leading-snug"
-                    style={{ color: "var(--text-1)", fontSize: "1rem" }}
+                    style={{ color: "var(--text-1)", fontSize: "1.1rem" }}
                   >
                     {post.title}
                   </Link>

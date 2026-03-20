@@ -51,7 +51,7 @@ export default function StopShippingFast() {
       {/* Body */}
       <article
         className="flex flex-col gap-5 leading-relaxed"
-        style={{ color: "var(--text-2)", fontSize: "1.05rem" }}
+        style={{ color: "var(--text-2)", fontSize: "1.125rem" }}
       >
         <p>
           This photo is from a product research session with Albert, a Thread partner who told us

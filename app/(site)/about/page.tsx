@@ -130,7 +130,7 @@ export default function About() {
                     {job.company}
                   </span>
                   {" "}
-                  <span style={{ color: "var(--text-2)", fontSize: "0.9rem" }}>
+                  <span style={{ color: "var(--text-2)", fontSize: "0.95rem" }}>
                     {job.role}
                   </span>
                 </span>
@@ -173,13 +173,13 @@ export default function About() {
             >
               <h3
                 className="font-semibold mb-2"
-                style={{ color: "var(--text-1)", fontSize: "1.0rem" }}
+                style={{ color: "var(--text-1)", fontSize: "1.05rem" }}
               >
                 {v.title}
               </h3>
               <p
                 className="leading-relaxed"
-                style={{ color: "var(--text-2)", fontSize: "0.975rem" }}
+                style={{ color: "var(--text-2)", fontSize: "1.0rem" }}
               >
                 {v.body}
               </p>

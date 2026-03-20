@@ -51,7 +51,7 @@ export default function After9MonthsOfDevelopment() {
       {/* Body */}
       <article
         className="flex flex-col gap-5 leading-relaxed"
-        style={{ color: "var(--text-2)", fontSize: "1.05rem" }}
+        style={{ color: "var(--text-2)", fontSize: "1.125rem" }}
       >
         <p>
           After 9 months of development and several rigorous sprints, the Rosa Family has a new
