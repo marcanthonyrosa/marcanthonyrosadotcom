@@ -9,9 +9,11 @@ import {
 import { Direction, GamePhase, GameState, Ghost, CELL } from "./types";
 
 /* ─── Constants ──────────────────────────────────────────── */
-const CS   = 28;                  // cell size px
-const CW   = COLS * CS;
-const CH   = ROWS * CS;
+const CS       = 28;                        // cell size px
+const MW       = COLS * CS;                 // maze width  (588)
+const CH       = ROWS * CS;                 // maze height (672)
+const OFFSET_X = (CH - MW) / 2;            // 42 — horizontal padding each side
+const CW       = MW + OFFSET_X * 2;        // canvas width == CH == 672 (square)
 const SPEED        = 2.5;
 const GHOST_SPEED  = 2.0;
 const EATEN_SPEED  = 4.0;   // eyes fly back to house at 2× normal
@@ -722,8 +724,8 @@ function updatePlayer(s: GameState) {
     } else {
       p.x = cx.x; p.y = cx.y;
     }
-    if (p.x < 0) p.x = CW - 1;
-    if (p.x >= CW) p.x = 1;
+    if (p.x < 0) p.x = MW - 1;
+    if (p.x >= MW) p.x = 1;
 
     // eat
     const cell = s.maze[row]?.[col];
@@ -838,8 +840,8 @@ function updateGhosts(s: GameState, dt: number) {
     const { dx, dy } = dirVec(g.dir);
     g.x += dx * speed;
     g.y += dy * speed;
-    if (g.x < 0) g.x = CW - 1;
-    if (g.x >= CW) g.x = 1;
+    if (g.x < 0) g.x = MW - 1;
+    if (g.x >= MW) g.x = 1;
   }
 }
 
@@ -885,6 +887,10 @@ function render(
   ctx.fillStyle = "#0d0d1a";
   ctx.fillRect(0, 0, CW, CH);
 
+  // Offset all maze content so it's centered in the square canvas
+  ctx.save();
+  ctx.translate(OFFSET_X, 0);
+
   const isLevelComplete = s.phase === "LEVEL_COMPLETE";
   const flashWall = isLevelComplete && Math.floor(s.levelTimer / 250) % 2 === 0;
 
@@ -927,6 +933,8 @@ function render(
   drawHUD(ctx, s);
   if (s.phase === "WIN" || s.phase === "LOSE") drawOverlay(ctx, s.phase, s.score);
   if (isLevelComplete) drawLevelCompleteOverlay(ctx, s.level);
+
+  ctx.restore();
 }
 
 /* ─── Wall ───────────────────────────────────────────────── */
@@ -1135,38 +1143,38 @@ function drawHUD(ctx: CanvasRenderingContext2D, s: GameState) {
   ctx.textAlign = "left";
   ctx.fillText(`Score: ${s.score}`, 6, y);
   ctx.textAlign = "center";
-  ctx.fillText(`Lvl ${s.level}`, CW / 2, y);
+  ctx.fillText(`Lvl ${s.level}`, MW / 2, y);
   ctx.textAlign = "right";
-  ctx.fillText("♥".repeat(s.lives), CW - 6, y);
+  ctx.fillText("♥".repeat(s.lives), MW - 6, y);
 }
 
 /* ─── Overlay ────────────────────────────────────────────── */
 function drawOverlay(ctx: CanvasRenderingContext2D, phase: GamePhase, score: number) {
   ctx.fillStyle = "rgba(0,0,0,0.65)";
-  ctx.fillRect(0, 0, CW, CH);
+  ctx.fillRect(0, 0, MW, CH);
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillStyle = phase === "WIN" ? "#f1c40f" : "#e74c3c";
   ctx.font = "bold 36px 'Courier New', monospace";
-  ctx.fillText(phase === "WIN" ? "YOU WIN! 🎉" : "GAME OVER", CW / 2, CH / 2 - 28);
+  ctx.fillText(phase === "WIN" ? "YOU WIN! 🎉" : "GAME OVER", MW / 2, CH / 2 - 28);
   ctx.fillStyle = "#ffffff";
   ctx.font = "18px 'Courier New', monospace";
-  ctx.fillText(`Score: ${score}`, CW / 2, CH / 2 + 12);
+  ctx.fillText(`Score: ${score}`, MW / 2, CH / 2 + 12);
   ctx.fillStyle = "#aaaaaa";
   ctx.font = "14px 'Courier New', monospace";
-  ctx.fillText("R to restart · ESC to exit", CW / 2, CH / 2 + 44);
+  ctx.fillText("R to restart · ESC to exit", MW / 2, CH / 2 + 44);
 }
 
 /* ─── Level Complete Overlay ─────────────────────────────── */
 function drawLevelCompleteOverlay(ctx: CanvasRenderingContext2D, level: number) {
   ctx.fillStyle = "rgba(0,0,0,0.55)";
-  ctx.fillRect(0, 0, CW, CH);
+  ctx.fillRect(0, 0, MW, CH);
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillStyle = "#f1c40f";
   ctx.font = "bold 28px 'Courier New', monospace";
-  ctx.fillText("LEVEL COMPLETE!", CW / 2, CH / 2 - 20);
+  ctx.fillText("LEVEL COMPLETE!", MW / 2, CH / 2 - 20);
   ctx.fillStyle = "#ffffff";
   ctx.font = "18px 'Courier New', monospace";
-  ctx.fillText(`Level ${level}`, CW / 2, CH / 2 + 16);
+  ctx.fillText(`Level ${level}`, MW / 2, CH / 2 + 16);
 }
