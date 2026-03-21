@@ -4,7 +4,12 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
-const MarcManGame = dynamic(() => import("./MarcManGame"), { ssr: false });
+const MarcManGame = dynamic(() => import("./MarcManGame"), {
+  ssr: false,
+  loading: () => (
+    <div style={{ width: "100%", aspectRatio: "1 / 1", background: "#0d0d1a", borderRadius: 16 }} />
+  ),
+});
 
 const DURATION = 1300;
 const W = 611;
@@ -34,6 +39,7 @@ export default function HeadshotOrGame() {
     const img = new window.Image();
     img.src = "/headshot.jpeg";
     img.onload = () => { imgRef.current = img; };
+    import("./MarcManGame"); // preload chunk so it's ready on first click
     return () => { cancelAnimationFrame(animRef.current); };
   }, []);
 
