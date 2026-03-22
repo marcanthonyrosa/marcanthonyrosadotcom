@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { usePostHog } from "posthog-js/react";
 
 const MarcManGame = dynamic(() => import("./MarcManGame"), {
   ssr: false,
@@ -27,6 +28,7 @@ export default function HeadshotOrGame() {
   const [playing, setPlaying] = useState(false);
   const [pressed, setPressed] = useState(false);
   const [pixelating, setPixelating] = useState(false);
+  const posthog = usePostHog();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
@@ -127,7 +129,7 @@ export default function HeadshotOrGame() {
         className="w-full cursor-pointer"
         style={{ borderRadius: "16px" }}
         priority
-        onClick={startPixelation}
+        onClick={() => { posthog.capture("avatar_clicked", { location: "about" }); startPixelation(); }}
       />
       <canvas
         ref={canvasRef}
@@ -158,6 +160,7 @@ export default function HeadshotOrGame() {
           onMouseDown={() => setPressed(true)}
           onMouseUp={() => {
             setPressed(false);
+            posthog.capture("turbo_mode_clicked");
             startPixelation();
           }}
           onMouseLeave={() => setPressed(false)}
@@ -168,6 +171,7 @@ export default function HeadshotOrGame() {
           onTouchEnd={(e) => {
             e.preventDefault();
             setPressed(false);
+            posthog.capture("turbo_mode_clicked");
             startPixelation();
           }}
           style={{
