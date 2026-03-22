@@ -11,11 +11,11 @@ export function AvatarButton() {
   const handleClick = async () => {
     await controls.start({
       scale: 0.87,
-      transition: { type: "spring", stiffness: 1200, damping: 65 },
+      transition: { type: "spring", duration: 0.10, bounce: 0 },
     });
     await controls.start({
       scale: 1,
-      transition: { type: "spring", stiffness: 700, damping: 35 },
+      transition: { type: "spring", duration: 0.28, bounce: 0.08 },
     });
     router.push("/about");
   };
