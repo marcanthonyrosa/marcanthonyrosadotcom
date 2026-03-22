@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { SocialLinks } from "@/components/SocialLinks";
+import { AvatarButton } from "@/components/AvatarButton";
 
 export const metadata: Metadata = {
   title: "Marc Anthony Rosa — Head of Product",
@@ -54,15 +54,7 @@ export default function Home() {
         >
           Head of Product
         </p>
-        <Image
-          src="/headshot.jpeg"
-          alt="Marc Anthony Rosa"
-          width={120}
-          height={120}
-          className="mb-8"
-          style={{ borderRadius: "16px" }}
-          priority
-        />
+        <AvatarButton />
         <div className="prose max-w-none">
           <p>
             I&apos;m a product leader who helps early products grow into enduring companies.
