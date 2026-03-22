@@ -11,7 +11,7 @@ export function AvatarButton() {
   const handleClick = async () => {
     await controls.start({
       scale: 0.87,
-      transition: { type: "spring", duration: 0.07, bounce: 0 },
+      transition: { type: "spring", duration: 0.04, bounce: 0 },
     });
     await controls.start({
       scale: 1,
