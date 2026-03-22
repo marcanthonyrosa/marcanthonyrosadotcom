@@ -3,12 +3,15 @@
 import { motion, useAnimation } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { usePostHog } from "posthog-js/react";
 
 export function AvatarButton() {
   const controls = useAnimation();
   const router = useRouter();
+  const posthog = usePostHog();
 
   const handleClick = async () => {
+    posthog.capture("avatar_clicked", { location: "home" });
     await controls.start({
       scale: 0.87,
       transition: { type: "spring", duration: 0.04, bounce: 0 },
