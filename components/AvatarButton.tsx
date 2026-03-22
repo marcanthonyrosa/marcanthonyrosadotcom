@@ -10,12 +10,12 @@ export function AvatarButton() {
 
   const handleClick = async () => {
     await controls.start({
-      scale: 0.87,
-      transition: { type: "spring", duration: 0.10, bounce: 0 },
+      scale: 0.88,
+      transition: { type: "spring", duration: 0.12, bounce: 0 },
     });
     await controls.start({
       scale: 1,
-      transition: { type: "spring", duration: 0.28, bounce: 0.08 },
+      transition: { type: "spring", duration: 0.40, bounce: 0.2 },
     });
     router.push("/about");
   };
