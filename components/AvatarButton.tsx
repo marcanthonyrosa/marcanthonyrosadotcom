@@ -9,13 +9,15 @@ export function AvatarButton() {
   const router = useRouter();
 
   const handleClick = async () => {
+    // Deep press
     await controls.start({
-      scale: 0.88,
-      transition: { type: "spring", stiffness: 700, damping: 30 },
+      scale: 0.72,
+      transition: { type: "spring", stiffness: 900, damping: 40 },
     });
+    // Big overshoot bounce back
     await controls.start({
       scale: 1,
-      transition: { type: "spring", stiffness: 380, damping: 12 },
+      transition: { type: "spring", stiffness: 350, damping: 8 },
     });
     router.push("/about");
   };
