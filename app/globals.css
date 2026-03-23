@@ -135,19 +135,19 @@ body {
 
 /* ─── Prose styles ─── */
 .prose {
-  color: var(--text-2);
+  color: var(--text-1);
   line-height: 1.6;
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 .prose p { margin-bottom: 1.35rem; }
 .prose a {
-  color: var(--link);
+  color: var(--text-1);
   text-decoration: underline;
   text-underline-offset: 3px;
-  font-weight: 500;
+  font-weight: 600;
 }
-.prose a:hover { color: var(--accent-hover); }
+.prose a:hover { opacity: 0.7; }
 .prose h2 {
   font-size: 1.5rem;
   font-weight: 600;
