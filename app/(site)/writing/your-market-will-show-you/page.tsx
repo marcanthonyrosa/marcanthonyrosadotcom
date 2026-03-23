@@ -51,7 +51,7 @@ export default function YourMarketWillShowYou() {
       {/* Body */}
       <article
         className="flex flex-col gap-5"
-        style={{ color: "var(--text-2)", fontSize: "1.2rem", fontFamily: "var(--font-serif), Georgia, serif", lineHeight: 1.75 }}
+        style={{ color: "var(--text-2)", fontSize: "1.2rem", fontWeight: 500, lineHeight: 1.6 }}
       >
         <p>
           Personal news: I recently wrapped up my time at Thread after two and a half years helping

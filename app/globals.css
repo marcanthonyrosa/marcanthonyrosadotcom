@@ -136,10 +136,9 @@ body {
 /* ─── Prose styles ─── */
 .prose {
   color: var(--text-2);
-  line-height: 1.7;
+  line-height: 1.6;
   font-size: 1.25rem;
-  font-weight: 400;
-  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 500;
 }
 .prose p { margin-bottom: 1.35rem; }
 .prose a {
