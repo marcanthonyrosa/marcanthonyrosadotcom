@@ -5,6 +5,7 @@
 
 @theme {
   --font-sans: var(--font-inter);
+  --font-serif: var(--font-source-serif-4);
   --font-mono: var(--font-jetbrains-mono);
 }
 
@@ -135,9 +136,10 @@ body {
 /* ─── Prose styles ─── */
 .prose {
   color: var(--text-2);
-  line-height: 1.75;
+  line-height: 1.7;
   font-size: 1.25rem;
   font-weight: 400;
+  font-family: var(--font-serif), Georgia, serif;
 }
 .prose p { margin-bottom: 1.35rem; }
 .prose a {

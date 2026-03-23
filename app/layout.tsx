@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { Inter, Instrument_Sans, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { PostHogProvider } from "@/components/PostHogProvider";
@@ -24,6 +24,13 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+const sourceSerif4 = Source_Serif_4({
+  variable: "--font-source-serif-4",
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Marc Anthony Rosa",
@@ -46,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${instrumentSans.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${instrumentSans.variable} ${jetbrainsMono.variable} ${sourceSerif4.variable}`}>
       <body className="antialiased">
         <PostHogProvider>
           <Providers>

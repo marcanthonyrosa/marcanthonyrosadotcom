@@ -50,8 +50,8 @@ export default function FixedABugAtTheCarWash() {
 
       {/* Body */}
       <article
-        className="flex flex-col gap-5 leading-relaxed"
-        style={{ color: "var(--text-2)", fontSize: "1.125rem" }}
+        className="flex flex-col gap-5"
+        style={{ color: "var(--text-2)", fontSize: "1.2rem", fontFamily: "var(--font-serif), Georgia, serif", lineHeight: 1.75 }}
       >
         <p>
           Today I got to live in the future for about 15 very ordinary minutes: sitting in the
