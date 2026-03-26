@@ -245,9 +245,9 @@ export default function JohnnyPage() {
               ★★★★★
             </div>
             <div className={styles.quoteText}>
-              &ldquo;He made a website about this. There is a website. I am
-              looking at a website about our son&apos;s launch metrics. I cannot
-              process this right now.&rdquo;
+              &ldquo;What in the world is this&hellip;? Is this what you have
+              been doing all this time?! Please go change Johnny&apos;s diaper,
+              I am covered in vomit.&rdquo;
             </div>
             <div className={styles.quoteAuthor}>
               <div
