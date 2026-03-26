@@ -14,6 +14,7 @@ import {
   Sun,
   Moon,
   Monitor,
+  Building2,
 } from "lucide-react";
 
 const IS_DEV = process.env.NODE_ENV === "development";
@@ -48,6 +49,16 @@ const NAV_ITEMS = [
     motionProps: {
       whileHover: { rotate: -14 },
       transition: { type: "spring" as const, stiffness: 300, damping: 10 },
+    },
+  },
+  {
+    href: "/tmc",
+    label: "TMC",
+    icon: Building2,
+    devOnly: false,
+    motionProps: {
+      whileHover: { y: -3, scale: 1.1 },
+      transition: { type: "spring" as const, stiffness: 350, damping: 10 },
     },
   },
   {
@@ -219,29 +230,56 @@ function ThemeToggle() {
 }
 
 export function Sidebar() {
-  return (
-    <nav
-      className={[
+  const pathname = usePathname();
+  const isWide = pathname === "/tmc" || pathname.startsWith("/tmc/");
+
+  // The TMC page uses max-w-5xl (1024px). Solving for the breakpoint at which
+  // the sidebar (left: 3vw + 40px wide) just clears the content text edge
+  // ((W − 1024) / 2 + 24px padding) gives W ≈ 1123px → rounded to 1125px.
+  // The standard pages use max-w-2xl (672px) → the existing 750px breakpoint.
+  const navClasses = isWide
+    ? [
         "z-40 fixed flex items-center",
-        // Mobile: horizontal top bar — offset below the sticky JohnnyBanner (~40px)
         "top-10 left-0 right-0 px-2 h-14",
         "bg-[var(--bg)]",
-        // Desktop: vertical sidebar
+        "min-[1125px]:flex-col min-[1125px]:items-start min-[1125px]:gap-1",
+        "min-[1125px]:top-[9.5rem] min-[1125px]:left-[3vw] min-[1125px]:right-auto",
+        "min-[1125px]:h-auto min-[1125px]:w-auto min-[1125px]:px-0",
+        "min-[1125px]:bg-transparent min-[1125px]:border-0",
+      ]
+    : [
+        "z-40 fixed flex items-center",
+        "top-10 left-0 right-0 px-2 h-14",
+        "bg-[var(--bg)]",
         "min-[750px]:flex-col min-[750px]:items-start min-[750px]:gap-1",
         "min-[750px]:top-[9.5rem] min-[750px]:left-[3vw] min-[750px]:right-auto",
         "min-[750px]:h-auto min-[750px]:w-auto min-[750px]:px-0",
         "min-[750px]:bg-transparent min-[750px]:border-0",
-      ].join(" ")}
-    >
+      ];
+
+  return (
+    <nav className={navClasses.join(" ")}>
       {/* Nav items */}
-      <div className="flex items-center gap-1 min-[750px]:flex-col min-[750px]:gap-1">
+      <div
+        className={
+          isWide
+            ? "flex items-center gap-1 min-[1125px]:flex-col min-[1125px]:gap-1"
+            : "flex items-center gap-1 min-[750px]:flex-col min-[750px]:gap-1"
+        }
+      >
         {NAV_ITEMS.map((item) => (
           <NavItem key={item.href} {...item} />
         ))}
       </div>
 
       {/* Theme toggle: right-aligned on mobile, below nav on desktop */}
-      <div className="ml-auto min-[750px]:ml-0 min-[750px]:mt-3">
+      <div
+        className={
+          isWide
+            ? "ml-auto min-[1125px]:ml-0 min-[1125px]:mt-3"
+            : "ml-auto min-[750px]:ml-0 min-[750px]:mt-3"
+        }
+      >
         <ThemeToggle />
       </div>
     </nav>
