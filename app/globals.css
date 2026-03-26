@@ -54,6 +54,14 @@
   /* Tags / badges */
   --tag-bg:           #F1F5F9;
   --tag-text:         #475569;
+
+  /* TMC brand */
+  --tmc-navy:         hsl(216, 75%, 21%);
+  --tmc-blue:         hsl(212, 72%, 38%);
+  --tmc-light:        hsl(211, 74%, 95%);
+  --tmc-blue-20:      hsl(212 72% 38% / 0.20);
+  --tmc-blue-30:      hsl(212 72% 38% / 0.30);
+  --tmc-blue-60:      hsl(212 72% 38% / 0.60);
 }
 
 /* ─── Dark mode tokens ─── */
@@ -94,6 +102,14 @@
   /* Tags / badges */
   --tag-bg:           #1F2937;
   --tag-text:         #94A3B8;
+
+  /* TMC brand — dark mode overrides */
+  --tmc-navy:         hsl(211, 70%, 80%);
+  --tmc-blue:         hsl(212, 80%, 62%);
+  --tmc-light:        hsl(216, 45%, 14%);
+  --tmc-blue-20:      hsl(212 80% 62% / 0.20);
+  --tmc-blue-30:      hsl(212 80% 62% / 0.30);
+  --tmc-blue-60:      hsl(212 80% 62% / 0.60);
 }
 
 * {
