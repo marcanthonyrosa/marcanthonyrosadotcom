@@ -176,11 +176,8 @@ export default function TMCPage() {
                 key={idea.title}
                 className="rounded-xl p-5"
                 style={{
-                  border: idea.highlight
-                    ? "1px solid var(--tmc-blue)"
-                    : "1px solid var(--border)",
-                  background: idea.highlight ? "var(--tmc-light)" : "var(--surface)",
-                  boxShadow: idea.highlight ? "0 0 0 1px var(--tmc-blue-20)" : "none",
+                  border: "1px solid var(--border)",
+                  background: "var(--surface)",
                 }}
               >
                 {/* Card header */}
@@ -191,8 +188,8 @@ export default function TMCPage() {
                       style={{
                         width: 36,
                         height: 36,
-                        background: idea.highlight ? "var(--tmc-blue)" : "var(--surface-hover)",
-                        color: idea.highlight ? "#fff" : "var(--text-3)",
+                        background: "var(--surface-hover)",
+                        color: "var(--text-3)",
                       }}
                     >
                       <idea.icon size={18} />
@@ -202,13 +199,14 @@ export default function TMCPage() {
                     </span>
                   </div>
                   {idea.highlight && (
-                    <span
+                    <a
+                      href="#deep-dive"
                       className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0"
                       style={{ background: "var(--tmc-blue)", color: "#fff" }}
                     >
                       <ArrowDown size={11} />
                       Deep Dive
-                    </span>
+                    </a>
                   )}
                 </div>
                 {/* Bullets */}
@@ -231,7 +229,7 @@ export default function TMCPage() {
         {/* ── Deep Dive ── */}
         <section style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-            <h2 className="text-2xl font-bold" style={{ color: "var(--tmc-navy)" }}>
+            <h2 id="deep-dive" className="text-2xl font-bold" style={{ color: "var(--tmc-navy)" }}>
               Deep Dive: TMC Intelligence
             </h2>
             <p style={{ color: "var(--text-2)" }}>
