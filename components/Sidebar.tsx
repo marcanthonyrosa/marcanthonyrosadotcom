@@ -11,6 +11,7 @@ import {
   PenLine,
   Layers,
   Cpu,
+  Baby,
   Sun,
   Moon,
   Monitor,
@@ -79,6 +80,16 @@ const NAV_ITEMS = [
     motionProps: {
       whileHover: { rotate: 90 },
       transition: { type: "spring" as const, stiffness: 180, damping: 12 },
+    },
+  },
+  {
+    href: "/johnny",
+    label: "Johnny",
+    icon: Baby,
+    devOnly: false,
+    motionProps: {
+      whileHover: { y: -3, scale: 1.12 },
+      transition: { type: "spring" as const, stiffness: 350, damping: 10 },
     },
   },
 ].filter((item) => !item.devOnly || IS_DEV);
@@ -240,7 +251,7 @@ export function Sidebar() {
   const navClasses = isWide
     ? [
         "z-40 fixed flex items-center",
-        "top-10 left-0 right-0 px-2 h-14",
+        "top-0 left-0 right-0 px-2 h-14",
         "bg-[var(--bg)]",
         "min-[1125px]:flex-col min-[1125px]:items-start min-[1125px]:gap-1",
         "min-[1125px]:top-[9.5rem] min-[1125px]:left-[3vw] min-[1125px]:right-auto",
@@ -249,7 +260,8 @@ export function Sidebar() {
       ]
     : [
         "z-40 fixed flex items-center",
-        "top-10 left-0 right-0 px-2 h-14",
+        // Mobile: horizontal top bar
+        "top-0 left-0 right-0 px-2 h-14",
         "bg-[var(--bg)]",
         "min-[750px]:flex-col min-[750px]:items-start min-[750px]:gap-1",
         "min-[750px]:top-[9.5rem] min-[750px]:left-[3vw] min-[750px]:right-auto",
