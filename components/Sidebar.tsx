@@ -14,6 +14,7 @@ import {
   Sun,
   Moon,
   Monitor,
+  Building2,
 } from "lucide-react";
 
 const IS_DEV = process.env.NODE_ENV === "development";
@@ -48,6 +49,16 @@ const NAV_ITEMS = [
     motionProps: {
       whileHover: { rotate: -14 },
       transition: { type: "spring" as const, stiffness: 300, damping: 10 },
+    },
+  },
+  {
+    href: "/tmc",
+    label: "TMC",
+    icon: Building2,
+    devOnly: false,
+    motionProps: {
+      whileHover: { y: -3, scale: 1.1 },
+      transition: { type: "spring" as const, stiffness: 350, damping: 10 },
     },
   },
   {
