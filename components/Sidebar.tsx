@@ -43,6 +43,16 @@ const NAV_ITEMS = [
     },
   },
   {
+    href: "/johnny",
+    label: "Johnny",
+    icon: Baby,
+    devOnly: false,
+    motionProps: {
+      whileHover: { y: -3, scale: 1.12 },
+      transition: { type: "spring" as const, stiffness: 350, damping: 10 },
+    },
+  },
+  {
     href: "/writing",
     label: "Writing",
     icon: PenLine,
@@ -80,16 +90,6 @@ const NAV_ITEMS = [
     motionProps: {
       whileHover: { rotate: 90 },
       transition: { type: "spring" as const, stiffness: 180, damping: 12 },
-    },
-  },
-  {
-    href: "/johnny",
-    label: "Johnny",
-    icon: Baby,
-    devOnly: false,
-    motionProps: {
-      whileHover: { y: -3, scale: 1.12 },
-      transition: { type: "spring" as const, stiffness: 350, damping: 10 },
     },
   },
 ].filter((item) => !item.devOnly || IS_DEV);
