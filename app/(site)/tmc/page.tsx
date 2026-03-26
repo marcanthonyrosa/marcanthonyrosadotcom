@@ -99,15 +99,15 @@ const archImages = [
 type Tab = "product" | "architecture" | "prototype";
 
 const TABS: { value: Tab; label: string; icon: React.ElementType }[] = [
-  { value: "product", label: "Product", icon: FileText },
   { value: "prototype", label: "Prototype", icon: MonitorPlay },
+  { value: "product", label: "Product", icon: FileText },
   { value: "architecture", label: "Architecture", icon: Database },
 ];
 
 // ── Component ─────────────────────────────────────────────────────────
 
 export default function TMCPage() {
-  const [activeTab, setActiveTab] = useState<Tab>("product");
+  const [activeTab, setActiveTab] = useState<Tab>("prototype");
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
 
   return (
