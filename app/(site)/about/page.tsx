@@ -10,7 +10,7 @@ const EXPERIENCE = [
   {
     role: "Head of Product",
     company: "Thread",
-    period: "2023 – Present",
+    period: "2023 – 2025",
     logo: "/logos/thread.jpeg",
   },
   {
@@ -22,7 +22,7 @@ const EXPERIENCE = [
   {
     role: "Product Manager",
     company: "Twilio (Zipwhip acq)",
-    period: "2020 – 2021",
+    period: "2019 – 2021",
     logo: "/logos/twilio.jpeg",
   },
   {
@@ -34,13 +34,13 @@ const EXPERIENCE = [
   {
     role: "Product Manager",
     company: "Buffer",
-    period: "2016 – 2019",
+    period: "2015 – 2016",
     logo: "/logos/buffer.jpeg",
   },
   {
     role: "Product Manager / Associate PM",
     company: "Tribune Media (Dose acq)",
-    period: "2014 – 2016",
+    period: "2013 – 2015",
     logo: "/logos/tribune.jpeg",
   },
 ];
