@@ -174,23 +174,14 @@ export default function About() {
                   </span>
                   {job.acquisition && (
                     <span style={{ color: "var(--text-3)", fontSize: "0.825rem" }}>
-                      {" "}(
-                      <a
-                        href={job.acquisition.acquiredCompanyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color: "inherit" }}
-                      >
-                        {job.acquisition.acquiredCompany}
-                      </a>
-                      {" "}
+                      {" "}(via{" "}
                       <a
                         href={job.acquisition.announcementUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{ color: "inherit" }}
                       >
-                        acq
+                        {job.acquisition.acquiredCompany}
                       </a>)
                     </span>
                   )}
