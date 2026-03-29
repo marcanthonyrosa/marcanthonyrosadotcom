@@ -6,42 +6,78 @@ export const metadata: Metadata = {
   title: "About",
 };
 
-const EXPERIENCE = [
+type Acquisition = {
+  acquiredCompany: string;
+  acquiredCompanyUrl: string;
+  announcementUrl: string;
+};
+
+type ExperienceEntry = {
+  role: string;
+  company: string;
+  url: string;
+  period: string;
+  logo: string;
+  acquisition?: Acquisition;
+};
+
+const EXPERIENCE: ExperienceEntry[] = [
   {
     role: "Head of Product",
     company: "Thread",
+    url: "https://www.getthread.com",
     period: "2023 – 2025",
     logo: "/logos/thread.jpeg",
   },
   {
     role: "Director / Senior Product Manager",
-    company: "Tempus AI (Deep 6 AI acq)",
+    company: "Tempus AI",
+    url: "https://www.tempus.com",
     period: "2021 – 2023",
     logo: "/logos/tempus.jpeg",
+    acquisition: {
+      acquiredCompany: "Deep 6 AI",
+      acquiredCompanyUrl: "https://deep6.ai/",
+      announcementUrl: "https://www.tempus.com/news/pr/tempus-announces-acquisition-of-deep-6-ai/",
+    },
   },
   {
     role: "Product Manager",
-    company: "Twilio (Zipwhip acq)",
+    company: "Twilio",
+    url: "https://www.twilio.com",
     period: "2019 – 2021",
     logo: "/logos/twilio.jpeg",
+    acquisition: {
+      acquiredCompany: "Zipwhip",
+      acquiredCompanyUrl: "https://www.zipwhip.com",
+      announcementUrl: "https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states",
+    },
   },
   {
     role: "Product Manager",
-    company: "Getty Images / iStock",
+    company: "Getty Images",
+    url: "https://www.gettyimages.com",
     period: "2016 – 2019",
     logo: "/logos/getty.jpeg",
   },
   {
     role: "Product Manager",
     company: "Buffer",
+    url: "https://buffer.com",
     period: "2015 – 2016",
     logo: "/logos/buffer.jpeg",
   },
   {
     role: "Product Manager / Associate PM",
-    company: "Tribune Media (Dose acq)",
+    company: "Tribune Media",
+    url: "https://www.tribunemedia.com",
     period: "2013 – 2015",
     logo: "/logos/tribune.jpeg",
+    acquisition: {
+      acquiredCompany: "Dose",
+      acquiredCompanyUrl: "https://www.dose.com",
+      announcementUrl: "https://www.prnewswire.com/news-releases/dose-formerly-spartz-media-raises-25-million-series-b-financing-led-by-tribune-media-300190548.html",
+    },
   },
 ];
 
@@ -127,8 +163,38 @@ export default function About() {
                     className="font-semibold"
                     style={{ color: "var(--text-1)" }}
                   >
-                    {job.company}
+                    <a
+                      href={job.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "inherit", textDecoration: "none" }}
+                    >
+                      {job.company}
+                    </a>
                   </span>
+                  {job.acquisition && (
+                    <>
+                      {" "}
+                      <a
+                        href={job.acquisition.announcementUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block rounded"
+                        style={{
+                          background: "var(--tag-bg)",
+                          color: "var(--tag-text)",
+                          fontSize: "0.7rem",
+                          fontWeight: 500,
+                          lineHeight: 1.4,
+                          padding: "1px 6px",
+                          verticalAlign: "middle",
+                          textDecoration: "none",
+                        }}
+                      >
+                        acq. {job.acquisition.acquiredCompany}
+                      </a>
+                    </>
+                  )}
                   {" "}
                   <span style={{ color: "var(--text-2)", fontSize: "0.95rem" }}>
                     {job.role}
