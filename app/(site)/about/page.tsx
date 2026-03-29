@@ -173,17 +173,27 @@ export default function About() {
                     </a>
                   </span>
                   {job.acquisition && (
-                    <span style={{ color: "var(--text-3)", fontSize: "0.825rem" }}>
-                      {" "}(via{" "}
+                    <>
+                      {" "}
                       <a
                         href={job.acquisition.announcementUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ color: "inherit" }}
+                        className="inline-block rounded"
+                        style={{
+                          background: "var(--tag-bg)",
+                          color: "var(--tag-text)",
+                          fontSize: "0.7rem",
+                          fontWeight: 500,
+                          lineHeight: 1.4,
+                          padding: "1px 6px",
+                          verticalAlign: "middle",
+                          textDecoration: "none",
+                        }}
                       >
-                        {job.acquisition.acquiredCompany}
-                      </a>)
-                    </span>
+                        acq. {job.acquisition.acquiredCompany}
+                      </a>
+                    </>
                   )}
                   {" "}
                   <span style={{ color: "var(--text-2)", fontSize: "0.95rem" }}>
