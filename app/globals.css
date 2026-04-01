@@ -66,50 +66,50 @@
 
 /* ─── Dark mode tokens ─── */
 .dark {
-  /* Backgrounds */
-  --bg:               #0B1220;
-  --surface:          #111827;
-  --surface-hover:    #1F2937;
+  /* Backgrounds — warm charcoal darks (60% of palette) */
+  --bg:               #121017;
+  --surface:          #1A1722;
+  --surface-hover:    #24202E;
 
   /* Borders */
-  --border:           #1F2937;
-  --border-strong:    #334155;
+  --border:           #2D2838;
+  --border-strong:    #3E3750;
 
-  /* Text */
-  --text-1:           #E5E7EB;
-  --text-2:           #94A3B8;
-  --text-3:           #64748B;
+  /* Text — warm whites (30% of palette) */
+  --text-1:           #F0ECF4;
+  --text-2:           #A8A0B8;
+  --text-3:           #74698A;
 
-  /* Accent — blue */
-  --accent:           #3B82F6;
-  --accent-hover:     #60A5FA;
-  --accent-muted:     #0B2A5B;
-  --link:             #3B82F6;
+  /* Accent — amber/gold (10% of palette) */
+  --accent:           #F6AD55;
+  --accent-hover:     #FBD38D;
+  --accent-muted:     #3D2A10;
+  --link:             #F6AD55;
 
   /* Accent — green */
-  --accent-green:     #10B981;
-  --accent-green-bg:  #064E3B;
+  --accent-green:     #48BB78;
+  --accent-green-bg:  #1A3A2A;
 
   /* State */
-  --warning:          #F59E0B;
-  --danger:           #F87171;
+  --warning:          #ECC94B;
+  --danger:           #FC8181;
 
   /* Nav */
-  --nav-item-hover:   #1F2937;
-  --nav-item-active:  #0B2A5B;
-  --nav-icon-active:  #3B82F6;
+  --nav-item-hover:   #24202E;
+  --nav-item-active:  #3D2A10;
+  --nav-icon-active:  #F6AD55;
 
   /* Tags / badges */
-  --tag-bg:           #1F2937;
-  --tag-text:         #94A3B8;
+  --tag-bg:           #24202E;
+  --tag-text:         #A8A0B8;
 
   /* TMC brand — dark mode overrides */
-  --tmc-navy:         hsl(211, 70%, 80%);
-  --tmc-blue:         hsl(212, 80%, 62%);
-  --tmc-light:        hsl(216, 45%, 14%);
-  --tmc-blue-20:      hsl(212 80% 62% / 0.20);
-  --tmc-blue-30:      hsl(212 80% 62% / 0.30);
-  --tmc-blue-60:      hsl(212 80% 62% / 0.60);
+  --tmc-navy:         hsl(35, 70%, 75%);
+  --tmc-blue:         hsl(32, 80%, 62%);
+  --tmc-light:        hsl(30, 35%, 12%);
+  --tmc-blue-20:      hsl(32 80% 62% / 0.20);
+  --tmc-blue-30:      hsl(32 80% 62% / 0.30);
+  --tmc-blue-60:      hsl(32 80% 62% / 0.60);
 }
 
 * {
