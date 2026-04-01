@@ -66,50 +66,50 @@
 
 /* ─── Dark mode tokens ─── */
 .dark {
-  /* Backgrounds */
-  --bg:               #0B1220;
-  --surface:          #111827;
-  --surface-hover:    #1F2937;
+  /* Backgrounds — deep indigo darks (60% of palette) */
+  --bg:               #0E0F1A;
+  --surface:          #151729;
+  --surface-hover:    #1E2140;
 
   /* Borders */
-  --border:           #1F2937;
-  --border-strong:    #334155;
+  --border:           #262A4A;
+  --border-strong:    #363B68;
 
-  /* Text */
-  --text-1:           #E5E7EB;
-  --text-2:           #94A3B8;
-  --text-3:           #64748B;
+  /* Text — cool lavender whites (30% of palette) */
+  --text-1:           #E8E8F4;
+  --text-2:           #9B9DC0;
+  --text-3:           #6B6D90;
 
-  /* Accent — blue */
-  --accent:           #3B82F6;
-  --accent-hover:     #60A5FA;
-  --accent-muted:     #0B2A5B;
-  --link:             #3B82F6;
+  /* Accent — indigo (10% of palette) */
+  --accent:           #818CF8;
+  --accent-hover:     #A5B4FC;
+  --accent-muted:     #1E1B4B;
+  --link:             #818CF8;
 
   /* Accent — green */
-  --accent-green:     #10B981;
+  --accent-green:     #34D399;
   --accent-green-bg:  #064E3B;
 
   /* State */
-  --warning:          #F59E0B;
-  --danger:           #F87171;
+  --warning:          #FBBF24;
+  --danger:           #FB7185;
 
   /* Nav */
-  --nav-item-hover:   #1F2937;
-  --nav-item-active:  #0B2A5B;
-  --nav-icon-active:  #3B82F6;
+  --nav-item-hover:   #1E2140;
+  --nav-item-active:  #1E1B4B;
+  --nav-icon-active:  #818CF8;
 
   /* Tags / badges */
-  --tag-bg:           #1F2937;
-  --tag-text:         #94A3B8;
+  --tag-bg:           #1E2140;
+  --tag-text:         #9B9DC0;
 
   /* TMC brand — dark mode overrides */
-  --tmc-navy:         hsl(211, 70%, 80%);
-  --tmc-blue:         hsl(212, 80%, 62%);
-  --tmc-light:        hsl(216, 45%, 14%);
-  --tmc-blue-20:      hsl(212 80% 62% / 0.20);
-  --tmc-blue-30:      hsl(212 80% 62% / 0.30);
-  --tmc-blue-60:      hsl(212 80% 62% / 0.60);
+  --tmc-navy:         hsl(235, 60%, 78%);
+  --tmc-blue:         hsl(234, 75%, 68%);
+  --tmc-light:        hsl(235, 40%, 14%);
+  --tmc-blue-20:      hsl(234 75% 68% / 0.20);
+  --tmc-blue-30:      hsl(234 75% 68% / 0.30);
+  --tmc-blue-60:      hsl(234 75% 68% / 0.60);
 }
 
 * {
