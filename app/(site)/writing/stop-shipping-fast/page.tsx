@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Stop shipping fast. Make it actually hold up.",
   description:
     "In the age of AI-generated vaporware, quality and support are the new competitive moat. A lesson from shipping at Thread.",
+  alternates: { canonical: "https://marcrosa.com/writing/stop-shipping-fast" },
 };
 
 const LINKEDIN_URL =

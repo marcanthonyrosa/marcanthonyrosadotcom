@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Work",
+  alternates: { canonical: "https://marcrosa.com/work" },
 };
 
 const CASE_STUDIES = [

@@ -5,6 +5,7 @@ import { AvatarButton } from "@/components/AvatarButton";
 
 export const metadata: Metadata = {
   title: "Marc Anthony Rosa — Head of Product",
+  alternates: { canonical: "https://marcrosa.com/" },
 };
 
 const POSTS_BY_YEAR: Record<string, { slug: string; title: string; date: string }[]> = {

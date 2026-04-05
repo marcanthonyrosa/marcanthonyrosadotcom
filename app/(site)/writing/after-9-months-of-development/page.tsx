@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "After 9 months of development",
   description:
     "The Rosa Family has a new launch to share. Shipping above projections. Immediately disruptive. Not yet taking meetings.",
+  alternates: { canonical: "https://marcrosa.com/writing/after-9-months-of-development" },
 };
 
 const LINKEDIN_URL =

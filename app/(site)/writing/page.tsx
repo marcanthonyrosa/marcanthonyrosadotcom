@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Writing",
+  alternates: { canonical: "https://marcrosa.com/writing" },
 };
 
 const RECENT_WRITING = [
