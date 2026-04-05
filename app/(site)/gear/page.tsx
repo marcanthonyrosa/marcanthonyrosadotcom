@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Gear",
+  alternates: { canonical: "https://marcrosa.com/gear" },
 };
 
 const GEAR_SECTIONS = [

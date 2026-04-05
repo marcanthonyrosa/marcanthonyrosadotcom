@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Your market will show you the right one",
   description:
     "After 2.5 years at Thread, the market taught me where the real opportunity was. Your customers will show you the right market — if you're willing to watch.",
+  alternates: { canonical: "https://marcrosa.com/writing/your-market-will-show-you" },
 };
 
 const LINKEDIN_URL =

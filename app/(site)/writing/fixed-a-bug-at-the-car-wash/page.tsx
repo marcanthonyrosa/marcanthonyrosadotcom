@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Fixed a bug at the car wash",
   description:
     "I shipped a production bug fix from my phone while waiting at a car wash using Claude Code on iOS. The barrier between idea and live code keeps collapsing.",
+  alternates: { canonical: "https://marcrosa.com/writing/fixed-a-bug-at-the-car-wash" },
 };
 
 const LINKEDIN_URL =

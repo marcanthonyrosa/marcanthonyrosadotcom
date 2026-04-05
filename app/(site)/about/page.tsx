@@ -4,6 +4,7 @@ import CompanyLogo from "@/components/CompanyLogo";
 
 export const metadata: Metadata = {
   title: "About",
+  alternates: { canonical: "https://marcrosa.com/about" },
 };
 
 type Acquisition = {

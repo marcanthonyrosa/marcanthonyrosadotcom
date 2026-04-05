@@ -6,15 +6,16 @@ export const metadata: Metadata = {
   title: "Introducing John McKeon Rosa — Available Now",
   description:
     "Three trimesters in the making. The most significant release of 2026. 8 lbs, 11 oz. Arrived March 6, 2026.",
+  alternates: { canonical: "https://marcrosa.com/johnny" },
   openGraph: {
     type: "website",
-    url: "https://marcanthonyrosa.com/johnny",
+    url: "https://marcrosa.com/johnny",
     title: "Introducing John McKeon Rosa — Available Now",
     description:
       "Three trimesters in the making. The most significant release of 2026. 8 lbs, 11 oz. Arrived March 6, 2026.",
     images: [
       {
-        url: "https://marcanthonyrosa.com/api/og/johnny",
+        url: "https://marcrosa.com/api/og/johnny",
         width: 1200,
         height: 630,
       },
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     title: "Introducing John McKeon Rosa — Available Now",
     description:
       "Three trimesters in the making. The most significant release of 2026. 8 lbs, 11 oz. Arrived March 6, 2026.",
-    images: ["https://marcanthonyrosa.com/api/og/johnny"],
+    images: ["https://marcrosa.com/api/og/johnny"],
   },
 };
 

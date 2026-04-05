@@ -25,6 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://marcrosa.com"),
   title: {
     default: "Marc Anthony Rosa",
     template: "%s · Marc Anthony Rosa",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://marcanthonyrosa.com",
+    url: "https://marcrosa.com",
     siteName: "Marc Anthony Rosa",
   },
   manifest: "/site.webmanifest",
