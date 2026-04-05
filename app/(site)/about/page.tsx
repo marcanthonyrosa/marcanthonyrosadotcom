@@ -24,6 +24,13 @@ type ExperienceEntry = {
 
 const EXPERIENCE: ExperienceEntry[] = [
   {
+    role: "Founder",
+    company: "Sugo Product Company",
+    url: "https://sugoproduct.com",
+    period: "2026 –",
+    logo: "/logos/sugo.jpeg",
+  },
+  {
     role: "Head of Product",
     company: "Thread",
     url: "https://www.getthread.com",
@@ -127,7 +134,7 @@ export default function About() {
             Before Thread, I led product at Zipwhip, where I owned our flagship business messaging platform during a period of rapid adoption in 2020, leading up to the company&apos;s <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
           </p>
           <p>
-            Today, I advise early-stage founders through my practice, <a href="https://www.linkedin.com/company/sunday-sauce-studios" target="_blank" rel="noopener noreferrer">Sunday Sauce Studios</a>, providing fractional product leadership and helping teams bring clarity to strategy, execution, and product systems.
+            Today, I advise early-stage founders through my practice, <a href="https://www.linkedin.com/company/sunday-sauce-studios" target="_blank" rel="noopener noreferrer">Sugo Product Company</a>, providing fractional product leadership and helping teams bring clarity to strategy, execution, and product systems.
           </p>
         </div>
       </section>
