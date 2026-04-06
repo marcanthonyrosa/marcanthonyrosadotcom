@@ -28,7 +28,7 @@ const EXPERIENCE: ExperienceEntry[] = [
     company: "Sugo Product Company",
     url: "https://sugoproduct.com",
     period: "2026 –",
-    logo: "/logos/sugo.jpeg",
+    logo: "/logos/sugo.png",
   },
   {
     role: "Head of Product",
