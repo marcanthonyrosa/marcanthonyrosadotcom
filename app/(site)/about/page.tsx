@@ -3,8 +3,16 @@ import HeadshotOrGame from "@/components/game/HeadshotOrGame";
 import CompanyLogo from "@/components/CompanyLogo";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Marc Anthony Rosa",
+  description:
+    "About Marc Anthony Rosa — Houston-based Head of Product and tech founder. 15+ years building SaaS products at Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer, and Tribune Media.",
   alternates: { canonical: "https://marcrosa.com/about" },
+  openGraph: {
+    title: "About Marc Anthony Rosa",
+    description:
+      "Houston-based Head of Product and tech founder. 15+ years building SaaS products.",
+    url: "https://marcrosa.com/about",
+  },
 };
 
 type Acquisition = {
@@ -122,10 +130,10 @@ export default function About() {
         <HeadshotOrGame />
         <div className="prose max-w-none">
           <p>
-            I&apos;m Marc Rosa. I lead product organizations and help companies turn early traction into scalable, durable platforms.
+            I&apos;m Marc Anthony Rosa — a product leader and tech founder based in Houston, Texas. I lead product organizations and help companies turn early traction into scalable, durable platforms.
           </p>
           <p>
-            Over the past 15 years, I&apos;ve worked primarily with SaaS companies at moments of transition — when a strong product needs to evolve into a system that can support real scale.
+            Over the past 15 years, I&apos;ve worked primarily with SaaS and tech companies at moments of transition — when a strong product needs to evolve into a system that can support real scale.
           </p>
           <p>
             Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. I joined at seed stage when the company had a narrow IT ticketing product inside Slack and Teams. Over the next few years, we expanded it into a broader AI service platform spanning chat, inbox workflows, automation, and agentic tools. During that time, the company grew more than 10× in revenue, raised a Series A, and became a category leader in service desks for MSPs.

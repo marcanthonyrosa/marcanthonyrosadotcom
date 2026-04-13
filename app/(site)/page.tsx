@@ -4,8 +4,16 @@ import { SocialLinks } from "@/components/SocialLinks";
 import { AvatarButton } from "@/components/AvatarButton";
 
 export const metadata: Metadata = {
-  title: "Marc Anthony Rosa — Head of Product",
+  title: "Marc Anthony Rosa — Head of Product (Houston, TX)",
+  description:
+    "Marc Anthony Rosa is a Houston-based Head of Product and tech founder. Previously Thread, Twilio/Zipwhip, Tempus AI, Getty Images. Writing on product strategy, leadership, and the craft of building.",
   alternates: { canonical: "https://marcrosa.com/" },
+  openGraph: {
+    title: "Marc Anthony Rosa — Head of Product (Houston, TX)",
+    description:
+      "Houston-based Head of Product and tech founder. Writing on product strategy, leadership, and the craft of building.",
+    url: "https://marcrosa.com/",
+  },
 };
 
 const POSTS_BY_YEAR: Record<string, { slug: string; title: string; date: string }[]> = {
