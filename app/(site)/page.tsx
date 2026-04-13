@@ -47,7 +47,7 @@ export default function Home() {
           className="font-semibold mb-2 tracking-tight"
           style={{ color: "var(--text-1)", fontSize: "2.25rem" }}
         >
-          Marc Anthony Rosa
+          Marc Rosa
         </h1>
         <p
           className="mb-6 font-medium"
