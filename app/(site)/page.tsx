@@ -55,18 +55,18 @@ export default function Home() {
           className="font-semibold mb-2 tracking-tight"
           style={{ color: "var(--text-1)", fontSize: "2.25rem" }}
         >
-          Marc Anthony Rosa
+          Marc Rosa
         </h1>
         <p
           className="mb-6 font-medium"
           style={{ color: "var(--text-2)", fontSize: "1.25rem" }}
         >
-          Head of Product · Houston, TX
+          Head of Product
         </p>
         <AvatarButton />
         <div className="prose max-w-none">
           <p>
-            I&apos;m Marc Rosa — a product leader and tech founder based in Houston, Texas, who helps early products grow into enduring companies.
+            I&apos;m a product leader who helps early products grow into enduring companies.
           </p>
           <p>
             Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a single product into an AI platform — growing revenue 10×, raising a Series A, and becoming category leader in the MSP market.
