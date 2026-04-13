@@ -3,7 +3,14 @@ import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Gear",
+  description:
+    "The hardware, software, and tools Marc Anthony Rosa uses day-to-day as a Head of Product.",
   alternates: { canonical: "https://marcrosa.com/gear" },
+  openGraph: {
+    title: "Gear · Marc Anthony Rosa",
+    description: "The hardware, software, and tools I use day-to-day.",
+    url: "https://marcrosa.com/gear",
+  },
 };
 
 const GEAR_SECTIONS = [

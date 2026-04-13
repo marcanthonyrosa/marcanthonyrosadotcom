@@ -3,7 +3,15 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Writing",
+  description:
+    "Essays by Marc Anthony Rosa on product strategy, team leadership, and the craft of building software.",
   alternates: { canonical: "https://marcrosa.com/writing" },
+  openGraph: {
+    title: "Writing · Marc Anthony Rosa",
+    description:
+      "Essays on product strategy, team leadership, and the craft of building software.",
+    url: "https://marcrosa.com/writing",
+  },
 };
 
 const RECENT_WRITING = [

@@ -4,8 +4,16 @@ import { SocialLinks } from "@/components/SocialLinks";
 import { AvatarButton } from "@/components/AvatarButton";
 
 export const metadata: Metadata = {
-  title: "Marc Anthony Rosa — Head of Product",
+  title: "Marc Anthony Rosa — Head of Product (Houston, TX)",
+  description:
+    "Marc Anthony Rosa is a Houston-based Head of Product and tech founder. Previously Thread, Twilio/Zipwhip, Tempus AI, Getty Images. Writing on product strategy, leadership, and the craft of building.",
   alternates: { canonical: "https://marcrosa.com/" },
+  openGraph: {
+    title: "Marc Anthony Rosa — Head of Product (Houston, TX)",
+    description:
+      "Houston-based Head of Product and tech founder. Writing on product strategy, leadership, and the craft of building.",
+    url: "https://marcrosa.com/",
+  },
 };
 
 const POSTS_BY_YEAR: Record<string, { slug: string; title: string; date: string }[]> = {
@@ -47,18 +55,18 @@ export default function Home() {
           className="font-semibold mb-2 tracking-tight"
           style={{ color: "var(--text-1)", fontSize: "2.25rem" }}
         >
-          Marc Rosa
+          Marc Anthony Rosa
         </h1>
         <p
           className="mb-6 font-medium"
           style={{ color: "var(--text-2)", fontSize: "1.25rem" }}
         >
-          Head of Product
+          Head of Product · Houston, TX
         </p>
         <AvatarButton />
         <div className="prose max-w-none">
           <p>
-            I&apos;m a product leader who helps early products grow into enduring companies.
+            I&apos;m Marc Rosa — a product leader and tech founder based in Houston, Texas, who helps early products grow into enduring companies.
           </p>
           <p>
             Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a single product into an AI platform — growing revenue 10×, raising a Series A, and becoming category leader in the MSP market.
