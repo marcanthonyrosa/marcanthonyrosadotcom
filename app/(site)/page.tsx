@@ -66,7 +66,7 @@ export default function Home() {
         <AvatarButton />
         <div className="prose max-w-none">
           <p>
-            I help early products grow into enduring companies.
+            I&apos;m a product leader who helps early products grow into enduring companies.
           </p>
           <p>
             Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a single product into an AI platform — growing revenue 10x, raising a Series A, and becoming category leader in the MSP market.
