@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -24,6 +25,23 @@ export default function After9MonthsOfDevelopment() {
           ← Writing
         </Link>
       </div>
+
+      {/* Hero image — /johnny share preview */}
+      <a
+        href="/johnny"
+        className="mb-8 block overflow-hidden rounded-lg border transition-opacity hover:opacity-90"
+        style={{ borderColor: "var(--border)" }}
+      >
+        <Image
+          src="/api/og/johnny"
+          alt="John McKeon Rosa — Version 1.0"
+          width={1200}
+          height={630}
+          priority
+          unoptimized
+          className="w-full h-auto"
+        />
+      </a>
 
       {/* Header */}
       <header className="mb-6">

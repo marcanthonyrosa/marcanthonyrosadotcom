@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -23,6 +24,21 @@ export default function YourMarketWillShowYou() {
         >
           ← Writing
         </Link>
+      </div>
+
+      {/* Hero image */}
+      <div
+        className="mb-8 overflow-hidden rounded-lg border"
+        style={{ borderColor: "var(--border)" }}
+      >
+        <Image
+          src="/writing/your-market.jpeg"
+          alt="Your market will show you the right one"
+          width={1200}
+          height={630}
+          priority
+          className="w-full h-auto"
+        />
       </div>
 
       {/* Header */}
