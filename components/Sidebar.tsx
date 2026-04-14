@@ -42,16 +42,6 @@ const NAV_ITEMS = [
     },
   },
   {
-    href: "/johnny",
-    label: "Johnny",
-    icon: Baby,
-    devOnly: false,
-    motionProps: {
-      whileHover: { y: -3, scale: 1.12 },
-      transition: { type: "spring" as const, stiffness: 350, damping: 10 },
-    },
-  },
-  {
     href: "/writing",
     label: "Writing",
     icon: PenLine,
@@ -59,6 +49,17 @@ const NAV_ITEMS = [
     motionProps: {
       whileHover: { rotate: -14 },
       transition: { type: "spring" as const, stiffness: 300, damping: 10 },
+    },
+  },
+  {
+    href: "/johnny",
+    label: "Johnny",
+    icon: Baby,
+    devOnly: false,
+    beta: true,
+    motionProps: {
+      whileHover: { y: -3, scale: 1.12 },
+      transition: { type: "spring" as const, stiffness: 350, damping: 10 },
     },
   },
   {
@@ -89,6 +90,7 @@ function NavItem({
   label,
   icon: Icon,
   exact,
+  beta,
   motionProps,
 }: (typeof NAV_ITEMS)[number]) {
   const pathname = usePathname();
@@ -145,6 +147,16 @@ function NavItem({
         <motion.div className="relative z-10" {...motionProps}>
           <Icon size={20} strokeWidth={isActive ? 2 : 1.75} />
         </motion.div>
+        {beta && (
+          <span
+            className="absolute top-1 right-1 z-20 w-1.5 h-1.5 rounded-full pointer-events-none"
+            style={{
+              background: "var(--accent)",
+              boxShadow: "0 0 0 1.5px var(--bg)",
+            }}
+            aria-label="Beta"
+          />
+        )}
       </motion.div>
     </Link>
   );
