@@ -114,7 +114,7 @@ export default function Home() {
                 <li key={post.slug}>
                   <Link
                     href={`/writing/${post.slug}`}
-                    className="flex items-baseline gap-4 rounded-md -mx-2 px-2 py-2 transition-colors hover:bg-[var(--nav-item-hover)]"
+                    className="flex items-center gap-4 rounded-md -mx-2 px-2 py-2 transition-colors hover:bg-[var(--nav-item-hover)]"
                     style={{ textDecoration: "none" }}
                   >
                     <span
