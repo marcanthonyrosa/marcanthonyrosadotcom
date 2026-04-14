@@ -97,6 +97,25 @@ const EXPERIENCE: ExperienceEntry[] = [
   },
 ];
 
+type Talk = {
+  title: string;
+  url: string;
+  date: string;
+};
+
+const TALKS: Talk[] = [
+  {
+    title: "Thread x TimeZest Webinar",
+    url: "https://www.youtube.com/watch?v=tuOea01kKHY",
+    date: "June 2024",
+  },
+  {
+    title: "Supercharge Your Service Experience: Thread and Halo",
+    url: "https://www.youtube.com/watch?v=T8cnPqaKLwE",
+    date: "July 2024",
+  },
+];
+
 const VALUES = [
   {
     title: "Software should be opinionated",
@@ -229,6 +248,47 @@ export default function About() {
                 {job.period}
               </span>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <hr style={{ borderColor: "var(--border)" }} className="mb-12" />
+
+      {/* ── Speaking ── */}
+      <section className="mb-14">
+        <h2
+          className="text-xs font-semibold uppercase tracking-widest mb-8"
+          style={{ color: "var(--text-3)" }}
+        >
+          Speaking
+        </h2>
+        <div className="flex flex-col gap-2">
+          {TALKS.map((talk) => (
+            <a
+              key={talk.url}
+              href={talk.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-md -mx-2 px-2 py-2 transition-colors hover:bg-[var(--nav-item-hover)]"
+              style={{ textDecoration: "none" }}
+            >
+              <span
+                className="font-semibold flex-1 min-w-0"
+                style={{ color: "var(--text-1)" }}
+              >
+                {talk.title}
+              </span>
+              <span
+                className="tabular-nums flex-shrink-0"
+                style={{
+                  color: "var(--text-3)",
+                  fontSize: "0.875rem",
+                  fontFamily: "var(--font-mono)",
+                }}
+              >
+                {talk.date}
+              </span>
+            </a>
           ))}
         </div>
       </section>
