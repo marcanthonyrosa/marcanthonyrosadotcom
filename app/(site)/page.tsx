@@ -109,22 +109,31 @@ export default function Home() {
             >
               {year}
             </h2>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-2">
               {POSTS_BY_YEAR[year].map((post) => (
-                <li key={post.slug} className="group flex items-baseline justify-between gap-4">
+                <li key={post.slug}>
                   <Link
                     href={`/writing/${post.slug}`}
-                    className="leading-snug transition-opacity hover:opacity-70 flex-1"
-                    style={{ color: "var(--text-1)", fontSize: "1.1rem" }}
+                    className="flex items-center gap-4 rounded-md -mx-2 px-2 py-2 transition-colors hover:bg-[var(--nav-item-hover)]"
+                    style={{ textDecoration: "none" }}
                   >
-                    {post.title}
+                    <span
+                      className="leading-snug flex-1 min-w-0"
+                      style={{ color: "var(--text-1)", fontSize: "1.1rem" }}
+                    >
+                      {post.title}
+                    </span>
+                    <span
+                      className="tabular-nums shrink-0"
+                      style={{
+                        color: "var(--text-3)",
+                        fontSize: "0.875rem",
+                        fontFamily: "var(--font-mono)",
+                      }}
+                    >
+                      {post.date.split(",")[0]}
+                    </span>
                   </Link>
-                  <span
-                    className="tabular-nums shrink-0"
-                    style={{ color: "var(--text-3)", fontSize: "0.875rem" }}
-                  >
-                    {post.date.split(",")[0]}
-                  </span>
                 </li>
               ))}
             </ul>
