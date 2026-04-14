@@ -65,25 +65,34 @@ export default function Writing() {
             >
               {year}
             </h2>
-            <div className="flex flex-col gap-5">
+            <ul className="flex flex-col gap-2">
               {posts.map((post) => (
-                <div key={post.slug} className="flex items-baseline justify-between gap-4">
+                <li key={post.slug}>
                   <Link
                     href={`/writing/${post.slug}`}
-                    className="font-medium transition-opacity hover:opacity-70 leading-snug"
-                    style={{ color: "var(--text-1)", fontSize: "1.1rem" }}
+                    className="flex items-center gap-4 rounded-md -mx-2 px-2 py-2 transition-colors hover:bg-[var(--nav-item-hover)]"
+                    style={{ textDecoration: "none" }}
                   >
-                    {post.title}
+                    <span
+                      className="leading-snug flex-1 min-w-0"
+                      style={{ color: "var(--text-1)", fontSize: "1.1rem" }}
+                    >
+                      {post.title}
+                    </span>
+                    <span
+                      className="tabular-nums shrink-0"
+                      style={{
+                        color: "var(--text-3)",
+                        fontSize: "0.875rem",
+                        fontFamily: "var(--font-mono)",
+                      }}
+                    >
+                      {post.date}
+                    </span>
                   </Link>
-                  <span
-                    className="shrink-0"
-                    style={{ color: "var(--text-3)", fontSize: "0.875rem" }}
-                  >
-                    {post.date}
-                  </span>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </section>
         );
       })}
