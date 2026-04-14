@@ -32,7 +32,7 @@ export default function StopShippingFast() {
         style={{ borderColor: "var(--border)" }}
       >
         <Image
-          src="/writing/make-it-hold-up.jpeg"
+          src="/writing/albert.jpeg"
           alt="Stop shipping fast. Make it actually hold up."
           width={1200}
           height={630}
