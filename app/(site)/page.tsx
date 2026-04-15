@@ -75,7 +75,7 @@ export default function Home() {
             Before that, I led product at Zipwhip leading to its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
           </p>
           <p>
-            I love building <em>Opinionated Software</em> — tools with an obvious point of view — that are resilient enough to scale and endearing enough to love.
+            I build <em>Opinionated Software</em> — purpose-built tools with a clear point of view — that are resilient enough to scale and endearing enough to love.
           </p>
         </div>
 
