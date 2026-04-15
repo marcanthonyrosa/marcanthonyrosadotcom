@@ -66,16 +66,16 @@ export default function Home() {
         <AvatarButton />
         <div className="prose max-w-none">
           <p>
-            I&apos;m a product leader who helps early products grow into enduring companies.
+            I help early products grow into enduring companies.
           </p>
           <p>
-            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a single product into an AI platform — growing revenue 10x, raising a Series A, and becoming category leader in the MSP market.
+            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a single product into an AI-native platform — growing revenue 10x, raising a Series A, and becoming category leader for MSPs.
           </p>
           <p>
-            Before that, I led product at Zipwhip leading to its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a> (TWLO).
+            Before that, I led product at Zipwhip leading to its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
           </p>
           <p>
-            I love building <strong>opinionated software</strong> — products with a clear point of view — that are resilient enough to scale.
+            I love building <em>Opinionated Software</em> — tools with an obvious point of view — that are resilient enough to scale and endearing enough to love.
           </p>
         </div>
 
