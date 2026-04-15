@@ -105,14 +105,19 @@ type Talk = {
 
 const TALKS: Talk[] = [
   {
-    title: "Thread x TimeZest Webinar",
-    url: "https://www.youtube.com/watch?v=tuOea01kKHY",
-    date: "June 2024",
+    title: "Merry Shipmas: Views and Insights by Thread",
+    url: "https://www.linkedin.com/posts/thread-shipmas-servicemagic-ugcPost-7276992058387546113-FO5t",
+    date: "December 2024",
   },
   {
     title: "Supercharge Your Service Experience: Thread and Halo",
     url: "https://www.youtube.com/watch?v=T8cnPqaKLwE",
     date: "July 2024",
+  },
+  {
+    title: "Thread x TimeZest Webinar",
+    url: "https://www.youtube.com/watch?v=tuOea01kKHY",
+    date: "June 2024",
   },
 ];
 
