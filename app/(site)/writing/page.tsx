@@ -50,7 +50,7 @@ export default function Writing() {
     <div className="max-w-2xl mx-auto px-6 py-16 sm:px-10">
       <h1
         className="font-semibold mb-12 tracking-tight"
-        style={{ color: "var(--text-1)", fontSize: "2.25rem" }}
+        style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
       >
         Writing
       </h1>
@@ -60,8 +60,8 @@ export default function Writing() {
         return (
           <section key={year} className="mb-12">
             <h2
-              className="font-medium mb-6"
-              style={{ color: "var(--text-3)", fontSize: "0.875rem" }}
+              className="font-semibold uppercase tracking-widest mb-6"
+              style={{ color: "var(--text-3)", fontSize: "var(--text-micro)" }}
             >
               {year}
             </h2>
@@ -75,7 +75,7 @@ export default function Writing() {
                   >
                     <span
                       className="leading-snug flex-1 min-w-0"
-                      style={{ color: "var(--text-1)", fontSize: "1.1rem" }}
+                      style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
                     >
                       {post.title}
                     </span>
@@ -83,7 +83,7 @@ export default function Writing() {
                       className="tabular-nums shrink-0"
                       style={{
                         color: "var(--text-3)",
-                        fontSize: "0.875rem",
+                        fontSize: "var(--text-small)",
                         fontFamily: "var(--font-mono)",
                       }}
                     >

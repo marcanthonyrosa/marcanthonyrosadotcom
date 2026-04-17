@@ -47,7 +47,7 @@ export default function After9MonthsOfDevelopment() {
       <header className="mb-6">
         <h1
           className="font-semibold mb-4 tracking-tight leading-tight"
-          style={{ color: "var(--text-1)", fontSize: "2rem" }}
+          style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
         >
           After 9 months of development
         </h1>
@@ -70,7 +70,7 @@ export default function After9MonthsOfDevelopment() {
       {/* Body */}
       <article
         className="flex flex-col gap-5 leading-relaxed"
-        style={{ color: "var(--text-2)", fontSize: "1.125rem" }}
+        style={{ color: "var(--text-2)", fontSize: "var(--text-h2)" }}
       >
         <p>
           After 9 months of development and several rigorous sprints, the Rosa Family has a new
@@ -82,7 +82,7 @@ export default function After9MonthsOfDevelopment() {
         <p className="font-semibold" style={{ color: "var(--text-1)" }}>
           John McKeon Rosa
           <br />
-          <span className="font-normal" style={{ fontSize: "0.95rem", color: "var(--text-2)" }}>
+          <span className="font-normal" style={{ fontSize: "var(--text-small)", color: "var(--text-2)" }}>
             8 lbs, 11 oz · March 6, 2026
           </span>
         </p>

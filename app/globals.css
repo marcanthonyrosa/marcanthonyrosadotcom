@@ -8,12 +8,14 @@
   --font-mono: var(--font-jetbrains-mono);
 }
 
-@layer base {
-  h1 {
-    font-family: var(--font-instrument-sans), var(--font-inter), sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-  }
+/* ─── Type scale (6 sizes) ─── */
+:root {
+  --text-display: 2rem;       /* 32px — page H1 */
+  --text-h1:      1.375rem;   /* 22px — section title within content */
+  --text-h2:      1.125rem;   /* 18px — minor heading, list item title, prose */
+  --text-body:    1.0625rem;  /* 17px — body */
+  --text-small:   0.875rem;   /* 14px — meta, dates */
+  --text-micro:   0.75rem;    /* 12px — eyebrow labels */
 }
 
 /* ─── Light mode tokens ─── */
@@ -32,15 +34,12 @@
   --text-2:           #475569;
   --text-3:           #64748B;
 
-  /* Accent — blue */
-  --accent:           #2563EB;
-  --accent-hover:     #1D4ED8;
-  --accent-muted:     #DBEAFE;
-  --link:             #2563EB;
+  /* Link — uses text color, distinguished by underline */
+  --link:             var(--text-1);
+  --link-hover:       var(--text-2);
 
-  /* Accent — green */
-  --accent-green:     #059669;
-  --accent-green-bg:  #D1FAE5;
+  /* Selection highlight (kept subtle) */
+  --selection-bg:     #E2E8F0;
 
   /* State */
   --warning:          #D97706;
@@ -48,20 +47,15 @@
 
   /* Nav */
   --nav-item-hover:   #E2E8F0;
-  --nav-item-active:  #DBEAFE;
-  --nav-icon-active:  #2563EB;
+  --nav-item-active:  #E2E8F0;
+  --nav-icon-active:  var(--text-1);
 
   /* Tags / badges */
   --tag-bg:           #F1F5F9;
   --tag-text:         #475569;
 
-  /* TMC brand */
-  --tmc-navy:         hsl(216, 75%, 21%);
-  --tmc-blue:         hsl(212, 72%, 38%);
-  --tmc-light:        hsl(211, 74%, 95%);
-  --tmc-blue-20:      hsl(212 72% 38% / 0.20);
-  --tmc-blue-30:      hsl(212 72% 38% / 0.30);
-  --tmc-blue-60:      hsl(212 72% 38% / 0.60);
+  /* Focus ring (kept blue purely for a11y contrast) */
+  --focus-ring:       #2563EB;
 }
 
 /* ─── Dark mode tokens ─── */
@@ -80,15 +74,12 @@
   --text-2:           #94A3B8;
   --text-3:           #64748B;
 
-  /* Accent — blue */
-  --accent:           #3B82F6;
-  --accent-hover:     #60A5FA;
-  --accent-muted:     #0B2A5B;
-  --link:             #3B82F6;
+  /* Link */
+  --link:             var(--text-1);
+  --link-hover:       var(--text-2);
 
-  /* Accent — green */
-  --accent-green:     #10B981;
-  --accent-green-bg:  #064E3B;
+  /* Selection */
+  --selection-bg:     #1F2937;
 
   /* State */
   --warning:          #F59E0B;
@@ -96,20 +87,15 @@
 
   /* Nav */
   --nav-item-hover:   #1F2937;
-  --nav-item-active:  #0B2A5B;
-  --nav-icon-active:  #3B82F6;
+  --nav-item-active:  #1F2937;
+  --nav-icon-active:  var(--text-1);
 
   /* Tags / badges */
   --tag-bg:           #1F2937;
   --tag-text:         #94A3B8;
 
-  /* TMC brand — dark mode overrides */
-  --tmc-navy:         hsl(211, 70%, 80%);
-  --tmc-blue:         hsl(212, 80%, 62%);
-  --tmc-light:        hsl(216, 45%, 14%);
-  --tmc-blue-20:      hsl(212 80% 62% / 0.20);
-  --tmc-blue-30:      hsl(212 80% 62% / 0.30);
-  --tmc-blue-60:      hsl(212 80% 62% / 0.60);
+  /* Focus ring */
+  --focus-ring:       #60A5FA;
 }
 
 * {
@@ -137,13 +123,13 @@ body {
 
 /* ─── Selection ─── */
 ::selection {
-  background: var(--accent-muted);
+  background: var(--selection-bg);
   color: var(--text-1);
 }
 
 /* ─── Focus ring ─── */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -151,27 +137,30 @@ body {
 /* ─── Prose styles ─── */
 .prose {
   color: var(--text-2);
-  line-height: 1.75;
-  font-size: 1.25rem;
+  line-height: 1.7;
+  font-size: var(--text-h2);
   font-weight: 400;
 }
-.prose p { margin-bottom: 1.35rem; }
+.prose p { margin-bottom: 1.25rem; }
 .prose a {
   color: var(--link);
   text-decoration: underline;
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   font-weight: 500;
+  transition: color 0.15s ease;
 }
-.prose a:hover { color: var(--accent-hover); }
+.prose a:hover { color: var(--link-hover); }
 .prose h2 {
-  font-size: 1.5rem;
+  font-size: var(--text-h1);
   font-weight: 600;
   color: var(--text-1);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
+  letter-spacing: -0.01em;
 }
 .prose h3 {
-  font-size: 1.35rem;
+  font-size: var(--text-h2);
   font-weight: 600;
   color: var(--text-1);
   margin-top: 1.75rem;

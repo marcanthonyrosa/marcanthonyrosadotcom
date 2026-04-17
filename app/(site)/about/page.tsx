@@ -123,20 +123,20 @@ const TALKS: Talk[] = [
 
 const VALUES = [
   {
-    title: "Software should be opinionated",
+    title: "Software should be opinionated.",
     body: "Build products with a clear point of view on how they should be used. Tools that try to do everything end up doing nothing well.",
   },
   {
-    title: "Users first, metrics second",
+    title: "Users first, metrics second.",
     body: "Metrics are how you know the product is working, not why it should exist. I start with a deep understanding of the people I'm building for.",
   },
   {
-    title: "Ship, learn, iterate",
+    title: "Ship, learn, iterate.",
     body: "Perfect products don't ship. I'd rather get real feedback from real users than optimize something in a vacuum for another quarter.",
   },
   {
-    title: "Strong opinions, loosely held",
-    body: "I form a point of view quickly, share it confidently, and update it readily. Epistemic courage without epistemic arrogance.",
+    title: "Strong opinions, loosely held.",
+    body: "I form a point of view quickly, share it confidently, and update it readily when the evidence changes.",
   },
 ];
 
@@ -147,7 +147,7 @@ export default function About() {
       <section className="mb-14">
         <h1
           className="font-semibold mb-3 tracking-tight"
-          style={{ color: "var(--text-1)", fontSize: "2.25rem" }}
+          style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
         >
           About
         </h1>
@@ -176,8 +176,8 @@ export default function About() {
       {/* ── Experience ── */}
       <section className="mb-14">
         <h2
-          className="text-xs font-semibold uppercase tracking-widest mb-8"
-          style={{ color: "var(--text-3)" }}
+          className="font-semibold uppercase tracking-widest mb-8"
+          style={{ color: "var(--text-3)", fontSize: "var(--text-micro)" }}
         >
           Work
         </h2>
@@ -187,10 +187,6 @@ export default function About() {
               key={job.company}
               className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3"
             >
-              {/* Logo + company + role:
-                  < 480px  → logo / company+role / date each on own row
-                  480–640px → logo+company+role on one row, date below
-                  640px+   → everything on one row (handled by outer sm:flex-row) */}
               <div className="flex flex-col min-[480px]:flex-row min-[480px]:items-center gap-2 flex-1 min-w-0">
                 <CompanyLogo
                   name={job.company}
@@ -219,34 +215,27 @@ export default function About() {
                         href={job.acquisition.announcementUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block rounded"
                         style={{
-                          background: "var(--tag-bg)",
-                          color: "var(--tag-text)",
-                          fontSize: "0.7rem",
-                          fontWeight: 500,
-                          lineHeight: 1.4,
-                          padding: "1px 6px",
-                          verticalAlign: "middle",
+                          color: "var(--text-3)",
+                          fontSize: "var(--text-small)",
                           textDecoration: "none",
                         }}
                       >
-                        acq. {job.acquisition.acquiredCompany}
+                        (acq. {job.acquisition.acquiredCompany})
                       </a>
                     </>
                   )}
                   {" "}
-                  <span style={{ color: "var(--text-2)", fontSize: "0.95rem" }}>
+                  <span style={{ color: "var(--text-2)", fontSize: "var(--text-body)" }}>
                     {job.role}
                   </span>
                 </span>
               </div>
-              {/* Date: below the top row on mobile, right-aligned on desktop */}
               <span
                 className="tabular-nums flex-shrink-0"
                 style={{
                   color: "var(--text-3)",
-                  fontSize: "0.875rem",
+                  fontSize: "var(--text-small)",
                   fontFamily: "var(--font-mono)",
                 }}
               >
@@ -262,8 +251,8 @@ export default function About() {
       {/* ── Speaking ── */}
       <section className="mb-14">
         <h2
-          className="text-xs font-semibold uppercase tracking-widest mb-8"
-          style={{ color: "var(--text-3)" }}
+          className="font-semibold uppercase tracking-widest mb-8"
+          style={{ color: "var(--text-3)", fontSize: "var(--text-micro)" }}
         >
           Speaking
         </h2>
@@ -287,7 +276,7 @@ export default function About() {
                 className="tabular-nums flex-shrink-0"
                 style={{
                   color: "var(--text-3)",
-                  fontSize: "0.875rem",
+                  fontSize: "var(--text-small)",
                   fontFamily: "var(--font-mono)",
                 }}
               >
@@ -300,37 +289,26 @@ export default function About() {
 
       <hr style={{ borderColor: "var(--border)" }} className="mb-12" />
 
-      {/* ── Values ── */}
+      {/* ── How I work ── */}
       <section className="mb-14">
         <h2
-          className="text-xs font-semibold uppercase tracking-widest mb-8"
-          style={{ color: "var(--text-3)" }}
+          className="font-semibold uppercase tracking-widest mb-8"
+          style={{ color: "var(--text-3)", fontSize: "var(--text-micro)" }}
         >
           How I work
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div className="flex flex-col gap-6">
           {VALUES.map((v) => (
-            <div
+            <p
               key={v.title}
-              className="rounded-xl p-5"
-              style={{
-                background: "var(--surface)",
-                border: "1px solid var(--border)",
-              }}
+              className="leading-relaxed"
+              style={{ color: "var(--text-2)", fontSize: "var(--text-h2)" }}
             >
-              <h3
-                className="font-semibold mb-2"
-                style={{ color: "var(--text-1)", fontSize: "1.05rem" }}
-              >
+              <span className="font-semibold" style={{ color: "var(--text-1)" }}>
                 {v.title}
-              </h3>
-              <p
-                className="leading-relaxed"
-                style={{ color: "var(--text-2)", fontSize: "1.0rem" }}
-              >
-                {v.body}
-              </p>
-            </div>
+              </span>{" "}
+              {v.body}
+            </p>
           ))}
         </div>
       </section>

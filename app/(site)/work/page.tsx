@@ -82,13 +82,13 @@ export default function Work() {
       <section className="mb-12">
         <h1
           className="font-semibold mb-3 tracking-tight"
-          style={{ color: "var(--text-1)", fontSize: "2.25rem" }}
+          style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
         >
           Work
         </h1>
         <p
           className="leading-relaxed"
-          style={{ color: "var(--text-2)", fontSize: "1.1rem" }}
+          style={{ color: "var(--text-2)", fontSize: "var(--text-h2)" }}
         >
           A selection of case studies from my career. All numbers are real;
           company names are redacted by agreement.
@@ -101,48 +101,43 @@ export default function Work() {
       <div className="flex flex-col gap-14">
         {CASE_STUDIES.map((cs, i) => (
           <article key={i}>
-            <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-3">
+            <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
               <h2
                 className="font-semibold leading-snug"
-                style={{ color: "var(--text-1)", fontSize: "1.15rem" }}
+                style={{ color: "var(--text-1)", fontSize: "var(--text-h1)" }}
               >
                 {cs.title}
               </h2>
               <span
                 className="tabular-nums shrink-0"
-                style={{ color: "var(--text-3)", fontSize: "0.875rem" }}
+                style={{
+                  color: "var(--text-3)",
+                  fontSize: "var(--text-small)",
+                  fontFamily: "var(--font-mono)",
+                }}
               >
                 {cs.period}
               </span>
             </div>
 
-            <div className="flex flex-wrap gap-1.5 mb-5">
-              {cs.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2 py-0.5 rounded font-medium"
-                  style={{
-                    background: "var(--tag-bg)",
-                    color: "var(--tag-text)",
-                    fontSize: "0.75rem",
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <p
+              className="mb-6"
+              style={{ color: "var(--text-3)", fontSize: "var(--text-small)" }}
+            >
+              {cs.tags.join(" · ")}
+            </p>
 
-            <div className="space-y-5">
+            <div className="space-y-6">
               <div>
                 <h3
                   className="font-semibold uppercase tracking-widest mb-2"
-                  style={{ color: "var(--text-3)", fontSize: "0.7rem" }}
+                  style={{ color: "var(--text-3)", fontSize: "var(--text-micro)" }}
                 >
                   The Problem
                 </h3>
                 <p
                   className="leading-relaxed"
-                  style={{ color: "var(--text-2)", fontSize: "1rem" }}
+                  style={{ color: "var(--text-2)", fontSize: "var(--text-body)" }}
                 >
                   {cs.problem}
                 </p>
@@ -151,7 +146,7 @@ export default function Work() {
               <div>
                 <h3
                   className="font-semibold uppercase tracking-widest mb-2"
-                  style={{ color: "var(--text-3)", fontSize: "0.7rem" }}
+                  style={{ color: "var(--text-3)", fontSize: "var(--text-micro)" }}
                 >
                   What I Did
                 </h3>
@@ -164,7 +159,7 @@ export default function Work() {
                       />
                       <span
                         className="leading-relaxed"
-                        style={{ color: "var(--text-2)", fontSize: "1rem" }}
+                        style={{ color: "var(--text-2)", fontSize: "var(--text-body)" }}
                       >
                         {item}
                       </span>
@@ -173,22 +168,16 @@ export default function Work() {
                 </ul>
               </div>
 
-              <div
-                className="rounded-xl p-4"
-                style={{
-                  background: "var(--accent-muted)",
-                  border: "1px solid var(--border)",
-                }}
-              >
+              <div>
                 <h3
-                  className="font-semibold uppercase tracking-widest mb-1.5"
-                  style={{ color: "var(--accent)", fontSize: "0.7rem" }}
+                  className="font-semibold uppercase tracking-widest mb-2"
+                  style={{ color: "var(--text-3)", fontSize: "var(--text-micro)" }}
                 >
                   Outcome
                 </h3>
                 <p
                   className="leading-relaxed font-medium"
-                  style={{ color: "var(--text-1)", fontSize: "1rem" }}
+                  style={{ color: "var(--text-1)", fontSize: "var(--text-body)" }}
                 >
                   {cs.outcome}
                 </p>
@@ -204,13 +193,6 @@ export default function Work() {
           </article>
         ))}
       </div>
-
-      <footer
-        className="pt-16 pb-8"
-        style={{ color: "var(--text-3)", fontSize: "0.875rem" }}
-      >
-        Handcrafted by Marc · {new Date().getFullYear()}
-      </footer>
     </div>
   );
 }

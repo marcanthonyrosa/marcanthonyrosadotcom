@@ -5,7 +5,12 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { usePostHog } from "posthog-js/react";
 
-export function AvatarButton() {
+type Props = {
+  size?: number;
+  className?: string;
+};
+
+export function AvatarButton({ size = 48, className }: Props) {
   const controls = useAnimation();
   const router = useRouter();
   const posthog = usePostHog();
@@ -23,27 +28,30 @@ export function AvatarButton() {
     router.push("/about");
   };
 
+  const radius = Math.round(size / 6);
+
   return (
     <motion.button
       animate={controls}
       onClick={handleClick}
       aria-label="Go to About page"
+      className={className}
       style={{
         cursor: "pointer",
         border: "none",
         background: "none",
         padding: 0,
         display: "block",
-        marginBottom: "2rem",
-        borderRadius: "16px",
+        borderRadius: radius,
+        flexShrink: 0,
       }}
     >
       <Image
         src="/headshot.jpeg"
         alt="Marc Anthony Rosa"
-        width={120}
-        height={120}
-        style={{ borderRadius: "16px", display: "block" }}
+        width={size}
+        height={size}
+        style={{ borderRadius: radius, display: "block" }}
         priority
       />
     </motion.button>
