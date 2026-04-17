@@ -10,7 +10,6 @@ import {
   User,
   PenLine,
   Layers,
-  Cpu,
   Baby,
   Sun,
   Moon,
@@ -20,70 +19,14 @@ import {
 const IS_DEV = process.env.NODE_ENV === "development";
 
 const NAV_ITEMS = [
-  {
-    href: "/",
-    label: "Home",
-    icon: House,
-    exact: true,
-    devOnly: false,
-    motionProps: {
-      whileHover: { y: -3 },
-      transition: { type: "spring" as const, stiffness: 400, damping: 10 },
-    },
-  },
-  {
-    href: "/about",
-    label: "About",
-    icon: User,
-    devOnly: false,
-    motionProps: {
-      whileHover: { scale: 1.18 },
-      transition: { type: "spring" as const, stiffness: 350, damping: 12 },
-    },
-  },
-  {
-    href: "/writing",
-    label: "Writing",
-    icon: PenLine,
-    devOnly: false,
-    motionProps: {
-      whileHover: { rotate: -14 },
-      transition: { type: "spring" as const, stiffness: 300, damping: 10 },
-    },
-  },
-  {
-    href: "/johnny",
-    label: "Johnny",
-    icon: Baby,
-    devOnly: false,
-    beta: true,
-    motionProps: {
-      whileHover: { y: -3, scale: 1.12 },
-      transition: { type: "spring" as const, stiffness: 350, damping: 10 },
-    },
-  },
-  {
-    href: "/work",
-    label: "Work",
-    icon: Layers,
-    devOnly: true,
-    motionProps: {
-      whileHover: { y: -3, scale: 1.1 },
-      transition: { type: "spring" as const, stiffness: 350, damping: 10 },
-    },
-  },
-  {
-    href: "/gear",
-    label: "Gear",
-    icon: Cpu,
-    devOnly: true,
-    motionProps: {
-      whileHover: { rotate: 90 },
-      transition: { type: "spring" as const, stiffness: 180, damping: 12 },
-    },
-  },
+  { href: "/", label: "Home", icon: House, exact: true, devOnly: false },
+  { href: "/about", label: "About", icon: User, devOnly: false },
+  { href: "/writing", label: "Writing", icon: PenLine, devOnly: false },
+  { href: "/johnny", label: "Johnny", icon: Baby, devOnly: false, beta: true },
+  { href: "/work", label: "Work", icon: Layers, devOnly: true },
 ].filter((item) => !item.devOnly || IS_DEV);
 
+const HOVER_TRANSITION = { type: "spring" as const, stiffness: 400, damping: 22 };
 
 function NavItem({
   href,
@@ -91,7 +34,6 @@ function NavItem({
   icon: Icon,
   exact,
   beta,
-  motionProps,
 }: (typeof NAV_ITEMS)[number]) {
   const pathname = usePathname();
   const isActive = exact ? pathname === href : pathname.startsWith(href);
@@ -110,12 +52,14 @@ function NavItem({
             className="absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-50 pointer-events-none"
           >
             <div
-              className="px-2.5 py-1 rounded-lg text-xs font-medium whitespace-nowrap"
+              className="px-2.5 py-1 rounded-lg whitespace-nowrap"
               style={{
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
                 color: "var(--text-1)",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+                fontSize: "var(--text-micro)",
+                fontWeight: 500,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
               }}
             >
               {label}
@@ -143,15 +87,19 @@ function NavItem({
           animate={{ opacity: hovered && !isActive ? 1 : 0 }}
           transition={{ duration: 0.15 }}
         />
-        {/* Icon with per-item motion */}
-        <motion.div className="relative z-10" {...motionProps}>
+        {/* Icon — uniform 1px lift on hover, no per-item choreography */}
+        <motion.div
+          className="relative z-10"
+          whileHover={{ y: -1 }}
+          transition={HOVER_TRANSITION}
+        >
           <Icon size={20} strokeWidth={isActive ? 2 : 1.75} />
         </motion.div>
         {beta && (
           <span
             className="absolute top-1 right-1 z-20 w-1.5 h-1.5 rounded-full pointer-events-none"
             style={{
-              background: "var(--accent)",
+              background: "var(--text-3)",
               boxShadow: "0 0 0 1.5px var(--bg)",
             }}
             aria-label="Beta"
@@ -196,12 +144,14 @@ function ThemeToggle() {
             className="absolute left-[calc(100%+10px)] top-1/2 -translate-y-1/2 z-50 pointer-events-none"
           >
             <div
-              className="px-2.5 py-1 rounded-lg text-xs font-medium whitespace-nowrap"
+              className="px-2.5 py-1 rounded-lg whitespace-nowrap"
               style={{
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
                 color: "var(--text-1)",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+                fontSize: "var(--text-micro)",
+                fontWeight: 500,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
               }}
             >
               Switch to {nextLabel}
@@ -227,8 +177,8 @@ function ThemeToggle() {
         />
         <motion.div
           className="relative z-10"
-          whileHover={{ rotate: 35 }}
-          transition={{ type: "spring", stiffness: 250, damping: 12 }}
+          whileHover={{ y: -1 }}
+          transition={HOVER_TRANSITION}
         >
           {resolvedTheme === "dark" ? (
             <Moon size={20} strokeWidth={1.75} />
@@ -241,58 +191,25 @@ function ThemeToggle() {
   );
 }
 
+const NAV_CLASSES =
+  "z-40 fixed flex items-center top-0 left-0 right-0 px-2 h-14 bg-[var(--bg)] " +
+  "min-[750px]:flex-col min-[750px]:items-start min-[750px]:gap-1 " +
+  "min-[750px]:top-[9.5rem] min-[750px]:left-[3vw] min-[750px]:right-auto " +
+  "min-[750px]:h-auto min-[750px]:w-auto min-[750px]:px-0 " +
+  "min-[750px]:bg-transparent min-[750px]:border-0";
+
+const NAV_ITEMS_CLASSES = "flex items-center gap-1 min-[750px]:flex-col min-[750px]:gap-1";
+const TOGGLE_CLASSES = "ml-auto min-[750px]:ml-0 min-[750px]:mt-3";
+
 export function Sidebar() {
-  const pathname = usePathname();
-  const isWide = pathname === "/tmc" || pathname.startsWith("/tmc/");
-
-  // The TMC page uses max-w-5xl (1024px). Solving for the breakpoint at which
-  // the sidebar (left: 3vw + 40px wide) just clears the content text edge
-  // ((W − 1024) / 2 + 24px padding) gives W ≈ 1123px → rounded to 1125px.
-  // The standard pages use max-w-2xl (672px) → the existing 750px breakpoint.
-  const navClasses = isWide
-    ? [
-        "z-40 fixed flex items-center",
-        "top-0 left-0 right-0 px-2 h-14",
-        "bg-[var(--bg)]",
-        "min-[1125px]:flex-col min-[1125px]:items-start min-[1125px]:gap-1",
-        "min-[1125px]:top-[9.5rem] min-[1125px]:left-[3vw] min-[1125px]:right-auto",
-        "min-[1125px]:h-auto min-[1125px]:w-auto min-[1125px]:px-0",
-        "min-[1125px]:bg-transparent min-[1125px]:border-0",
-      ]
-    : [
-        "z-40 fixed flex items-center",
-        // Mobile: horizontal top bar
-        "top-0 left-0 right-0 px-2 h-14",
-        "bg-[var(--bg)]",
-        "min-[750px]:flex-col min-[750px]:items-start min-[750px]:gap-1",
-        "min-[750px]:top-[9.5rem] min-[750px]:left-[3vw] min-[750px]:right-auto",
-        "min-[750px]:h-auto min-[750px]:w-auto min-[750px]:px-0",
-        "min-[750px]:bg-transparent min-[750px]:border-0",
-      ];
-
   return (
-    <nav className={navClasses.join(" ")}>
-      {/* Nav items */}
-      <div
-        className={
-          isWide
-            ? "flex items-center gap-1 min-[1125px]:flex-col min-[1125px]:gap-1"
-            : "flex items-center gap-1 min-[750px]:flex-col min-[750px]:gap-1"
-        }
-      >
+    <nav className={NAV_CLASSES}>
+      <div className={NAV_ITEMS_CLASSES}>
         {NAV_ITEMS.map((item) => (
           <NavItem key={item.href} {...item} />
         ))}
       </div>
-
-      {/* Theme toggle: right-aligned on mobile, below nav on desktop */}
-      <div
-        className={
-          isWide
-            ? "ml-auto min-[1125px]:ml-0 min-[1125px]:mt-3"
-            : "ml-auto min-[750px]:ml-0 min-[750px]:mt-3"
-        }
-      >
+      <div className={TOGGLE_CLASSES}>
         <ThemeToggle />
       </div>
     </nav>

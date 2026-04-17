@@ -45,7 +45,7 @@ export default function YourMarketWillShowYou() {
       <header className="mb-6">
         <h1
           className="font-semibold mb-4 tracking-tight leading-tight"
-          style={{ color: "var(--text-1)", fontSize: "2rem" }}
+          style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
         >
           Your market will show you the right one
         </h1>
@@ -68,7 +68,7 @@ export default function YourMarketWillShowYou() {
       {/* Body */}
       <article
         className="flex flex-col gap-5 leading-relaxed"
-        style={{ color: "var(--text-2)", fontSize: "1.125rem" }}
+        style={{ color: "var(--text-2)", fontSize: "var(--text-h2)" }}
       >
         <p>
           Personal news: I recently wrapped up my time at Thread after two and a half years helping
@@ -76,10 +76,10 @@ export default function YourMarketWillShowYou() {
           somewhere very different. Thank the software gods it did.
         </p>
 
-        <p>One lesson from that journey 👇</p>
+        <p>One lesson from that journey.</p>
 
         <p className="font-semibold" style={{ color: "var(--text-1)" }}>
-          🧭 Your market matters (and your customers will show you the right one)
+          Your market matters — and your customers will show you the right one.
         </p>
 
         <p>
@@ -130,7 +130,7 @@ export default function YourMarketWillShowYou() {
         <p>Today, chat is an optional add-on.</p>
 
         <p className="font-semibold" style={{ color: "var(--text-1)" }}>
-          🔑 The takeaway: Listen closely, stay fluid, and explore adjacent markets when customers
+          The takeaway: listen closely, stay fluid, and explore adjacent markets when customers
           keep pulling you there. Larger opportunities are often disguised as a smaller speed bump.
         </p>
 
@@ -141,7 +141,7 @@ export default function YourMarketWillShowYou() {
 
         <hr style={{ borderColor: "var(--border)" }} />
 
-        <p style={{ color: "var(--text-3)", fontSize: "0.95rem" }}>
+        <p style={{ color: "var(--text-3)", fontSize: "var(--text-small)" }}>
           I'm deeply grateful to Matt and Mark for inviting me to Thread; to the Thread leadership
           team for your partnership (Michael, Stephen, Bobby, Paralee, Samuel, Laura); to the PD
           team (Kristof, Amine, Ricardo, Julie), PDE leadership (Vyacheslav, Luiz Pedone, Gabriel,
@@ -149,7 +149,7 @@ export default function YourMarketWillShowYou() {
           Jacob, David, Adam).
         </p>
 
-        <p style={{ color: "var(--text-3)", fontSize: "0.95rem" }}>More to come on what's next.</p>
+        <p style={{ color: "var(--text-3)", fontSize: "var(--text-small)" }}>More to come on what's next.</p>
       </article>
 
       {/* Footer */}

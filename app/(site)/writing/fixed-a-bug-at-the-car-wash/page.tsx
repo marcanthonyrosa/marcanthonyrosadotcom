@@ -29,7 +29,7 @@ export default function FixedABugAtTheCarWash() {
       <header className="mb-6">
         <h1
           className="font-semibold mb-4 tracking-tight leading-tight"
-          style={{ color: "var(--text-1)", fontSize: "2rem" }}
+          style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
         >
           Fixed a bug at the car wash
         </h1>
@@ -52,7 +52,7 @@ export default function FixedABugAtTheCarWash() {
       {/* Body */}
       <article
         className="flex flex-col gap-5 leading-relaxed"
-        style={{ color: "var(--text-2)", fontSize: "1.125rem" }}
+        style={{ color: "var(--text-2)", fontSize: "var(--text-h2)" }}
       >
         <p>
           Today I got to live in the future for about 15 very ordinary minutes: sitting in the
@@ -110,7 +110,7 @@ export default function FixedABugAtTheCarWash() {
           podcast-listening time into shipping time.
         </p>
 
-        <p style={{ color: "var(--text-3)", fontSize: "0.95rem" }}>
+        <p style={{ color: "var(--text-3)", fontSize: "var(--text-small)" }}>
           (PS: try playing the game on{" "}
           <a
             href="https://marcanthonyrosa.com"

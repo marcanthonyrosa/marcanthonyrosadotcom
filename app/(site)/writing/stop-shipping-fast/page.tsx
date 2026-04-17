@@ -45,7 +45,7 @@ export default function StopShippingFast() {
       <header className="mb-6">
         <h1
           className="font-semibold mb-4 tracking-tight leading-tight"
-          style={{ color: "var(--text-1)", fontSize: "2rem" }}
+          style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
         >
           Stop shipping fast. Make it actually hold up.
         </h1>
@@ -68,7 +68,7 @@ export default function StopShippingFast() {
       {/* Body */}
       <article
         className="flex flex-col gap-5 leading-relaxed"
-        style={{ color: "var(--text-2)", fontSize: "1.125rem" }}
+        style={{ color: "var(--text-2)", fontSize: "var(--text-h2)" }}
       >
         <p>
           This photo is from a product research session with Albert, a Thread partner who told us
@@ -96,7 +96,7 @@ export default function StopShippingFast() {
         <hr style={{ borderColor: "var(--border)" }} />
 
         <p className="font-semibold" style={{ color: "var(--text-1)" }}>
-          🧱 Quality and support are a competitive advantage in the Era of the Vibe
+          Quality and support are a competitive advantage in the Era of the Vibe.
         </p>
 
         <p>
@@ -109,7 +109,7 @@ export default function StopShippingFast() {
 
         <p>One answer: quality and support.</p>
 
-        <p>A brutally unsatisfying answer. 🤮</p>
+        <p>A brutally unsatisfying answer.</p>
 
         <p>
           Our reality is that vibecoding solved one problem and created another: a sea of
@@ -173,7 +173,7 @@ export default function StopShippingFast() {
         </p>
 
         <p className="font-semibold" style={{ color: "var(--text-1)" }}>
-          🔑 The takeaway: Build things that last. Back them with real support.
+          The takeaway: build things that last. Back them with real support.
         </p>
 
         <p>Customers won't wander to the next vibed look-alike.</p>
