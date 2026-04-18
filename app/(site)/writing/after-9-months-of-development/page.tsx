@@ -26,22 +26,24 @@ export default function After9MonthsOfDevelopment() {
         </Link>
       </div>
 
-      {/* Hero image — /johnny share preview */}
-      <a
+      {/* Launch announcement tag */}
+      <Link
         href="/johnny"
-        className="mb-8 block overflow-hidden rounded-lg border transition-opacity hover:opacity-90"
-        style={{ borderColor: "var(--border)" }}
+        className="mb-8 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors hover:opacity-80"
+        style={{
+          borderColor: "var(--border)",
+          background: "var(--surface)",
+          color: "var(--text-2)",
+        }}
       >
-        <Image
-          src="/api/og/johnny"
-          alt="John McKeon Rosa — Version 1.0"
-          width={1200}
-          height={630}
-          priority
-          unoptimized
-          className="w-full h-auto"
+        <span
+          className="inline-block h-1.5 w-1.5 rounded-full"
+          style={{ background: "#22c55e", boxShadow: "0 0 0 3px rgba(34,197,94,0.18)" }}
         />
-      </a>
+        <span style={{ color: "var(--text-1)" }}>Live</span>
+        <span style={{ color: "var(--text-3)" }}>·</span>
+        <span>Launch announcement</span>
+      </Link>
 
       {/* Header */}
       <header className="mb-6">
@@ -135,6 +137,51 @@ export default function After9MonthsOfDevelopment() {
 
         <p>Onward.</p>
       </article>
+
+      {/* Read more — launch page card */}
+      <Link
+        href="/johnny"
+        className="group mt-14 block overflow-hidden rounded-2xl border shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg"
+        style={{ borderColor: "var(--border)", background: "var(--surface)" }}
+      >
+        <Image
+          src="/api/og/johnny"
+          alt="John McKeon Rosa — Version 1.0"
+          width={1200}
+          height={630}
+          unoptimized
+          className="w-full h-auto"
+        />
+        <div
+          className="flex items-center justify-between gap-4 px-5 py-4 sm:px-6 sm:py-5"
+          style={{ borderTop: "1px solid var(--border)" }}
+        >
+          <div className="flex flex-col gap-1">
+            <span
+              className="text-xs uppercase tracking-wider"
+              style={{ color: "var(--text-3)" }}
+            >
+              Read more
+            </span>
+            <span
+              className="font-semibold"
+              style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
+            >
+              Visit the official launch page
+            </span>
+            <span className="text-sm" style={{ color: "var(--text-2)" }}>
+              John McKeon Rosa — Version 1.0. Specs, features, known issues, and press.
+            </span>
+          </div>
+          <span
+            aria-hidden
+            className="shrink-0 text-xl transition-transform group-hover:translate-x-1"
+            style={{ color: "var(--text-1)" }}
+          >
+            →
+          </span>
+        </div>
+      </Link>
 
       {/* Footer */}
       <div className="pt-16 pb-8">
