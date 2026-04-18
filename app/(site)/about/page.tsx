@@ -128,7 +128,7 @@ const VALUES = [
   },
   {
     title: "Mandatory spicy conversations.",
-    body: "Always identify ways to make things stronger through \"spicy\" takes — it's the only way we push the product to be improved.",
+    body: "The hard, honest takes — the ones people hesitate to say out loud — are how a product actually gets sharper. I push for them, and expect them back.",
   },
 ];
 
