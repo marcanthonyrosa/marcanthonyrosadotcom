@@ -127,12 +127,8 @@ const VALUES = [
     body: "Build products with a clear point of view on how they should be used. Tools that try to do everything end up doing nothing well.",
   },
   {
-    title: "Users first, metrics second.",
-    body: "Metrics are how you know the product is working, not why it should exist. I start with a deep understanding of the people I'm building for.",
-  },
-  {
-    title: "Strong opinions, loosely held.",
-    body: "I form a point of view quickly, share it confidently, and update it readily when the evidence changes.",
+    title: "Mandatory spicy conversations.",
+    body: "Always identify ways to make things stronger through \"spicy\" takes — it's the only way we push the product to be improved.",
   },
 ];
 
