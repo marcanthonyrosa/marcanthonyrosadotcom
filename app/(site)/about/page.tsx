@@ -131,10 +131,6 @@ const VALUES = [
     body: "Metrics are how you know the product is working, not why it should exist. I start with a deep understanding of the people I'm building for.",
   },
   {
-    title: "Ship, learn, iterate.",
-    body: "Perfect products don't ship. I'd rather get real feedback from real users than optimize something in a vacuum for another quarter.",
-  },
-  {
     title: "Strong opinions, loosely held.",
     body: "I form a point of view quickly, share it confidently, and update it readily when the evidence changes.",
   },
