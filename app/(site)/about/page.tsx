@@ -3,7 +3,7 @@ import HeadshotOrGame from "@/components/game/HeadshotOrGame";
 import CompanyLogo from "@/components/CompanyLogo";
 
 export const metadata: Metadata = {
-  title: "About Marc Anthony Rosa",
+  title: "About Marc Rosa",
   description:
     "About Marc Anthony Rosa — Houston-based Head of Product and tech founder. 15+ years building SaaS products at Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer, and Tribune Media.",
   alternates: { canonical: "https://marcrosa.com/about" },

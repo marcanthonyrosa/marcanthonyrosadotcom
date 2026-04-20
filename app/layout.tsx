@@ -21,8 +21,8 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://marcrosa.com"),
   title: {
-    default: "Marc Anthony Rosa — Head of Product (Houston, TX)",
-    template: "%s · Marc Anthony Rosa",
+    default: "Marc Rosa — Head of Product (Houston, TX)",
+    template: "%s · Marc Rosa",
   },
   description:
     "Marc Anthony Rosa is a Houston-based product leader and tech founder. Head of Product, former Thread, Twilio/Zipwhip, Tempus AI, Getty Images. Writing on product strategy, leadership, and the craft of building.",
