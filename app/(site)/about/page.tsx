@@ -143,7 +143,9 @@ export default function About() {
         >
           About
         </h1>
-        <HeadshotOrGame />
+        <div className="max-w-md">
+          <HeadshotOrGame />
+        </div>
         <div className="prose max-w-none">
           <p>
             I&apos;m Marc Anthony Rosa — a product leader and tech founder based in Houston, Texas. I lead product organizations and help companies turn early traction into scalable, durable platforms.
