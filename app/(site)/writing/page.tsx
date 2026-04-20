@@ -49,7 +49,7 @@ export default function Writing() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 sm:px-10">
       <h1
-        className="font-semibold mb-12 tracking-tight"
+        className="font-bold mb-12 tracking-tight"
         style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
       >
         Writing

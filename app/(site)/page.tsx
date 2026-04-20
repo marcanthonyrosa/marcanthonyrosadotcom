@@ -53,7 +53,7 @@ export default function Home() {
           <AvatarButton size={57} className="mt-[3px]" />
           <div className="min-w-0">
             <h1
-              className="font-semibold tracking-tight leading-none"
+              className="font-bold tracking-tight leading-none"
               style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
             >
               Marc Rosa

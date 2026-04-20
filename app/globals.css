@@ -18,6 +18,13 @@
   --text-micro:   0.75rem;    /* 12px — eyebrow labels */
 }
 
+/* ─── Page headers: Instrument Sans for H1 only ─── */
+@layer base {
+  h1 {
+    font-family: var(--font-instrument-sans), var(--font-inter), sans-serif;
+  }
+}
+
 /* ─── Light mode tokens ─── */
 :root {
   /* Backgrounds */
