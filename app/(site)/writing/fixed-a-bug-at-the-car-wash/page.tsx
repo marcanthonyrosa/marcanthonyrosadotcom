@@ -28,7 +28,7 @@ export default function FixedABugAtTheCarWash() {
       {/* Header */}
       <header className="mb-6">
         <h1
-          className="font-semibold mb-4 tracking-tight leading-tight"
+          className="font-bold mb-4 tracking-tight leading-tight"
           style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
         >
           Fixed a bug at the car wash

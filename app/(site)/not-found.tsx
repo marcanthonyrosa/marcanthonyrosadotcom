@@ -18,7 +18,7 @@ export default function NotFound() {
         404
       </p>
       <h1
-        className="font-semibold tracking-tight mb-3 text-center"
+        className="font-bold tracking-tight mb-3 text-center"
         style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
       >
         Page not found

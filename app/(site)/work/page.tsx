@@ -81,7 +81,7 @@ export default function Work() {
       {/* ── Header ── */}
       <section className="mb-12">
         <h1
-          className="font-semibold mb-3 tracking-tight"
+          className="font-bold mb-3 tracking-tight"
           style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
         >
           Work
