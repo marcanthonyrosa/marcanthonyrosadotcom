@@ -77,7 +77,7 @@ export const metadata: Metadata = {
       "Houston-based product leader and tech founder. Head of Product at Thread, formerly Twilio/Zipwhip, Tempus AI, Getty Images, Buffer.",
     images: [
       {
-        url: "/headshot.png",
+        url: "/headshot.png?v=2",
         width: 1200,
         height: 1200,
         alt: "Marc Anthony Rosa",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     title: "Marc Anthony Rosa — Head of Product (Houston, TX)",
     description:
       "Houston-based product leader and tech founder. Head of Product at Thread, formerly Twilio/Zipwhip, Tempus AI.",
-    images: ["/headshot.png"],
+    images: ["/headshot.png?v=2"],
     creator: "@marcanthonyrosa",
   },
   manifest: "/site.webmanifest",
@@ -118,7 +118,7 @@ export default function RootLayout({
               additionalName: "Anthony",
               familyName: "Rosa",
               url: "https://marcrosa.com",
-              image: "https://marcrosa.com/headshot.png",
+              image: "https://marcrosa.com/headshot.png?v=2",
               jobTitle: "Head of Product",
               description:
                 "Houston-based product leader and tech founder. Head of Product, formerly Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer.",
