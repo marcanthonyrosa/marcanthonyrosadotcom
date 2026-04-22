@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import BackToTopButton from "@/components/BackToTopButton";
 
 export const metadata: Metadata = {
   title: "Fixed a bug at the car wash",
@@ -14,25 +15,23 @@ const LINKEDIN_URL =
 export default function FixedABugAtTheCarWash() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 sm:px-10">
-      {/* Back link */}
-      <div className="mb-8">
+      {/* Header */}
+      <h1
+        className="font-bold mb-6 tracking-tight leading-tight"
+        style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
+      >
         <Link
           href="/writing"
-          className="text-sm transition-opacity hover:opacity-70"
+          className="inline-flex items-center justify-center -ml-2 mr-1 p-2 rounded-md align-baseline hover:opacity-60 transition-opacity"
           style={{ color: "var(--text-3)" }}
+          aria-label="Back to Writing"
         >
-          ← Writing
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="inline -mt-0.5"><path d="M10 3L5 8l5 5" /></svg>
         </Link>
-      </div>
+        Fixed a bug at the car wash
+      </h1>
 
-      {/* Header */}
       <header className="mb-6">
-        <h1
-          className="font-bold mb-4 tracking-tight leading-tight"
-          style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
-        >
-          Fixed a bug at the car wash
-        </h1>
         <p className="text-sm" style={{ color: "var(--text-3)" }}>
           Originally posted on{" "}
           <a
@@ -123,16 +122,7 @@ export default function FixedABugAtTheCarWash() {
         </p>
       </article>
 
-      {/* Footer */}
-      <div className="pt-16 pb-8">
-        <Link
-          href="/writing"
-          className="text-sm transition-opacity hover:opacity-70"
-          style={{ color: "var(--text-3)" }}
-        >
-          ← Back to Writing
-        </Link>
-      </div>
+      <BackToTopButton />
     </div>
   );
 }

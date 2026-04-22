@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import BackToTopButton from "@/components/BackToTopButton";
 
 export const metadata: Metadata = {
   title: "Stop shipping fast. Make it actually hold up.",
@@ -15,16 +16,36 @@ const LINKEDIN_URL =
 export default function StopShippingFast() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 sm:px-10">
-      {/* Back link */}
-      <div className="mb-8">
+      {/* Header */}
+      <h1
+        className="font-bold mb-6 tracking-tight leading-tight"
+        style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
+      >
         <Link
           href="/writing"
-          className="text-sm transition-opacity hover:opacity-70"
+          className="inline-flex items-center justify-center -ml-2 mr-1 p-2 rounded-md align-baseline hover:opacity-60 transition-opacity"
           style={{ color: "var(--text-3)" }}
+          aria-label="Back to Writing"
         >
-          ← Writing
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="inline -mt-0.5"><path d="M10 3L5 8l5 5" /></svg>
         </Link>
-      </div>
+        Stop shipping fast. Make it actually hold up.
+      </h1>
+
+      <header className="mb-6">
+        <p className="text-sm" style={{ color: "var(--text-3)" }}>
+          Originally posted on{" "}
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:opacity-70"
+          >
+            LinkedIn
+          </a>
+          {" · "}February 12, 2026
+        </p>
+      </header>
 
       {/* Hero image */}
       <div
@@ -40,28 +61,6 @@ export default function StopShippingFast() {
           className="w-full h-auto"
         />
       </div>
-
-      {/* Header */}
-      <header className="mb-6">
-        <h1
-          className="font-bold mb-4 tracking-tight leading-tight"
-          style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
-        >
-          Stop shipping fast. Make it actually hold up.
-        </h1>
-        <p className="text-sm" style={{ color: "var(--text-3)" }}>
-          Originally posted on{" "}
-          <a
-            href={LINKEDIN_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-2 hover:opacity-70"
-          >
-            LinkedIn
-          </a>
-          {" · "}February 12, 2026
-        </p>
-      </header>
 
       <hr style={{ borderColor: "var(--border)" }} className="mb-10" />
 
@@ -179,16 +178,7 @@ export default function StopShippingFast() {
         <p>Customers won't wander to the next vibed look-alike.</p>
       </article>
 
-      {/* Footer */}
-      <div className="pt-16 pb-8">
-        <Link
-          href="/writing"
-          className="text-sm transition-opacity hover:opacity-70"
-          style={{ color: "var(--text-3)" }}
-        >
-          ← Back to Writing
-        </Link>
-      </div>
+      <BackToTopButton />
     </div>
   );
 }
