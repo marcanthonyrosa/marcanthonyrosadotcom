@@ -13,8 +13,6 @@ const MarcManGame = dynamic(() => import("./MarcManGame"), {
 });
 
 const DURATION = 1300;
-const W = 611;
-const H = 611;
 
 function easeInOutCubic(t: number) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -35,24 +33,36 @@ export default function HeadshotOrGame() {
   const startTimeRef = useRef<number>(0);
   const offscreenRef = useRef<HTMLCanvasElement | null>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
+  const imgSizeRef = useRef<{ w: number; h: number }>({ w: 611, h: 611 });
 
   // Pre-load headshot on mount
   useEffect(() => {
     const img = new window.Image();
     img.src = "/headshot.jpeg";
-    img.onload = () => { imgRef.current = img; };
+    img.onload = () => {
+      imgRef.current = img;
+      imgSizeRef.current = { w: img.naturalWidth, h: img.naturalHeight };
+    };
     import("./MarcManGame"); // preload chunk so it's ready on first click
     return () => { cancelAnimationFrame(animRef.current); };
   }, []);
 
   const animatePixelation = useCallback((ts: number) => {
+    const { w: W, h: H } = imgSizeRef.current;
     const progress = Math.min((ts - startTimeRef.current) / DURATION, 1);
     const waveY = H * easeInOutCubic(progress);
-    const pixelSize = Math.max(1, Math.round(6 + 22 * easeInQuart(progress)));
+    const pixelSize = Math.max(1, Math.round(12 + 44 * easeInQuart(progress)));
 
     const canvas = canvasRef.current;
     const img = imgRef.current;
     if (!canvas || !img) return;
+
+    // Match canvas buffer to image dimensions
+    if (canvas.width !== W || canvas.height !== H) {
+      canvas.width = W;
+      canvas.height = H;
+    }
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -124,8 +134,8 @@ export default function HeadshotOrGame() {
       <Image
         src="/headshot.jpeg"
         alt="Marc Anthony Rosa"
-        width={611}
-        height={611}
+        width={1200}
+        height={1200}
         className="w-full cursor-pointer"
         style={{ borderRadius: "16px" }}
         priority
@@ -133,8 +143,8 @@ export default function HeadshotOrGame() {
       />
       <canvas
         ref={canvasRef}
-        width={W}
-        height={H}
+        width={1200}
+        height={1200}
         style={{
           position: "absolute",
           inset: 0,
