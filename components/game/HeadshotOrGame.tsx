@@ -14,6 +14,13 @@ const MarcManGame = dynamic(() => import("./MarcManGame"), {
 
 const DURATION = 1300;
 
+const EXIT_COLLAPSE_MS = 350;
+const EXIT_PINCH_MS = 150;
+const EXIT_HOLD_MS = 50;
+const EXIT_BLOOM_MS = 400;
+const EXIT_BLOOM_START = EXIT_COLLAPSE_MS + EXIT_PINCH_MS + EXIT_HOLD_MS;
+const EXIT_TOTAL_MS = EXIT_BLOOM_START + EXIT_BLOOM_MS;
+
 function easeInOutCubic(t: number) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
@@ -26,11 +33,16 @@ export default function HeadshotOrGame() {
   const [playing, setPlaying] = useState(false);
   const [pressed, setPressed] = useState(false);
   const [pixelating, setPixelating] = useState(false);
+  const [exiting, setExiting] = useState(false);
   const posthog = usePostHog();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const exitCanvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
+  const exitAnimRef = useRef<number>(0);
   const startTimeRef = useRef<number>(0);
+  const exitStartRef = useRef<number>(0);
+  const swappedRef = useRef<boolean>(false);
   const offscreenRef = useRef<HTMLCanvasElement | null>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
   const imgSizeRef = useRef<{ w: number; h: number }>({ w: 611, h: 611 });
@@ -44,7 +56,10 @@ export default function HeadshotOrGame() {
       imgSizeRef.current = { w: img.naturalWidth, h: img.naturalHeight };
     };
     import("./MarcManGame"); // preload chunk so it's ready on first click
-    return () => { cancelAnimationFrame(animRef.current); };
+    return () => {
+      cancelAnimationFrame(animRef.current);
+      cancelAnimationFrame(exitAnimRef.current);
+    };
   }, []);
 
   const animatePixelation = useCallback((ts: number) => {
@@ -121,26 +136,156 @@ export default function HeadshotOrGame() {
     animRef.current = requestAnimationFrame(animatePixelation);
   }, [animatePixelation]);
 
-  if (playing) {
-    return (
-      <div className="w-full mb-8">
-        <MarcManGame onExit={() => setPlaying(false)} />
-      </div>
-    );
-  }
+  const animateExit = useCallback((ts: number) => {
+    const canvas = exitCanvasRef.current;
+    if (!canvas) {
+      exitAnimRef.current = requestAnimationFrame(animateExit);
+      return;
+    }
+
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    const W = Math.max(1, Math.round(rect.width * dpr));
+    const H = Math.max(1, Math.round(rect.height * dpr));
+    if (canvas.width !== W || canvas.height !== H) {
+      canvas.width = W;
+      canvas.height = H;
+    }
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const elapsed = ts - exitStartRef.current;
+    ctx.clearRect(0, 0, W, H);
+
+    const cx = W / 2;
+    const cy = H / 2;
+
+    if (elapsed < EXIT_COLLAPSE_MS) {
+      const t = easeInOutCubic(elapsed / EXIT_COLLAPSE_MS);
+
+      const shutterH = (H / 2) * t;
+      ctx.fillStyle = "#0d0d1a";
+      ctx.fillRect(0, 0, W, shutterH);
+      ctx.fillRect(0, H - shutterH, W, shutterH);
+
+      const lineH = Math.max(2 * dpr, 4 * dpr + 6 * dpr * t);
+      const glowH = 10 * dpr + 36 * dpr * t;
+      const grad = ctx.createLinearGradient(0, cy - glowH, 0, cy + glowH);
+      grad.addColorStop(0, "rgba(107,194,183,0)");
+      grad.addColorStop(0.5, `rgba(107,194,183,${0.35 + 0.6 * t})`);
+      grad.addColorStop(1, "rgba(107,194,183,0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, cy - glowH, W, glowH * 2);
+
+      ctx.fillStyle = `rgba(230, 255, 248, ${0.55 + 0.45 * t})`;
+      ctx.fillRect(0, cy - lineH / 2, W, lineH);
+    } else if (elapsed < EXIT_COLLAPSE_MS + EXIT_PINCH_MS) {
+      ctx.fillStyle = "#0d0d1a";
+      ctx.fillRect(0, 0, W, H);
+
+      const t = easeInOutCubic((elapsed - EXIT_COLLAPSE_MS) / EXIT_PINCH_MS);
+      const halfW = (W / 2) * (1 - t);
+
+      const glowH = 46 * dpr;
+      const grad = ctx.createLinearGradient(0, cy - glowH, 0, cy + glowH);
+      grad.addColorStop(0, "rgba(107,194,183,0)");
+      grad.addColorStop(0.5, "rgba(107,194,183,0.95)");
+      grad.addColorStop(1, "rgba(107,194,183,0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(cx - halfW, cy - glowH, halfW * 2, glowH * 2);
+
+      const coreH = Math.max(1 * dpr, 5 * dpr);
+      ctx.fillStyle = "rgba(235, 255, 250, 1)";
+      ctx.fillRect(cx - halfW, cy - coreH / 2, halfW * 2, coreH);
+
+      const dotR = 5 * dpr + 4 * dpr * t;
+      const dotGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, dotR * 3);
+      dotGrad.addColorStop(0, "rgba(235, 255, 250, 1)");
+      dotGrad.addColorStop(0.4, "rgba(107,194,183,0.9)");
+      dotGrad.addColorStop(1, "rgba(107,194,183,0)");
+      ctx.fillStyle = dotGrad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, dotR * 3, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (elapsed < EXIT_BLOOM_START) {
+      if (!swappedRef.current) {
+        swappedRef.current = true;
+        setPixelating(false);
+        setPlaying(false);
+      }
+      ctx.fillStyle = "#0d0d1a";
+      ctx.fillRect(0, 0, W, H);
+
+      const dotR = 9 * dpr;
+      const dotGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, dotR * 3);
+      dotGrad.addColorStop(0, "rgba(235, 255, 250, 1)");
+      dotGrad.addColorStop(0.4, "rgba(107,194,183,0.95)");
+      dotGrad.addColorStop(1, "rgba(107,194,183,0)");
+      ctx.fillStyle = dotGrad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, dotR * 3, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (elapsed < EXIT_TOTAL_MS) {
+      const t = easeInOutCubic((elapsed - EXIT_BLOOM_START) / EXIT_BLOOM_MS);
+
+      const lineExpand = Math.min(1, t / 0.35);
+      const unfurl = t < 0.35 ? 0 : (t - 0.35) / 0.65;
+
+      const revealH = H * unfurl;
+      const shutterH = (H - revealH) / 2;
+      ctx.fillStyle = "#0d0d1a";
+      ctx.fillRect(0, 0, W, shutterH);
+      ctx.fillRect(0, H - shutterH, W, shutterH);
+
+      const halfW = (W / 2) * lineExpand;
+      const glowH = Math.max(6 * dpr, 46 * dpr * (1 - t));
+      const grad = ctx.createLinearGradient(0, cy - glowH, 0, cy + glowH);
+      grad.addColorStop(0, "rgba(107,194,183,0)");
+      grad.addColorStop(0.5, `rgba(107,194,183,${0.9 * (1 - t * 0.6)})`);
+      grad.addColorStop(1, "rgba(107,194,183,0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(cx - halfW, cy - glowH, halfW * 2, glowH * 2);
+
+      const coreH = Math.max(1 * dpr, 4 * dpr * (1 - t * 0.5));
+      ctx.fillStyle = `rgba(235, 255, 250, ${1 - t * 0.8})`;
+      ctx.fillRect(cx - halfW, cy - coreH / 2, halfW * 2, coreH);
+    }
+
+    if (elapsed < EXIT_TOTAL_MS) {
+      exitAnimRef.current = requestAnimationFrame(animateExit);
+    } else {
+      ctx.clearRect(0, 0, W, H);
+      swappedRef.current = false;
+      setExiting(false);
+    }
+  }, []);
+
+  const startExit = useCallback(() => {
+    posthog.capture("game_exited");
+    cancelAnimationFrame(exitAnimRef.current);
+    swappedRef.current = false;
+    setExiting(true);
+    exitStartRef.current = performance.now();
+    exitAnimRef.current = requestAnimationFrame(animateExit);
+  }, [animateExit, posthog]);
 
   return (
     <div className="relative w-full mb-8">
-      <Image
-        src="/headshot.jpeg"
-        alt="Marc Anthony Rosa"
-        width={1200}
-        height={1200}
-        className="w-full cursor-pointer"
-        style={{ borderRadius: "16px" }}
-        priority
-        onClick={() => { posthog.capture("avatar_clicked", { location: "about" }); startPixelation(); }}
-      />
+      {playing ? (
+        <MarcManGame onExit={startExit} />
+      ) : (
+        <Image
+          src="/headshot.jpeg"
+          alt="Marc Anthony Rosa"
+          width={1200}
+          height={1200}
+          className="w-full cursor-pointer"
+          style={{ borderRadius: "16px" }}
+          priority
+          onClick={() => { posthog.capture("avatar_clicked", { location: "about" }); startPixelation(); }}
+        />
+      )}
       <canvas
         ref={canvasRef}
         width={1200}
@@ -151,9 +296,22 @@ export default function HeadshotOrGame() {
           width: "100%",
           height: "100%",
           borderRadius: "16px",
-          display: pixelating ? "block" : "none",
+          display: pixelating && !playing && !exiting ? "block" : "none",
           imageRendering: "pixelated",
           cursor: "pointer",
+        }}
+      />
+      <canvas
+        ref={exitCanvasRef}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          borderRadius: "16px",
+          display: exiting ? "block" : "none",
+          pointerEvents: "none",
+          zIndex: 20,
         }}
       />
       <style>{`
@@ -164,52 +322,54 @@ export default function HeadshotOrGame() {
         .turbo-btn { animation: turbo-pulse 2.4s ease-in-out infinite; }
         .turbo-btn:hover { animation: none; box-shadow: 0 3px 0 rgb(30 75 70 / 0.7), 0 5px 20px rgb(0 0 0 / 0.3), 0 0 24px rgb(107 194 183 / 0.6) !important; }
       `}</style>
-      <div className="absolute bottom-2 right-2">
-        <button
-          className={`${pressed ? "" : "turbo-btn"} px-[8px] py-[8px] sm:px-[20px] sm:py-[8px]`}
-          onMouseDown={() => setPressed(true)}
-          onMouseUp={() => {
-            setPressed(false);
-            posthog.capture("turbo_mode_clicked");
-            startPixelation();
-          }}
-          onMouseLeave={() => setPressed(false)}
-          onTouchStart={(e) => {
-            e.preventDefault();
-            setPressed(true);
-          }}
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            setPressed(false);
-            posthog.capture("turbo_mode_clicked");
-            startPixelation();
-          }}
-          style={{
-            borderRadius: "8px",
-            fontSize: "12px",
-            fontWeight: 800,
-            letterSpacing: "0.08em",
-            fontFamily: "monospace",
-            textTransform: "uppercase",
-            background: "rgb(107 194 183 / 38%)",
-            color: "#fff",
-            border: "1px solid rgb(107 194 183 / 55%)",
-            cursor: "pointer",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            whiteSpace: "nowrap",
-            textShadow: "0 1px 3px rgba(0,0,0,0.35)",
-            boxShadow: pressed
-              ? "0 1px 0 rgb(30 75 70 / 0.7), 0 2px 6px rgba(0,0,0,0.25)"
-              : undefined,
-            transform: pressed ? "translateY(2px)" : "translateY(0)",
-            transition: "box-shadow 0.07s, transform 0.07s",
-          }}
-        >
-          <span className="sm:hidden" style={{ fontSize: "16px" }}>🕹️</span>
-          <span className="hidden sm:inline">🕹️ TURBO MODE</span>
-        </button>
-      </div>
+      {!playing && !exiting && (
+        <div className="absolute bottom-2 right-2">
+          <button
+            className={`${pressed ? "" : "turbo-btn"} px-[8px] py-[8px] sm:px-[20px] sm:py-[8px]`}
+            onMouseDown={() => setPressed(true)}
+            onMouseUp={() => {
+              setPressed(false);
+              posthog.capture("turbo_mode_clicked");
+              startPixelation();
+            }}
+            onMouseLeave={() => setPressed(false)}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              setPressed(true);
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              setPressed(false);
+              posthog.capture("turbo_mode_clicked");
+              startPixelation();
+            }}
+            style={{
+              borderRadius: "8px",
+              fontSize: "12px",
+              fontWeight: 800,
+              letterSpacing: "0.08em",
+              fontFamily: "monospace",
+              textTransform: "uppercase",
+              background: "rgb(107 194 183 / 38%)",
+              color: "#fff",
+              border: "1px solid rgb(107 194 183 / 55%)",
+              cursor: "pointer",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              whiteSpace: "nowrap",
+              textShadow: "0 1px 3px rgba(0,0,0,0.35)",
+              boxShadow: pressed
+                ? "0 1px 0 rgb(30 75 70 / 0.7), 0 2px 6px rgba(0,0,0,0.25)"
+                : undefined,
+              transform: pressed ? "translateY(2px)" : "translateY(0)",
+              transition: "box-shadow 0.07s, transform 0.07s",
+            }}
+          >
+            <span className="sm:hidden" style={{ fontSize: "16px" }}>🕹️</span>
+            <span className="hidden sm:inline">🕹️ TURBO MODE</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
