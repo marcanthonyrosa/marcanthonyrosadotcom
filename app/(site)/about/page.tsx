@@ -148,19 +148,37 @@ export default function About() {
         </div>
         <div className="prose max-w-none">
           <p>
-            I&apos;m Marc Anthony Rosa — a product leader and tech founder based in Houston, Texas. I lead product organizations and help companies turn early traction into scalable, durable platforms.
+            I&apos;m Marc 👋. I live in Houston with my wife Elle and our two boys — one four, one born this past March.
           </p>
           <p>
-            Over the past 15 years, I&apos;ve worked primarily with SaaS and tech companies at moments of transition — when a strong product needs to evolve into a system that can support real scale.
+            I&apos;m a product leader who ships code. I built this site, my wife&apos;s interior design tools, and the internal tools behind my consulting practice. Less deck, more specs and software.
+          </p>
+          <h2
+            className="font-semibold tracking-tight mt-10 mb-4"
+            style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
+          >
+            How I got here
+          </h2>
+          <p>
+            I love building things that people love. In college, as a way to hack around the finance major I hated, I built an Instacart-for-college-campuses business, sold it, used the energy to raise a seed round for a Foursquare-for-events app that failed hard, and then taught myself product from the studs.
           </p>
           <p>
-            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. I joined at seed stage when the company had a narrow IT ticketing product inside Slack and Teams. Over the next few years, we expanded it into a broader AI service platform spanning chat, inbox workflows, automation, and agentic tools. During that time, the company grew more than 10× in revenue, raised a Series A, and became a category leader in service desks for MSPs.
+            I&apos;ve led product at SaaS companies ever since. I led product at Zipwhip through its acquisition by Twilio, and built product at Deep 6 AI — AI-powered clinical trial matching, later acquired by Tempus. Most recently I was Head of Product at Thread, where we grew a narrow Slack ticketing tool into an AI-native service platform for MSPs.
           </p>
           <p>
-            Before Thread, I led product at Zipwhip, where I owned our flagship business messaging platform during a period of rapid adoption in 2020, leading up to the company&apos;s <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
+            We became category leader because of the grown-up work that happens after an idea clicks: scaling products for a mainstream audience, building a distribution channel for our segments, and crossing the chasm with a whole product solution.
+          </p>
+          <h2
+            className="font-semibold tracking-tight mt-10 mb-4"
+            style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
+          >
+            Sugo
+          </h2>
+          <p>
+            My practice is Sugo AI — I help mid-to-large enterprises cross the gap between AI pilots and production.
           </p>
           <p>
-            Today, I advise early-stage founders through my practice, <a href="https://www.linkedin.com/company/sunday-sauce-studios" target="_blank" rel="noopener noreferrer">Sugo Product Company</a>, providing fractional product leadership and helping teams bring clarity to strategy, execution, and product systems.
+            Sugo is Italian for sauce. Every Sunday my boys and I make it; we&apos;ve got a recipe we&apos;ve been refining, tweaking it a little each time. That&apos;s also a great description of how I think about product work. The logo is a pixel tomato. It&apos;s a joke and it isn&apos;t.
           </p>
         </div>
       </section>
