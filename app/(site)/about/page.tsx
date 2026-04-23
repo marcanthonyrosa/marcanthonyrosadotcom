@@ -151,7 +151,7 @@ export default function About() {
             I&apos;m Marc 👋. I live in Houston with my wife Elle and our two boys — one four, one born this past March.
           </p>
           <p>
-            I&apos;m a product leader who ships code. I built this site, my wife&apos;s interior design tools, and the internal tools behind my consulting practice. Less deck, more specs and software.
+            I&apos;m a product leader who ships code. Fifteen years in with two SaaS exits and two founding startups (one sold, one failed). No to PowerPoint, yes to specs and software.
           </p>
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
