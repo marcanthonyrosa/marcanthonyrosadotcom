@@ -18,8 +18,12 @@ const EXIT_COLLAPSE_MS = 350;
 const EXIT_PINCH_MS = 150;
 const EXIT_HOLD_MS = 50;
 const EXIT_BLOOM_MS = 400;
+const EXIT_PINCH_START = EXIT_COLLAPSE_MS;
+const EXIT_HOLD_START = EXIT_COLLAPSE_MS + EXIT_PINCH_MS;
 const EXIT_BLOOM_START = EXIT_COLLAPSE_MS + EXIT_PINCH_MS + EXIT_HOLD_MS;
 const EXIT_TOTAL_MS = EXIT_BLOOM_START + EXIT_BLOOM_MS;
+
+const CRT_BG = "#050708";
 
 function easeInOutCubic(t: number) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -27,6 +31,122 @@ function easeInOutCubic(t: number) {
 
 function easeInQuart(t: number) {
   return t * t * t * t;
+}
+
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function buildNoiseCanvas() {
+  const c = document.createElement("canvas");
+  c.width = 160;
+  c.height = 160;
+  const ctx = c.getContext("2d");
+  if (!ctx) return c;
+  const img = ctx.createImageData(160, 160);
+  for (let i = 0; i < img.data.length; i += 4) {
+    const v = (Math.random() * 255) | 0;
+    img.data[i] = v;
+    img.data[i + 1] = v;
+    img.data[i + 2] = v;
+    img.data[i + 3] = 22;
+  }
+  ctx.putImageData(img, 0, 0);
+  return c;
+}
+
+function buildProxyCanvas() {
+  const c = document.createElement("canvas");
+  c.width = 512;
+  c.height = 512;
+  const ctx = c.getContext("2d");
+  if (!ctx) return c;
+  ctx.fillStyle = "#070910";
+  ctx.fillRect(0, 0, 512, 512);
+
+  const blobs: Array<[number, number, number, string]> = [
+    [120, 180, 120, "241,196,15"],
+    [370, 150, 95, "107,194,183"],
+    [180, 360, 140, "107,194,183"],
+    [410, 380, 85, "241,196,15"],
+    [260, 260, 55, "255,240,210"],
+    [60, 420, 70, "241,196,15"],
+    [450, 90, 60, "107,194,183"],
+  ];
+  for (const [x, y, r, rgb] of blobs) {
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, `rgba(${rgb},0.55)`);
+    g.addColorStop(0.5, `rgba(${rgb},0.18)`);
+    g.addColorStop(1, `rgba(${rgb},0)`);
+    ctx.fillStyle = g;
+    ctx.fillRect(x - r, y - r, r * 2, r * 2);
+  }
+
+  ctx.fillStyle = "rgba(0,0,0,0.32)";
+  for (let y = 0; y < 512; y += 3) {
+    ctx.fillRect(0, y, 512, 1);
+  }
+  ctx.fillStyle = "rgba(107,194,183,0.05)";
+  for (let y = 1; y < 512; y += 3) {
+    ctx.fillRect(0, y, 512, 1);
+  }
+  return c;
+}
+
+function buildShadowMask() {
+  const c = document.createElement("canvas");
+  c.width = 1;
+  c.height = 3;
+  const ctx = c.getContext("2d");
+  if (!ctx) return c;
+  ctx.fillStyle = "rgba(0,0,0,0.14)";
+  ctx.fillRect(0, 0, 1, 1);
+  return c;
+}
+
+function drawVignette(ctx: CanvasRenderingContext2D, W: number, H: number) {
+  const r = Math.hypot(W, H) / 2;
+  const g = ctx.createRadialGradient(W / 2, H / 2, r * 0.55, W / 2, H / 2, r);
+  g.addColorStop(0, "rgba(0,0,0,0)");
+  g.addColorStop(1, "rgba(0,0,0,0.25)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function drawNoise(ctx: CanvasRenderingContext2D, noise: HTMLCanvasElement, W: number, H: number, alpha: number) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  const nx = -Math.floor(Math.random() * noise.width);
+  const ny = -Math.floor(Math.random() * noise.height);
+  for (let y = ny; y < H; y += noise.height) {
+    for (let x = nx; x < W; x += noise.width) {
+      ctx.drawImage(noise, x, y);
+    }
+  }
+  ctx.restore();
+}
+
+function drawPhosphorLine(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  dpr: number,
+  coreAlpha: number,
+  haloScale: number,
+) {
+  const halo = 30 * dpr * haloScale;
+  const coreW = 2 * dpr;
+  const grad = ctx.createLinearGradient(0, y - halo, 0, y + halo);
+  grad.addColorStop(0, "rgba(107,194,183,0)");
+  grad.addColorStop(0.5 - (coreW / halo) * 0.5, `rgba(107,194,183,${0.15 * coreAlpha})`);
+  grad.addColorStop(0.5 - (coreW / halo) * 0.25, `rgba(107,194,183,${0.85 * coreAlpha})`);
+  grad.addColorStop(0.5, `rgba(255,255,255,${0.9 * coreAlpha})`);
+  grad.addColorStop(0.5 + (coreW / halo) * 0.25, `rgba(107,194,183,${0.85 * coreAlpha})`);
+  grad.addColorStop(0.5 + (coreW / halo) * 0.5, `rgba(107,194,183,${0.15 * coreAlpha})`);
+  grad.addColorStop(1, "rgba(107,194,183,0)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(x, y - halo, w, halo * 2);
 }
 
 export default function HeadshotOrGame() {
@@ -44,6 +164,9 @@ export default function HeadshotOrGame() {
   const exitStartRef = useRef<number>(0);
   const swappedRef = useRef<boolean>(false);
   const offscreenRef = useRef<HTMLCanvasElement | null>(null);
+  const noiseRef = useRef<HTMLCanvasElement | null>(null);
+  const proxyRef = useRef<HTMLCanvasElement | null>(null);
+  const shadowMaskRef = useRef<HTMLCanvasElement | null>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
   const imgSizeRef = useRef<{ w: number; h: number }>({ w: 611, h: 611 });
 
@@ -155,6 +278,13 @@ export default function HeadshotOrGame() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    if (!noiseRef.current) noiseRef.current = buildNoiseCanvas();
+    if (!proxyRef.current) proxyRef.current = buildProxyCanvas();
+    if (!shadowMaskRef.current) shadowMaskRef.current = buildShadowMask();
+    const noise = noiseRef.current;
+    const proxy = proxyRef.current;
+    const shadowMask = shadowMaskRef.current;
+
     const elapsed = ts - exitStartRef.current;
     ctx.clearRect(0, 0, W, H);
 
@@ -162,51 +292,63 @@ export default function HeadshotOrGame() {
     const cy = H / 2;
 
     if (elapsed < EXIT_COLLAPSE_MS) {
-      const t = easeInOutCubic(elapsed / EXIT_COLLAPSE_MS);
+      const raw = elapsed / EXIT_COLLAPSE_MS;
+      const t = easeInOutCubic(raw);
 
-      const shutterH = (H / 2) * t;
-      ctx.fillStyle = "#0d0d1a";
-      ctx.fillRect(0, 0, W, shutterH);
-      ctx.fillRect(0, H - shutterH, W, shutterH);
-
-      const lineH = Math.max(2 * dpr, 4 * dpr + 6 * dpr * t);
-      const glowH = 10 * dpr + 36 * dpr * t;
-      const grad = ctx.createLinearGradient(0, cy - glowH, 0, cy + glowH);
-      grad.addColorStop(0, "rgba(107,194,183,0)");
-      grad.addColorStop(0.5, `rgba(107,194,183,${0.35 + 0.6 * t})`);
-      grad.addColorStop(1, "rgba(107,194,183,0)");
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, cy - glowH, W, glowH * 2);
-
-      ctx.fillStyle = `rgba(230, 255, 248, ${0.55 + 0.45 * t})`;
-      ctx.fillRect(0, cy - lineH / 2, W, lineH);
-    } else if (elapsed < EXIT_COLLAPSE_MS + EXIT_PINCH_MS) {
-      ctx.fillStyle = "#0d0d1a";
+      ctx.fillStyle = CRT_BG;
       ctx.fillRect(0, 0, W, H);
 
-      const t = easeInOutCubic((elapsed - EXIT_COLLAPSE_MS) / EXIT_PINCH_MS);
+      const scaleY = Math.max(0.02, 1 - 0.98 * t);
+      const jitterX = (Math.random() - 0.5) * 2 * dpr;
+
+      ctx.save();
+      ctx.translate(cx + jitterX, cy);
+      ctx.scale(1, scaleY);
+      ctx.drawImage(proxy, -W / 2, -H / 2, W, H);
+      ctx.restore();
+
+      const coreAlpha = 0.4 + 0.6 * t;
+      const haloScale = 0.6 + 0.8 * t;
+      drawPhosphorLine(ctx, 0, cy, W, dpr, coreAlpha, haloScale);
+
+      const coreH = 3 * dpr + 5 * dpr * t;
+      ctx.fillStyle = `rgba(255,255,255,${0.85 + 0.15 * t})`;
+      ctx.fillRect(0, cy - coreH / 2, W, coreH);
+    } else if (elapsed < EXIT_HOLD_START) {
+      const raw = (elapsed - EXIT_PINCH_START) / EXIT_PINCH_MS;
+      const t = easeInOutCubic(raw);
+
+      ctx.fillStyle = CRT_BG;
+      ctx.fillRect(0, 0, W, H);
+
       const halfW = (W / 2) * (1 - t);
+      const jitterX = (Math.random() - 0.5) * 1.5 * dpr;
 
-      const glowH = 46 * dpr;
-      const grad = ctx.createLinearGradient(0, cy - glowH, 0, cy + glowH);
-      grad.addColorStop(0, "rgba(107,194,183,0)");
-      grad.addColorStop(0.5, "rgba(107,194,183,0.95)");
-      grad.addColorStop(1, "rgba(107,194,183,0)");
-      ctx.fillStyle = grad;
-      ctx.fillRect(cx - halfW, cy - glowH, halfW * 2, glowH * 2);
+      const chromaOffset = (4 + 2 * t) * dpr;
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+      ctx.fillStyle = `rgba(255,60,60,${0.55 + 0.3 * t})`;
+      ctx.fillRect(cx - halfW - chromaOffset + jitterX, cy - 2 * dpr, halfW * 2, 4 * dpr);
+      ctx.fillStyle = `rgba(60,120,255,${0.55 + 0.3 * t})`;
+      ctx.fillRect(cx - halfW + chromaOffset + jitterX, cy - 2 * dpr, halfW * 2, 4 * dpr);
+      ctx.restore();
 
-      const coreH = Math.max(1 * dpr, 5 * dpr);
-      ctx.fillStyle = "rgba(235, 255, 250, 1)";
-      ctx.fillRect(cx - halfW, cy - coreH / 2, halfW * 2, coreH);
+      drawPhosphorLine(ctx, cx - halfW + jitterX, cy, halfW * 2, dpr, 1, 1.3);
 
-      const dotR = 5 * dpr + 4 * dpr * t;
-      const dotGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, dotR * 3);
-      dotGrad.addColorStop(0, "rgba(235, 255, 250, 1)");
-      dotGrad.addColorStop(0.4, "rgba(107,194,183,0.9)");
+      const coreH = 4 * dpr;
+      ctx.fillStyle = "rgba(255,255,255,1)";
+      ctx.fillRect(cx - halfW + jitterX, cy - coreH / 2, halfW * 2, coreH);
+
+      const pulse = 0.85 + 0.15 * Math.sin(raw * Math.PI * 3);
+      const dotR = (8 + 6 * t) * dpr * pulse;
+      const dotGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, dotR * 4);
+      dotGrad.addColorStop(0, "rgba(255,255,255,1)");
+      dotGrad.addColorStop(0.15, "rgba(230,255,250,0.95)");
+      dotGrad.addColorStop(0.45, "rgba(107,194,183,0.7)");
       dotGrad.addColorStop(1, "rgba(107,194,183,0)");
       ctx.fillStyle = dotGrad;
       ctx.beginPath();
-      ctx.arc(cx, cy, dotR * 3, 0, Math.PI * 2);
+      ctx.arc(cx, cy, dotR * 4, 0, Math.PI * 2);
       ctx.fill();
     } else if (elapsed < EXIT_BLOOM_START) {
       if (!swappedRef.current) {
@@ -214,42 +356,92 @@ export default function HeadshotOrGame() {
         setPixelating(false);
         setPlaying(false);
       }
-      ctx.fillStyle = "#0d0d1a";
+      ctx.fillStyle = CRT_BG;
       ctx.fillRect(0, 0, W, H);
 
-      const dotR = 9 * dpr;
-      const dotGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, dotR * 3);
-      dotGrad.addColorStop(0, "rgba(235, 255, 250, 1)");
-      dotGrad.addColorStop(0.4, "rgba(107,194,183,0.95)");
+      const raw = (elapsed - EXIT_HOLD_START) / EXIT_HOLD_MS;
+      const decay = 1 - easeOutCubic(raw);
+
+      const streakW = W * (0.45 + 0.35 * raw);
+      const streakH = 2 * dpr + 2 * dpr * decay;
+      const streakGrad = ctx.createLinearGradient(cx - streakW / 2, 0, cx + streakW / 2, 0);
+      streakGrad.addColorStop(0, "rgba(107,194,183,0)");
+      streakGrad.addColorStop(0.5, `rgba(107,194,183,${0.7 * decay})`);
+      streakGrad.addColorStop(1, "rgba(107,194,183,0)");
+      ctx.fillStyle = streakGrad;
+      ctx.fillRect(cx - streakW / 2, cy - streakH / 2, streakW, streakH);
+
+      const dotR = (11 + 3 * raw) * dpr;
+      const dotGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, dotR * 4);
+      dotGrad.addColorStop(0, `rgba(255,255,255,${0.95 * decay})`);
+      dotGrad.addColorStop(0.2, `rgba(230,255,250,${0.8 * decay})`);
+      dotGrad.addColorStop(0.5, `rgba(107,194,183,${0.55 * decay})`);
       dotGrad.addColorStop(1, "rgba(107,194,183,0)");
       ctx.fillStyle = dotGrad;
       ctx.beginPath();
-      ctx.arc(cx, cy, dotR * 3, 0, Math.PI * 2);
+      ctx.arc(cx, cy, dotR * 4, 0, Math.PI * 2);
       ctx.fill();
     } else if (elapsed < EXIT_TOTAL_MS) {
-      const t = easeInOutCubic((elapsed - EXIT_BLOOM_START) / EXIT_BLOOM_MS);
+      const raw = (elapsed - EXIT_BLOOM_START) / EXIT_BLOOM_MS;
+      const t = easeInOutCubic(raw);
 
-      const lineExpand = Math.min(1, t / 0.35);
-      const unfurl = t < 0.35 ? 0 : (t - 0.35) / 0.65;
+      ctx.fillStyle = CRT_BG;
+      ctx.fillRect(0, 0, W, H);
 
-      const revealH = H * unfurl;
-      const shutterH = (H - revealH) / 2;
-      ctx.fillStyle = "#0d0d1a";
-      ctx.fillRect(0, 0, W, shutterH);
-      ctx.fillRect(0, H - shutterH, W, shutterH);
+      const scaleY = Math.max(0.02, 0.02 + 0.98 * t);
+      const jitterX = raw < 0.8 ? (Math.random() - 0.5) * 2 * dpr * (1 - raw / 0.8) : 0;
 
-      const halfW = (W / 2) * lineExpand;
-      const glowH = Math.max(6 * dpr, 46 * dpr * (1 - t));
-      const grad = ctx.createLinearGradient(0, cy - glowH, 0, cy + glowH);
-      grad.addColorStop(0, "rgba(107,194,183,0)");
-      grad.addColorStop(0.5, `rgba(107,194,183,${0.9 * (1 - t * 0.6)})`);
-      grad.addColorStop(1, "rgba(107,194,183,0)");
-      ctx.fillStyle = grad;
-      ctx.fillRect(cx - halfW, cy - glowH, halfW * 2, glowH * 2);
+      const img = imgRef.current;
+      if (img) {
+        const iw = img.naturalWidth;
+        const ih = img.naturalHeight;
+        const scale = Math.max(W / iw, H / ih);
+        const drawW = iw * scale;
+        const drawH = ih * scale;
 
-      const coreH = Math.max(1 * dpr, 4 * dpr * (1 - t * 0.5));
-      ctx.fillStyle = `rgba(235, 255, 250, ${1 - t * 0.8})`;
-      ctx.fillRect(cx - halfW, cy - coreH / 2, halfW * 2, coreH);
+        ctx.save();
+        ctx.translate(cx + jitterX, cy);
+        ctx.scale(1, scaleY);
+        ctx.drawImage(img, -drawW / 2, -drawH / 2, drawW, drawH);
+        if (raw < 0.35) {
+          const chroma = (5 * dpr) * (1 - raw / 0.35);
+          ctx.save();
+          ctx.globalCompositeOperation = "screen";
+          ctx.globalAlpha = 0.35;
+          ctx.drawImage(img, -drawW / 2 - chroma, -drawH / 2, drawW, drawH);
+          ctx.drawImage(img, -drawW / 2 + chroma, -drawH / 2, drawW, drawH);
+          ctx.restore();
+        }
+        ctx.restore();
+      }
+
+      const maskAlpha = raw < 0.75 ? 1 : Math.max(0, 1 - (raw - 0.75) / 0.25);
+      if (maskAlpha > 0) {
+        ctx.save();
+        ctx.globalAlpha = maskAlpha;
+        const pattern = ctx.createPattern(shadowMask, "repeat");
+        if (pattern) {
+          ctx.fillStyle = pattern;
+          ctx.fillRect(0, 0, W, H);
+        }
+        ctx.restore();
+      }
+
+      const lineFade = 1 - easeOutCubic(raw);
+      const coreAlpha = lineFade;
+      const haloScale = 1 + 2 * easeOutCubic(raw);
+      drawPhosphorLine(ctx, 0, cy, W, dpr, coreAlpha, haloScale);
+
+      if (raw < 0.5) {
+        const coreH = 3 * dpr * (1 - raw / 0.5);
+        ctx.fillStyle = `rgba(255,255,255,${0.7 * (1 - raw / 0.5)})`;
+        ctx.fillRect(0, cy - coreH / 2, W, coreH);
+      }
+    }
+
+    if (elapsed < EXIT_TOTAL_MS) {
+      drawNoise(ctx, noise, W, H, 0.08);
+      drawVignette(ctx, W, H);
     }
 
     if (elapsed < EXIT_TOTAL_MS) {
