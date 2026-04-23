@@ -14,6 +14,12 @@ const MarcManGame = dynamic(() => import("./MarcManGame"), {
 
 const DURATION = 1300;
 
+const EXIT_FLASH_MS = 80;
+const EXIT_SHATTER_MS = 350;
+const EXIT_SETTLE_MS = 120;
+const EXIT_TOTAL_MS = EXIT_FLASH_MS + EXIT_SHATTER_MS + EXIT_SETTLE_MS;
+const EXIT_SLICES = 20;
+
 function easeInOutCubic(t: number) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
@@ -26,11 +32,15 @@ export default function HeadshotOrGame() {
   const [playing, setPlaying] = useState(false);
   const [pressed, setPressed] = useState(false);
   const [pixelating, setPixelating] = useState(false);
+  const [exiting, setExiting] = useState(false);
   const posthog = usePostHog();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const exitCanvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
+  const exitAnimRef = useRef<number>(0);
   const startTimeRef = useRef<number>(0);
+  const exitStartRef = useRef<number>(0);
   const offscreenRef = useRef<HTMLCanvasElement | null>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
   const imgSizeRef = useRef<{ w: number; h: number }>({ w: 611, h: 611 });
@@ -44,7 +54,10 @@ export default function HeadshotOrGame() {
       imgSizeRef.current = { w: img.naturalWidth, h: img.naturalHeight };
     };
     import("./MarcManGame"); // preload chunk so it's ready on first click
-    return () => { cancelAnimationFrame(animRef.current); };
+    return () => {
+      cancelAnimationFrame(animRef.current);
+      cancelAnimationFrame(exitAnimRef.current);
+    };
   }, []);
 
   const animatePixelation = useCallback((ts: number) => {
@@ -121,10 +134,106 @@ export default function HeadshotOrGame() {
     animRef.current = requestAnimationFrame(animatePixelation);
   }, [animatePixelation]);
 
+  const animateExit = useCallback((ts: number) => {
+    const canvas = exitCanvasRef.current;
+    if (!canvas) return;
+    const W = canvas.clientWidth || canvas.width;
+    const H = canvas.clientHeight || canvas.height;
+    const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+    const bufW = Math.max(1, Math.round(W * dpr));
+    const bufH = Math.max(1, Math.round(H * dpr));
+    if (canvas.width !== bufW || canvas.height !== bufH) {
+      canvas.width = bufW;
+      canvas.height = bufH;
+    }
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+
+    const elapsed = ts - exitStartRef.current;
+
+    if (elapsed < EXIT_FLASH_MS) {
+      const t = elapsed / EXIT_FLASH_MS;
+      const fade = 1 - t * 0.25;
+      ctx.fillStyle = `rgba(8, 12, 14, ${0.92 * fade})`;
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = `rgba(107, 194, 183, ${0.28 * fade})`;
+      ctx.fillRect(0, 0, W, H);
+
+      const shift = 6;
+      const prev = ctx.globalCompositeOperation;
+      ctx.globalCompositeOperation = "screen";
+      ctx.fillStyle = `rgba(255, 40, 60, ${0.55 * fade})`;
+      ctx.fillRect(-shift, 0, W, H);
+      ctx.fillStyle = `rgba(40, 120, 255, ${0.55 * fade})`;
+      ctx.fillRect(shift, 0, W, H);
+      ctx.globalCompositeOperation = prev;
+
+      const bandY = (elapsed / EXIT_FLASH_MS) * H;
+      ctx.fillStyle = "rgba(107, 194, 183, 0.35)";
+      ctx.fillRect(0, bandY - 2, W, 4);
+    } else if (elapsed < EXIT_FLASH_MS + EXIT_SHATTER_MS) {
+      const t = (elapsed - EXIT_FLASH_MS) / EXIT_SHATTER_MS;
+      const eased = easeInQuart(t);
+      const sliceH = H / EXIT_SLICES;
+
+      for (let i = 0; i < EXIT_SLICES; i++) {
+        const dir = i % 2 === 0 ? 1 : -1;
+        const offset = dir * eased * (W * 1.15);
+        const y = i * sliceH;
+
+        ctx.fillStyle = "rgba(10, 14, 18, 0.96)";
+        ctx.fillRect(offset, y, W, sliceH + 1);
+
+        const trailW = 14;
+        const trailX = dir > 0 ? offset - trailW : offset + W;
+        const grad = ctx.createLinearGradient(trailX, 0, trailX + trailW, 0);
+        if (dir > 0) {
+          grad.addColorStop(0, "rgba(107, 194, 183, 0)");
+          grad.addColorStop(1, "rgba(107, 194, 183, 0.75)");
+        } else {
+          grad.addColorStop(0, "rgba(107, 194, 183, 0.75)");
+          grad.addColorStop(1, "rgba(107, 194, 183, 0)");
+        }
+        ctx.fillStyle = grad;
+        ctx.fillRect(trailX, y, trailW, sliceH + 1);
+      }
+    } else if (elapsed < EXIT_TOTAL_MS) {
+      const t = (elapsed - EXIT_FLASH_MS - EXIT_SHATTER_MS) / EXIT_SETTLE_MS;
+      const y = H * t;
+      const alpha = 0.8 * (1 - t);
+      const glowH = 6;
+      const grad = ctx.createLinearGradient(0, y - glowH * 2, 0, y + glowH);
+      grad.addColorStop(0, "rgba(107,194,183,0)");
+      grad.addColorStop(0.5, `rgba(107,194,183,${alpha})`);
+      grad.addColorStop(1, "rgba(107,194,183,0)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, y - glowH * 2, W, glowH * 3);
+    }
+
+    if (elapsed < EXIT_TOTAL_MS) {
+      exitAnimRef.current = requestAnimationFrame(animateExit);
+    } else {
+      setExiting(false);
+    }
+  }, []);
+
+  const handleExit = useCallback(() => {
+    posthog.capture("game_exited");
+    setPlaying(false);
+    setPixelating(false);
+    setExiting(true);
+    exitStartRef.current = performance.now();
+    exitAnimRef.current = requestAnimationFrame(animateExit);
+  }, [animateExit, posthog]);
+
   if (playing) {
     return (
       <div className="w-full mb-8">
-        <MarcManGame onExit={() => setPlaying(false)} />
+        <MarcManGame onExit={handleExit} />
       </div>
     );
   }
@@ -154,6 +263,18 @@ export default function HeadshotOrGame() {
           display: pixelating ? "block" : "none",
           imageRendering: "pixelated",
           cursor: "pointer",
+        }}
+      />
+      <canvas
+        ref={exitCanvasRef}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          borderRadius: "16px",
+          display: exiting ? "block" : "none",
+          pointerEvents: "none",
         }}
       />
       <style>{`
