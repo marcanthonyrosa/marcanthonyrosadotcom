@@ -151,8 +151,9 @@ export default function About() {
             I&apos;m Marc 👋. I live in Houston with my wife Elle and our two boys — one four, one born this past March.
           </p>
           <p>
-            I&apos;m a product leader who ships code. Fifteen years in with two SaaS exits and two founding startups (one sold, one failed). No to PowerPoint, yes to specs and software.
+            I&apos;ve spent the last ~15 years building and scaling SaaS products. I like staying close to the work — writing specs, shipping code when it&apos;s useful, and getting things in front of real users quickly.
           </p>
+          <hr style={{ borderColor: "var(--border)", margin: "2.5rem 0" }} />
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
             style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
@@ -160,14 +161,28 @@ export default function About() {
             How I got here
           </h2>
           <p>
-            I love building things that people love. In college, as a way to hack around the finance major I hated, I built an Instacart-for-college-campuses business, sold it, used the energy to raise a seed round for a Foursquare-for-events app that failed hard, and then taught myself product from the studs.
+            I was a finance major who didn&apos;t want to be one, so I started building things instead.
           </p>
           <p>
-            I&apos;ve led product at SaaS companies ever since. I led product at Zipwhip through its acquisition by Twilio, and built product at Deep 6 AI — AI-powered clinical trial matching, later acquired by Tempus. Most recently I was Head of Product at Thread, where we grew a narrow Slack ticketing tool into an AI-native service platform for MSPs.
+            One company worked. The next — a Foursquare-for-events app — failed dramatically. That&apos;s where I learned product: solving problems that matter for a market that pulls demand.
           </p>
           <p>
-            We became category leader because of the grown-up work that happens after an idea clicks: scaling products for a mainstream audience, building a distribution channel for our segments, and crossing the chasm with a whole product solution.
+            I&apos;ve been doing product ever since.
           </p>
+          <hr style={{ borderColor: "var(--border)", margin: "2.5rem 0" }} />
+          <p>
+            I&apos;ve spent most of my career helping early products grow up into real businesses.
+          </p>
+          <p>
+            At Zipwhip, I led product through a period of rapid growth and into its acquisition by Twilio. At Deep 6 AI, I worked on AI-powered clinical trial matching (later acquired by Tempus).
+          </p>
+          <p>
+            Most recently, I was Head of Product at Thread, where we turned a narrow Slack-based ticketing tool into a broader AI-native service platform for MSPs.
+          </p>
+          <p>
+            My sweet spot is turning early ideas into real businesses: building a reliable platform, shaping it for a broader audience, and creating the habits that make it stick.
+          </p>
+          <hr style={{ borderColor: "var(--border)", margin: "2.5rem 0" }} />
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
             style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
@@ -175,10 +190,19 @@ export default function About() {
             Sugo
           </h2>
           <p>
-            My practice is Sugo AI — I help mid-to-large enterprises cross the gap between AI pilots and production.
+            I run Sugo AI — a small product studio focused on getting AI into production.
           </p>
           <p>
-            Sugo is Italian for sauce. Every Sunday my boys and I make it; we&apos;ve got a recipe we&apos;ve been refining, tweaking it a little each time. That&apos;s also a great description of how I think about product work. The logo is a pixel tomato. It&apos;s a joke and it isn&apos;t.
+            Most mid-to-large businesses want cutting-edge AI, but struggle to get anything real into production — across their teams or in the products they ship. That&apos;s where I help.
+          </p>
+          <p>
+            &ldquo;Sugo&rdquo; means sauce in Italian. Every Sunday, my boys and I make it together — same base recipe, small tweaks every time.
+          </p>
+          <p>
+            That&apos;s how I think about product work. You don&apos;t get it right in one shot. You refine it, adjust it, and keep going until it&apos;s something people actually want.
+          </p>
+          <p>
+            The logo is a pixelated tomato. It&apos;s a little joke, but also not really.
           </p>
         </div>
       </section>
