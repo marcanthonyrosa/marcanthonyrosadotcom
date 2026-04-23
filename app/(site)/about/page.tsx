@@ -5,7 +5,7 @@ import CompanyLogo from "@/components/CompanyLogo";
 export const metadata: Metadata = {
   title: "About Marc Rosa",
   description:
-    "About Marc Anthony Rosa — Houston-based Head of Product and tech founder. 15+ years building SaaS products at Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer, and Tribune Media.",
+    "About Marc Anthony Rosa - Houston-based Head of Product and tech founder. 15+ years building SaaS products at Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer, and Tribune Media.",
   alternates: { canonical: "https://marcrosa.com/about" },
   openGraph: {
     title: "About Marc Anthony Rosa",
@@ -128,7 +128,7 @@ const VALUES = [
   },
   {
     title: "Mandatory spicy conversations.",
-    body: "The hard, honest takes — the ones people hesitate to say out loud — are how a product actually gets sharper. I push for them, and expect them back.",
+    body: "The hard, honest takes - the ones people hesitate to say out loud - are how a product actually gets sharper. I push for them, and expect them back.",
   },
 ];
 
@@ -148,10 +148,10 @@ export default function About() {
         </div>
         <div className="prose max-w-none">
           <p>
-            I&apos;m Marc 👋. I live in Houston with my wife Elle and our two boys — one four, one born this past March.
+            I&apos;m Marc 👋. I live in Houston with my wife Elle and our two boys - one four, one born this past March.
           </p>
           <p>
-            I&apos;ve spent the last ~15 years building and scaling SaaS products. I like staying close to the work — writing specs, shipping code when it&apos;s useful, and getting things in front of real users quickly.
+            I&apos;ve spent the last ~15 years building SaaS products. I like staying close to the work - writing specs, shipping code when it helps, getting things in front of real users quickly.
           </p>
           <hr style={{ borderColor: "var(--border)", margin: "2.5rem 0" }} />
           <h2
@@ -164,23 +164,13 @@ export default function About() {
             I was a finance major who didn&apos;t want to be one, so I started building things instead.
           </p>
           <p>
-            One company worked. The next — a Foursquare-for-events app — failed dramatically. That&apos;s where I learned product: solving problems that matter for a market that pulls demand.
+            One company worked. The next - a Foursquare-for-events app - failed dramatically. That&apos;s where I learned product: solving problems people actually want solved.
           </p>
           <p>
-            I&apos;ve been doing product ever since.
-          </p>
-          <hr style={{ borderColor: "var(--border)", margin: "2.5rem 0" }} />
-          <p>
-            I&apos;ve spent most of my career helping early products grow up into real businesses.
+            I&apos;ve been doing product ever since - at Zipwhip through its acquisition by Twilio, at Deep 6 AI matching patients to clinical trials through the height of Covid, and most recently as Head of Product at Thread, where we turned a narrow Slack-based ticketing tool into an AI-native service platform for MSPs.
           </p>
           <p>
-            At Zipwhip, I led product through a period of rapid growth and into its acquisition by Twilio. At Deep 6 AI, I worked on AI-powered clinical trial matching (later acquired by Tempus).
-          </p>
-          <p>
-            Most recently, I was Head of Product at Thread, where we turned a narrow Slack-based ticketing tool into a broader AI-native service platform for MSPs.
-          </p>
-          <p>
-            My sweet spot is turning early ideas into real businesses: building a reliable platform, shaping it for a broader audience, and creating the habits that make it stick.
+            My sweet spot is taking something that works for a few people and making it work for a lot of them.
           </p>
           <hr style={{ borderColor: "var(--border)", margin: "2.5rem 0" }} />
           <h2
@@ -190,16 +180,10 @@ export default function About() {
             Sugo
           </h2>
           <p>
-            I run Sugo AI — a small product studio focused on getting AI into production.
+            I run Sugo AI - a small product studio focused on getting AI into production. Most companies talk about AI. <a href="https://garryslist.org/posts/half-the-ai-agent-market-is-one-category-the-rest-is-wide-open" target="_blank" rel="noopener noreferrer">Few actually ship it</a> - less than 5% in legacy industries. I help with the shipping part.
           </p>
           <p>
-            Most mid-to-large businesses want cutting-edge AI, but struggle to get anything real into production — across their teams or in the products they ship. That&apos;s where I help.
-          </p>
-          <p>
-            &ldquo;Sugo&rdquo; means sauce in Italian. Every Sunday, my boys and I make it together — same base recipe, small tweaks every time.
-          </p>
-          <p>
-            That&apos;s how I think about product work. You don&apos;t get it right in one shot. You refine it, adjust it, and keep going until it&apos;s something people actually want.
+            &ldquo;Sugo&rdquo; means sauce in Italian. Every Sunday, my boys and I make it together - same base recipe, small tweaks every time. That&apos;s how product work goes too: you don&apos;t get it right in one shot, you keep refining until people actually want it.
           </p>
           <p>
             The logo is a pixelated tomato. It&apos;s a little joke, but also not really.
