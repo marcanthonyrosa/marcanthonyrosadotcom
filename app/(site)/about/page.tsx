@@ -148,12 +148,11 @@ export default function About() {
         </div>
         <div className="prose max-w-none">
           <p>
-            I&apos;m Marc 👋. I live in Houston with my wife Elle and our two boys - one four, one born this past March.
+            I&apos;m Marc 👋. I live in Houston with my wife Elle and our two sons - one four, one born this past March.
           </p>
           <p>
-            I&apos;ve spent the last ~15 years building SaaS products. I like staying close to the work - writing specs, shipping code when it helps, getting things in front of real users quickly.
+            I&apos;ve spent the last ~15 years building SaaS products. I like staying close to the work - writing specs, shipping code, getting things in front of users quickly.
           </p>
-          <hr style={{ borderColor: "var(--border)", margin: "2.5rem 0" }} />
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
             style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
@@ -172,7 +171,6 @@ export default function About() {
           <p>
             My sweet spot is taking something that works for a few people and making it work for a lot of them.
           </p>
-          <hr style={{ borderColor: "var(--border)", margin: "2.5rem 0" }} />
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
             style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
@@ -183,7 +181,7 @@ export default function About() {
             I run Sugo AI - a small product studio focused on getting AI into production. Most companies talk about AI. <a href="https://garryslist.org/posts/half-the-ai-agent-market-is-one-category-the-rest-is-wide-open" target="_blank" rel="noopener noreferrer">Few actually ship it</a> - less than 5% in legacy industries. I help with the shipping part.
           </p>
           <p>
-            &ldquo;Sugo&rdquo; means sauce in Italian. Every Sunday, my boys and I make it together - same base recipe, small tweaks every time. That&apos;s how product work goes too: you don&apos;t get it right in one shot, you keep refining until people actually want it.
+            &ldquo;Sugo&rdquo; means sauce in Italian. Every Sunday, my sons and I make it together - same base recipe, small tweaks every time. That&apos;s how product work goes too: you don&apos;t get it right in one shot, you keep refining until people actually want it.
           </p>
           <p>
             The logo is a pixelated tomato. It&apos;s a little joke, but also not really.
