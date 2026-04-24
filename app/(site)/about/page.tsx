@@ -160,10 +160,10 @@ export default function About() {
             How I got here
           </h2>
           <p>
-            I was a finance major who didn&apos;t want to be one, so I started building things instead.
+            I was a business major who didn&apos;t want to be one, so I started building things instead.
           </p>
           <p>
-            One company worked. The next - a Foursquare-for-events app - failed dramatically. That&apos;s where I learned product: solving problems people actually want solved.
+            One company worked. The next - a Foursquare-for-events app - failed spectacularly. That&apos;s where I learned product: solving problems people actually want solved.
           </p>
           <p>
             I&apos;ve been doing product ever since - at Zipwhip through its acquisition by Twilio, at Deep 6 AI matching patients to clinical trials through the height of Covid, and most recently as Head of Product at Thread, where we turned a narrow Slack-based ticketing tool into an AI-native service platform for MSPs.
