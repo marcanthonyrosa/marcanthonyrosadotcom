@@ -4,6 +4,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { usePostHog } from "posthog-js/react";
+import { MAZE_TEMPLATE, COLS, ROWS, GHOST_STARTS } from "./mazeConfig";
 
 const MarcManGame = dynamic(() => import("./MarcManGame"), {
   ssr: false,
@@ -55,32 +56,96 @@ function buildNoiseCanvas() {
   return c;
 }
 
+const PROXY_BEAR_COLORS = [
+  "#3498db", "#2ecc71", "#1abc9c",
+  "#27ae60", "#2980b9", "#16a085",
+  "#00b894", "#0984e3",
+];
+
 function buildProxyCanvas() {
   const c = document.createElement("canvas");
   c.width = 512;
   c.height = 512;
   const ctx = c.getContext("2d");
   if (!ctx) return c;
-  ctx.fillStyle = "#070910";
+
+  ctx.fillStyle = "#0d0d1a";
   ctx.fillRect(0, 0, 512, 512);
 
-  const blobs: Array<[number, number, number, string]> = [
-    [120, 180, 120, "241,196,15"],
-    [370, 150, 95, "107,194,183"],
-    [180, 360, 140, "107,194,183"],
-    [410, 380, 85, "241,196,15"],
-    [260, 260, 55, "255,240,210"],
-    [60, 420, 70, "241,196,15"],
-    [450, 90, 60, "107,194,183"],
-  ];
-  for (const [x, y, r, rgb] of blobs) {
-    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-    g.addColorStop(0, `rgba(${rgb},0.55)`);
-    g.addColorStop(0.5, `rgba(${rgb},0.18)`);
-    g.addColorStop(1, `rgba(${rgb},0)`);
-    ctx.fillStyle = g;
-    ctx.fillRect(x - r, y - r, r * 2, r * 2);
+  const CS = 512 / ROWS;
+  const offsetX = (512 - COLS * CS) / 2;
+
+  ctx.save();
+  ctx.translate(offsetX, 0);
+
+  ctx.fillStyle = "#1a1aff";
+  for (let r = 0; r < ROWS; r++) {
+    for (let col = 0; col < COLS; col++) {
+      if (MAZE_TEMPLATE[r][col] === 1) {
+        ctx.fillRect(col * CS, r * CS, CS, CS);
+      }
+    }
   }
+  ctx.strokeStyle = "#5566ff";
+  ctx.lineWidth = 0.8;
+  for (let r = 0; r < ROWS; r++) {
+    for (let col = 0; col < COLS; col++) {
+      if (MAZE_TEMPLATE[r][col] === 1) {
+        ctx.strokeRect(col * CS + 0.5, r * CS + 0.5, CS - 1, CS - 1);
+      }
+    }
+  }
+
+  for (let r = 0; r < ROWS; r++) {
+    for (let col = 0; col < COLS; col++) {
+      const cell = MAZE_TEMPLATE[r][col];
+      if (cell !== 2 && cell !== 3) continue;
+      const cx = col * CS + CS / 2;
+      const cy = r * CS + CS / 2;
+      if (cell === 2) {
+        ctx.fillStyle = PROXY_BEAR_COLORS[(col * 7 + r * 3) % PROXY_BEAR_COLORS.length];
+        ctx.beginPath();
+        ctx.arc(cx, cy, CS * 0.18, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillStyle = PROXY_BEAR_COLORS[(col + r * 5) % PROXY_BEAR_COLORS.length];
+        ctx.beginPath();
+        ctx.arc(cx, cy, CS * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+
+  for (const ghost of GHOST_STARTS) {
+    const gx = ghost.col * CS + CS / 2;
+    const gy = ghost.row * CS + CS / 2;
+    const gr = CS * 0.4;
+    const bR = gr / 3;
+    const domeY = gy - gr * 0.15;
+    const bodyBot = domeY + gr;
+    ctx.fillStyle = ghost.color;
+    ctx.beginPath();
+    ctx.arc(gx, domeY, gr, Math.PI, 0, false);
+    ctx.lineTo(gx + gr, bodyBot);
+    ctx.arc(gx + gr - bR, bodyBot, bR, 0, Math.PI, false);
+    ctx.arc(gx, bodyBot, bR, 0, Math.PI, false);
+    ctx.arc(gx - gr + bR, bodyBot, bR, 0, Math.PI, false);
+    ctx.lineTo(gx - gr, domeY);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.ellipse(gx - gr * 0.32, domeY - gr * 0.08, gr * 0.2, gr * 0.27, 0, 0, Math.PI * 2);
+    ctx.ellipse(gx + gr * 0.32, domeY - gr * 0.08, gr * 0.2, gr * 0.27, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#0044ff";
+    ctx.beginPath();
+    ctx.arc(gx - gr * 0.28, domeY - gr * 0.06, gr * 0.11, 0, Math.PI * 2);
+    ctx.arc(gx + gr * 0.36, domeY - gr * 0.06, gr * 0.11, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
 
   ctx.fillStyle = "rgba(0,0,0,0.32)";
   for (let y = 0; y < 512; y += 3) {
