@@ -191,8 +191,6 @@ export default function About() {
         </div>
       </section>
 
-      <hr style={{ borderColor: "var(--border)" }} className="mb-12" />
-
       {/* ── Experience ── */}
       <section className="mb-14">
         <h2
