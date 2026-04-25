@@ -148,10 +148,10 @@ export default function About() {
         </div>
         <div className="prose max-w-none">
           <p>
-            Hi, I&apos;m Marc 👋. I live in Houston with my wife Elle and our two young sons (4 and &lt;1).
+            Hi, I&apos;m Marc 👋. I live in Houston with my wife Elle and our two boys - a four-year-old and a newborn.
           </p>
           <p>
-            I&apos;ve built SaaS products for the last 15 years. I love staying close to the work: writing specs, shipping code, getting things in front of users quickly.
+            I&apos;ve spent 15 years building SaaS products. I like staying close to the work - writing specs, shipping code, getting things in front of users fast.
           </p>
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
