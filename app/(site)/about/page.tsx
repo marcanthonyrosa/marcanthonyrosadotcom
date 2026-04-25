@@ -163,7 +163,7 @@ export default function About() {
             I was a business major who didn&apos;t want to be one, so I started building things instead.
           </p>
           <p>
-            One company worked. The next - a Foursquare-for-events app - failed spectacularly. That&apos;s where I learned product: solving problems people actually want solved.
+            One company worked. The next - a Foursquare-for-events app - failed spectacularly. That trial by fire is where I learned product: solving problems people actually want solved.
           </p>
           <p>
             I&apos;ve been doing product ever since - at Zipwhip through its acquisition by Twilio, at Deep 6 AI matching patients to clinical trials through the height of Covid, and most recently as Head of Product at Thread, where we turned a narrow Slack-based ticketing tool into an AI-native service platform for MSPs.
@@ -181,10 +181,13 @@ export default function About() {
             I run Sugo AI - a small product studio focused on getting AI into production. Most companies talk about AI. <a href="https://garryslist.org/posts/half-the-ai-agent-market-is-one-category-the-rest-is-wide-open" target="_blank" rel="noopener noreferrer">Few actually ship it</a> - less than 5% in legacy industries. I help with the shipping part.
           </p>
           <p>
-            &ldquo;Sugo&rdquo; means sauce in Italian. Every Sunday, my sons and I make it together - same base recipe, small tweaks every time. That&apos;s how product work goes too: you don&apos;t get it right in one shot, you keep refining until people actually want it.
+            &ldquo;Sugo&rdquo; means sauce in Italian. Every Sunday, my sons and I make it together. The sauce is great to start. We push it a little further — something we learned, or just trying something new.
           </p>
           <p>
-            The logo is a pixelated tomato. It&apos;s a little joke, but also not really.
+            It&apos;s the <em>perfect</em> metaphor for product. You&apos;re always refining it, folding in what you&apos;ve learned, and investing in it over time. The work is never finished.
+          </p>
+          <p>
+            The logo is a pixelated tomato. It started out as a bit, but it fits perfectly.
           </p>
         </div>
       </section>
