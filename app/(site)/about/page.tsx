@@ -166,7 +166,7 @@ export default function About() {
             One company worked. The next - a Foursquare-for-events app - failed spectacularly. That trial by fire is where I learned product: solving problems people actually want solved.
           </p>
           <p>
-            I&apos;ve been doing product ever since - at Zipwhip through its acquisition by Twilio, at Deep 6 AI matching patients to clinical trials through the height of Covid, and most recently as Head of Product at Thread, where we turned a narrow Slack-based ticketing tool into an AI-native service platform for MSPs.
+            I&apos;ve been doing product ever since - at Zipwhip through its acquisition by Twilio, at Deep 6 AI matching patients to clinical trials, and most recently as Head of Product at Thread, where we created the category leading AI Inbox for MSPs.
           </p>
           <p>
             My sweet spot is taking something that works for a few people and making it work for a lot of them.
