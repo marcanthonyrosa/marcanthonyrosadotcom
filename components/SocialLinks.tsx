@@ -1,6 +1,6 @@
 "use client";
 
-import { Linkedin, Mail, Github } from "lucide-react";
+import { Linkedin, EnvelopeFill, Github } from "react-bootstrap-icons";
 
 export function SocialLinks() {
   return (
@@ -14,7 +14,7 @@ export function SocialLinks() {
         style={{ color: "var(--text-2)" }}
         aria-label="LinkedIn"
       >
-        <Linkedin size={24} strokeWidth={1.5} />
+        <Linkedin size={24} />
       </a>
       <a
         href="mailto:marc.anthony.rosa@gmail.com"
@@ -22,7 +22,7 @@ export function SocialLinks() {
         style={{ color: "var(--text-2)" }}
         aria-label="Email"
       >
-        <Mail size={24} strokeWidth={1.5} />
+        <EnvelopeFill size={24} />
       </a>
       <a
         href="https://github.com/marcanthonyrosa"
@@ -32,7 +32,7 @@ export function SocialLinks() {
         style={{ color: "var(--text-2)" }}
         aria-label="GitHub"
       >
-        <Github size={24} strokeWidth={1.5} />
+        <Github size={24} />
       </a>
     </div>
   );
