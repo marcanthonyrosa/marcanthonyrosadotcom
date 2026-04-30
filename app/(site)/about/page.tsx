@@ -33,8 +33,8 @@ type ExperienceEntry = {
 const EXPERIENCE: ExperienceEntry[] = [
   {
     role: "Founder",
-    company: "Sugo Product Company",
-    url: "https://sugoproduct.com",
+    company: "Sugo AI",
+    url: "https://sugoai.com",
     period: "2026 –",
     logo: "/logos/sugo.png",
   },
