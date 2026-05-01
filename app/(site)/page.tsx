@@ -71,11 +71,13 @@ export default function Home() {
             I turn products that work into companies that last.
           </p>
           <p>
-            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>, where we turned a feature with traction into an AI-native platform — 10x revenue growth, category leader for MSPs.
-            Before that, I led product at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
+            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a feature with traction into the category-leading AI Inbox for MSPs — 10x revenue growth.
           </p>
           <p>
-            I build opinionated software: purpose-built tools with a clear point of view, resilient enough to scale and delightful enough to use every day.
+            Earlier, I shipped messaging product at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
+          </p>
+          <p>
+            I believe in opinionated software: purpose-built tools with a clear point of view, resilient enough to scale and delightful enough to use every day.
           </p>
         </div>
 
