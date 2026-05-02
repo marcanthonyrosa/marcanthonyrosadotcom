@@ -139,13 +139,9 @@ export default function PixelRevealImage({
     };
   }, [imageProps.src, animate, setupCanvas]);
 
-  const w = Number(imageProps.width) || 0;
-  const h = Number(imageProps.height) || 0;
-  const aspect = w && h ? `${w} / ${h}` : undefined;
-
   return (
-    <div style={{ position: "relative", width: "100%", aspectRatio: aspect, overflow: "hidden" }}>
-      {/* Canvas for pixelation animation */}
+    <div style={{ position: "relative", width: "100%" }}>
+      {/* Canvas for pixelation animation — overlays the Image */}
       {!revealed && (
         <canvas
           ref={canvasRef}
@@ -162,13 +158,12 @@ export default function PixelRevealImage({
         />
       )}
 
-      {/* Real Next.js Image, hidden until reveal completes */}
+      {/* Real Next.js Image always in the DOM so it drives the container size */}
       <Image
         {...imageProps}
         style={{
           ...style,
-          opacity: revealed ? 1 : 0,
-          transition: "opacity 0.15s ease",
+          visibility: revealed ? "visible" : "hidden",
         }}
       />
     </div>
