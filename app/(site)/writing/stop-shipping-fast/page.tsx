@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import BackToTopButton from "@/components/BackToTopButton";
+import PixelRevealImage from "@/components/PixelRevealImage";
 
 export const metadata: Metadata = {
   title: "Stop shipping fast. Make it actually hold up.",
@@ -52,12 +52,11 @@ export default function StopShippingFast() {
         className="mb-8 overflow-hidden rounded-lg border"
         style={{ borderColor: "var(--border)" }}
       >
-        <Image
+        <PixelRevealImage
           src="/writing/albert.jpeg"
           alt="Stop shipping fast. Make it actually hold up."
           width={1200}
           height={630}
-          priority
           className="w-full h-auto"
         />
       </div>
