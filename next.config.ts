@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/tmc",
-        destination: "https://sugoproduct.com/tmc",
+        destination: "https://sugoai.com/tmc",
         permanent: true,
       },
     ];

@@ -33,8 +33,8 @@ type ExperienceEntry = {
 const EXPERIENCE: ExperienceEntry[] = [
   {
     role: "Founder",
-    company: "Sugo Product Company",
-    url: "https://sugoproduct.com",
+    company: "Sugo AI",
+    url: "https://sugoai.com",
     period: "2026 –",
     logo: "/logos/sugo.png",
   },
@@ -148,10 +148,10 @@ export default function About() {
         </div>
         <div className="prose max-w-none">
           <p>
-            Hi, I&apos;m Marc 👋. I live in Houston with my wife Elle and our two boys - a four-year-old and a newborn.
+            Hi, I&apos;m Marc 👋. I live in Houston with my wife Elle and our two boys — a four-year-old and a newborn.
           </p>
           <p>
-            I&apos;ve spent 15 years building SaaS products. I like staying close to the work - writing specs, shipping code, getting things in front of users fast.
+            I&apos;ve spent 15 years in SaaS — most recently leading product at Thread, where we built the category-leading AI Inbox for MSPs and grew revenue 10x. I still stay close to the work — specs, prototypes, customer calls — because that&apos;s where the real product judgment gets made.
           </p>
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
@@ -166,7 +166,7 @@ export default function About() {
             One company worked. The next - a Foursquare-for-events app - failed spectacularly. That's where I learned the craft of product, in real time alongside the Lean Startup movement, and the lesson stuck: solve problems people actually want solved.
           </p>
           <p>
-            I&apos;ve led product ever since - at Zipwhip through its acquisition by Twilio, at Deep 6 AI matching patients to clinical trials, and most recently as Head of Product at Thread, where we created the category leading AI Inbox for MSPs.
+            I&apos;ve grown up in product since - across messaging at Zipwhip (acq. Twilio), clinical-trial matching at Deep 6 AI (acq. Tempus), and AI for MSPs at Thread, where I led a 25+ person product, design, and engineering org across four product lines.
           </p>
           <p>
             My sweet spot is taking something that works for a few people and making it work for a lot of them.
@@ -178,7 +178,7 @@ export default function About() {
             Sugo
           </h2>
           <p>
-            I run Sugo AI - a small product studio focused on getting AI into production. Most companies talk about AI. <a href="https://garryslist.org/posts/half-the-ai-agent-market-is-one-category-the-rest-is-wide-open" target="_blank" rel="noopener noreferrer">Few actually ship it</a> - less than 5% in legacy industries. I help with the shipping part.
+            I run Sugo AI — a product studio focused on getting AI into production. Most companies talk about AI. <a href="https://garryslist.org/posts/half-the-ai-agent-market-is-one-category-the-rest-is-wide-open" target="_blank" rel="noopener noreferrer">Few actually ship it</a> — less than 5% in legacy industries. I work with founders and exec teams to make the calls that get AI products actually out the door — strategy, sequencing, and the hard product decisions in between.
           </p>
           <p>
             &ldquo;Sugo&rdquo; means sauce in Italian. Every Sunday, my sons and I make it together. The sauce is great to start. We push it a little further — something we learned, or just trying something new.
@@ -188,6 +188,18 @@ export default function About() {
           </p>
           <p>
             The logo is a pixelated tomato. It started out as a bit, but it fits perfectly.
+          </p>
+          <h2
+            className="font-semibold tracking-tight mt-10 mb-4"
+            style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
+          >
+            What I&apos;m working on
+          </h2>
+          <p>
+            Embedded as Head of AI Product Development at TMC Innovation, where I lead product across the organization — building tools for portfolio intelligence, ops automation, and venture diligence.
+          </p>
+          <p>
+            I also partner on fractional product leadership engagements, usually with founders shipping AI into regulated or legacy industries.
           </p>
         </div>
       </section>

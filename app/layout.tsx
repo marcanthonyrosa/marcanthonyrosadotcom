@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     "Marc Rosa Twilio",
     "Marc Rosa Zipwhip",
     "Marc Rosa Sugo",
-    "Sugo Product Company",
+    "Sugo AI",
     "Houston product leader",
     "Houston tech",
     "fractional product leader Houston",
@@ -134,8 +134,8 @@ export default function RootLayout({
               },
               worksFor: {
                 "@type": "Organization",
-                name: "Sugo Product Company",
-                url: "https://sugoproduct.com",
+                name: "Sugo AI",
+                url: "https://sugoai.com",
               },
               knowsAbout: [
                 "Product Management",
@@ -151,7 +151,7 @@ export default function RootLayout({
                 "https://www.linkedin.com/in/marcanthonyrosa",
                 "https://twitter.com/marcanthonyrosa",
                 "https://github.com/marcanthonyrosa",
-                "https://sugoproduct.com",
+                "https://sugoai.com",
               ],
             }),
           }}

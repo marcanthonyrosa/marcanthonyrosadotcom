@@ -6,10 +6,10 @@ import { AvatarButton } from "@/components/AvatarButton";
 export const metadata: Metadata = {
   title: "Marc Rosa - Head of Product (Houston, TX)",
   description:
-    "Marc Anthony Rosa is a Houston-based Head of Product and tech founder. Previously Thread, Twilio/Zipwhip, Tempus AI, Getty Images. Writing on product strategy, leadership, and the craft of building.",
+    "Marc Rosa is a Houston-based Head of Product and tech founder. Previously Thread, Twilio/Zipwhip, Tempus AI, Getty Images. Writing on product strategy, leadership, and the craft of building.",
   alternates: { canonical: "https://marcrosa.com/" },
   openGraph: {
-    title: "Marc Anthony Rosa - Head of Product (Houston, TX)",
+    title: "Marc Rosa - Head of Product (Houston, TX)",
     description:
       "Houston-based Head of Product and tech founder. Writing on product strategy, leadership, and the craft of building.",
     url: "https://marcrosa.com/",
@@ -68,16 +68,16 @@ export default function Home() {
         </div>
         <div className="prose max-w-none">
           <p>
-            I help early products grow into enduring companies.
+            I turn products that work into companies that last.
           </p>
           <p>
-            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a single product into an AI-native platform - growing revenue 10x, raising a Series A, and becoming category leader for MSPs.
+            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a feature with traction into the category-leading AI Inbox for MSPs — 10x revenue growth.
           </p>
           <p>
-            Before that, I led product at Zipwhip leading to its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
+            Earlier, I shipped messaging product at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
           </p>
           <p>
-            I build Opinionated Software — purpose-built tools with a clear point of view, resilient enough to scale.
+            I believe in opinionated software: purpose-built tools with a clear point of view, resilient enough to scale and delightful enough to use every day.
           </p>
         </div>
 
