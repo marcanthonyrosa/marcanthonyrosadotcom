@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# marcrosa.com
 
-## Getting Started
+Personal portfolio and blog for Marc Anthony Rosa — product leader, founder of [Sugo AI](https://sugoai.com), and builder of opinionated software.
 
-First, run the development server:
+## What's here
+
+- **Writing** — Essays on product strategy, leadership, and software craft
+- **About** — Career timeline, speaking engagements, and work philosophy
+- **MarcMan** — A hidden Pac-Man-style game triggered by clicking the headshot on the about page, complete with ghost AI, power-ups, and a Redis-backed leaderboard
+- **Floating Frenchie** — An animated pixel-art French Bulldog that wanders the page
+
+## Tech stack
+
+- [Next.js 16](https://nextjs.org) with App Router and React 19
+- TypeScript
+- [Tailwind CSS 4](https://tailwindcss.com)
+- [Framer Motion](https://www.framer.com/motion/) for animations
+- [Upstash Redis](https://upstash.com) for game leaderboard storage
+- [PostHog](https://posthog.com) for analytics
+- Deployed on [Vercel](https://vercel.com)
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The game leaderboard and analytics require environment variables for Upstash Redis and PostHog. The site runs fine without them — the leaderboard falls back to in-memory storage in development.
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/
+  (site)/          # Main site layout with sidebar navigation
+    page.tsx       # Home
+    about/         # Bio, career timeline, MarcMan game
+    writing/       # Blog posts
+    work/          # Case studies (dev only)
+  api/
+    leaderboard/   # Game score persistence (Upstash Redis)
+    location/      # Geolocation for leaderboard entries
+components/        # Shared UI components
+public/            # Static assets
+```
