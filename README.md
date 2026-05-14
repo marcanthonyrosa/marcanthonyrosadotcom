@@ -7,7 +7,6 @@ Personal portfolio and blog for Marc Anthony Rosa — product leader, founder of
 - **Writing** — Essays on product strategy, leadership, and software craft
 - **About** — Career timeline, speaking engagements, and work philosophy
 - **MarcMan** — A hidden Pac-Man-style game triggered by clicking the headshot on the about page, complete with ghost AI, power-ups, and a Redis-backed leaderboard
-- **Floating Frenchie** — An animated pixel-art French Bulldog that wanders the page
 
 ## Tech stack
 
