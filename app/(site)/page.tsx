@@ -66,9 +66,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="flex justify-center">
-          <HomeCTAButton />
-        </div>
+        <HomeCTAButton />
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} className="mb-14" />

@@ -185,41 +185,64 @@ body {
 }
 
 /* ─── Home CTA button ─── */
+:root {
+  --cta-inset:      rgb(255 255 255 / 0.18);
+  --cta-edge:       rgb(30 75 70 / 0.8);
+  --cta-ambient:    rgb(0 0 0 / 0.18);
+  --cta-ambient-hi: rgb(0 0 0 / 0.24);
+  --cta-glow-lo:    rgb(107 194 183 / 0.25);
+  --cta-glow-hi:    rgb(107 194 183 / 0.6);
+  --cta-glow-hover: rgb(107 194 183 / 0.7);
+}
+.dark {
+  --cta-inset:      rgb(255 255 255 / 0.22);
+  --cta-edge:       rgb(0 0 0 / 0.85);
+  --cta-ambient:    rgb(0 0 0 / 0.55);
+  --cta-ambient-hi: rgb(0 0 0 / 0.7);
+  --cta-glow-lo:    rgb(107 194 183 / 0.3);
+  --cta-glow-hi:    rgb(107 194 183 / 0.7);
+  --cta-glow-hover: rgb(107 194 183 / 0.8);
+}
 .home-cta {
   animation: home-cta-pulse 2.4s ease-in-out infinite;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   box-shadow:
-    0 3px 0 rgb(30 75 70 / 0.7),
-    0 5px 14px rgb(0 0 0 / 0.15),
-    0 0 8px rgb(107 194 183 / 0.25);
+    inset 0 1px 0 var(--cta-inset),
+    0 3px 0 var(--cta-edge),
+    0 5px 14px var(--cta-ambient),
+    0 0 8px var(--cta-glow-lo);
 }
 .home-cta:hover {
   animation: none;
   transform: translateY(-1px);
   box-shadow:
-    0 4px 0 rgb(30 75 70 / 0.7),
-    0 6px 20px rgb(0 0 0 / 0.22),
-    0 0 28px rgb(107 194 183 / 0.7);
+    inset 0 1px 0 var(--cta-inset),
+    0 4px 0 var(--cta-edge),
+    0 6px 20px var(--cta-ambient-hi),
+    0 0 28px var(--cta-glow-hover);
 }
 .home-cta:active {
   animation: none;
   transform: translateY(2px);
   box-shadow:
-    0 1px 0 rgb(30 75 70 / 0.7),
-    0 2px 6px rgb(0 0 0 / 0.25);
+    inset 0 1px 0 var(--cta-inset),
+    0 1px 0 var(--cta-edge),
+    0 2px 6px var(--cta-ambient-hi);
 }
 @keyframes home-cta-pulse {
   0%, 100% {
     box-shadow:
-      0 3px 0 rgb(30 75 70 / 0.7),
-      0 5px 14px rgb(0 0 0 / 0.15),
-      0 0 8px rgb(107 194 183 / 0.25);
+      inset 0 1px 0 var(--cta-inset),
+      0 3px 0 var(--cta-edge),
+      0 5px 14px var(--cta-ambient),
+      0 0 8px var(--cta-glow-lo);
   }
   50% {
     box-shadow:
-      0 3px 0 rgb(30 75 70 / 0.7),
-      0 5px 20px rgb(0 0 0 / 0.2),
-      0 0 22px rgb(107 194 183 / 0.6);
+      inset 0 1px 0 var(--cta-inset),
+      0 3px 0 var(--cta-edge),
+      0 5px 20px var(--cta-ambient-hi),
+      0 0 22px var(--cta-glow-hi);
   }
 }
 
