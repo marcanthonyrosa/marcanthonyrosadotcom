@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { SocialLinks } from "@/components/SocialLinks";
 import { AvatarButton } from "@/components/AvatarButton";
+import { HomeCTAButton } from "@/components/HomeCTAButton";
 
 export const metadata: Metadata = {
   title: "Marc Rosa - Head of Product (Houston, TX)",
@@ -81,7 +82,7 @@ export default function Home() {
           </p>
         </div>
 
-        <SocialLinks />
+        <HomeCTAButton />
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} className="mb-14" />
@@ -178,6 +179,8 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      <SocialLinks />
     </div>
   );
 }
