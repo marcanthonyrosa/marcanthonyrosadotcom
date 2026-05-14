@@ -257,3 +257,24 @@ body {
   .home-cta-dot-2,
   .home-cta-dot-3 { animation: none; opacity: 1; }
 }
+
+/* ─── Home hero confetti burst ─── */
+.hero-confetti {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  border-radius: 1px;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  box-shadow: 0 0 6px rgb(107 194 183 / 0.55);
+  image-rendering: pixelated;
+  animation: hero-confetti-burst 0.7s cubic-bezier(0.18, 0.55, 0.45, 1) forwards;
+}
+@keyframes hero-confetti-burst {
+  0%   { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
+  60%  { transform: translate(calc(-50% + var(--cx)), calc(-50% + var(--cy-up))) rotate(calc(var(--crot) * 0.6)) scale(1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--cx)), calc(-50% + var(--cy-down))) rotate(var(--crot)) scale(0.7); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-confetti { display: none; }
+}

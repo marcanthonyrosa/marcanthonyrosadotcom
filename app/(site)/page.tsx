@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SocialLinks } from "@/components/SocialLinks";
-import { AvatarButton } from "@/components/AvatarButton";
+import { HomeHero } from "@/components/HomeHero";
 import { HomeCTAButton } from "@/components/HomeCTAButton";
 
 export const metadata: Metadata = {
@@ -50,23 +50,7 @@ export default function Home() {
     <div className="max-w-2xl mx-auto px-6 py-16 sm:px-10">
       {/* ── Header ── */}
       <section className="mb-16">
-        <div className="flex items-start gap-4 mb-8">
-          <AvatarButton size={57} className="mt-[3px]" />
-          <div className="min-w-0">
-            <h1
-              className="font-bold tracking-tight leading-none"
-              style={{ color: "var(--text-1)", fontSize: "var(--text-display)" }}
-            >
-              Marc Rosa
-            </h1>
-            <p
-              className="font-medium mt-2.5 leading-none"
-              style={{ color: "var(--text-2)", fontSize: "var(--text-h2)" }}
-            >
-              Head of Product
-            </p>
-          </div>
-        </div>
+        <HomeHero />
         <div className="prose max-w-none">
           <p>
             I turn products that work into companies that last.
@@ -82,7 +66,9 @@ export default function Home() {
           </p>
         </div>
 
-        <HomeCTAButton />
+        <div className="flex justify-center">
+          <HomeCTAButton />
+        </div>
       </section>
 
       <hr style={{ borderColor: "var(--border)" }} className="mb-14" />
