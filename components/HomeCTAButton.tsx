@@ -49,11 +49,7 @@ export function HomeCTAButton() {
       }}
     >
       <span suppressHydrationWarning>{copy}</span>
-      <span className="home-cta-dots" aria-hidden="true">
-        <span className="home-cta-dot home-cta-dot-1">.</span>
-        <span className="home-cta-dot home-cta-dot-2">.</span>
-        <span className="home-cta-dot home-cta-dot-3">.</span>
-      </span>
+      <span className="home-cta-arrow" aria-hidden="true">→</span>
     </Link>
   );
 }
