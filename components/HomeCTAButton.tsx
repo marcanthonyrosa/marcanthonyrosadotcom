@@ -7,7 +7,6 @@ import { usePostHog } from "posthog-js/react";
 const CTA_COPY = [
   "TELL ME MORE",
   "I'M INTRIGUED",
-  "WHO IS THIS GUY",
   "KEEP TALKING",
   "I'M LISTENING",
   "MORE PLEASE",
@@ -15,8 +14,9 @@ const CTA_COPY = [
   "GO ON",
   "WHO'S MARC",
   "LET ME IN",
-  "GIVE ME THE BACKSTORY",
   "SHOW ME AROUND",
+  "WHO IS THIS",
+  "THE BACKSTORY",
 ];
 
 export function HomeCTAButton() {
