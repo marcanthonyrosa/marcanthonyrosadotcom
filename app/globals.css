@@ -215,11 +215,10 @@ body {
 }
 .home-cta:hover {
   animation: none;
-  transform: translateY(-1px);
   box-shadow:
     inset 0 1px 0 var(--cta-inset),
-    0 4px 0 var(--cta-edge),
-    0 6px 20px var(--cta-ambient-hi),
+    0 3px 0 var(--cta-edge),
+    0 5px 14px var(--cta-ambient),
     0 0 28px var(--cta-glow-hover);
 }
 .home-cta:active {
@@ -251,16 +250,10 @@ body {
   display: inline-block;
   margin-left: 0.5ch;
   animation: home-cta-arrow-nudge 2.4s ease-in-out infinite;
-  transition: transform 0.18s ease;
-  will-change: transform;
 }
 @keyframes home-cta-arrow-nudge {
   0%, 100% { transform: translateX(0); }
   50%      { transform: translateX(3px); }
-}
-.home-cta:hover .home-cta-arrow {
-  animation: none;
-  transform: translateX(4px);
 }
 @media (prefers-reduced-motion: reduce) {
   .home-cta { animation: none; }
