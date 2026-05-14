@@ -247,39 +247,24 @@ body {
   }
 }
 
-.home-cta-dots {
+.home-cta-arrow {
   display: inline-block;
-  width: 3ch;
-  text-align: left;
-  margin-left: 2px;
+  margin-left: 0.5ch;
+  animation: home-cta-arrow-nudge 2.4s ease-in-out infinite;
+  transition: transform 0.18s ease;
+  will-change: transform;
 }
-.home-cta-dot {
-  display: inline-block;
-  width: 1ch;
-  opacity: 0;
+@keyframes home-cta-arrow-nudge {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(3px); }
 }
-.home-cta-dot-1 { animation: home-cta-dot-1 2.8s steps(1, end) infinite; }
-.home-cta-dot-2 { animation: home-cta-dot-2 2.8s steps(1, end) infinite; }
-.home-cta-dot-3 { animation: home-cta-dot-3 2.8s steps(1, end) infinite; }
-@keyframes home-cta-dot-1 {
-  0%, 74.99% { opacity: 1; }
-  75%, 100%  { opacity: 0; }
-}
-@keyframes home-cta-dot-2 {
-  0%, 24.99% { opacity: 0; }
-  25%, 74.99% { opacity: 1; }
-  75%, 100%  { opacity: 0; }
-}
-@keyframes home-cta-dot-3 {
-  0%, 49.99% { opacity: 0; }
-  50%, 74.99% { opacity: 1; }
-  75%, 100%  { opacity: 0; }
+.home-cta:hover .home-cta-arrow {
+  animation: none;
+  transform: translateX(4px);
 }
 @media (prefers-reduced-motion: reduce) {
   .home-cta { animation: none; }
-  .home-cta-dot-1,
-  .home-cta-dot-2,
-  .home-cta-dot-3 { animation: none; opacity: 1; }
+  .home-cta-arrow { animation: none; }
 }
 
 /* ─── Home hero confetti burst ─── */
