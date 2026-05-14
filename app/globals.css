@@ -204,8 +204,6 @@ body {
   --cta-glow-hover: rgb(107 194 183 / 0.8);
 }
 .home-cta {
-  position: relative;
-  overflow: hidden;
   animation: home-cta-pulse 2.4s ease-in-out infinite;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   max-width: 14rem;
@@ -214,32 +212,6 @@ body {
     0 3px 0 var(--cta-edge),
     0 5px 14px var(--cta-ambient),
     0 0 8px var(--cta-glow-lo);
-}
-.home-cta::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 45%;
-  height: 100%;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    rgb(255 255 255 / 0.42) 50%,
-    transparent 100%
-  );
-  transform: translateX(-200%) skewX(-20deg);
-  pointer-events: none;
-  opacity: 0;
-}
-.home-cta:hover::after {
-  animation: home-cta-shimmer 0.95s cubic-bezier(0.2, 0.55, 0.4, 1) forwards;
-}
-@keyframes home-cta-shimmer {
-  0%   { transform: translateX(-200%) skewX(-20deg); opacity: 0; }
-  20%  { opacity: 1; }
-  85%  { opacity: 1; }
-  100% { transform: translateX(420%) skewX(-20deg); opacity: 0; }
 }
 .home-cta:hover {
   animation: none;
@@ -293,7 +265,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .home-cta { animation: none; }
   .home-cta-arrow { animation: none; }
-  .home-cta:hover::after { animation: none; }
 }
 
 /* ─── Home hero confetti burst ─── */
