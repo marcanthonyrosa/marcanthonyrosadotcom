@@ -148,58 +148,37 @@ export default function About() {
         </div>
         <div className="prose max-w-none">
           <p>
-            Hi, I&apos;m Marc 👋. I live in Houston with my wife Elle and our two boys — a four-year-old and a newborn.
+            Hi, I&apos;m Marc 👋
           </p>
           <p>
-            I&apos;ve spent 15 years in SaaS — most recently leading product at Thread, where we built the category-leading AI Inbox for MSPs and grew revenue 10x. I still stay close to the work — specs, prototypes, customer calls — because that&apos;s where the real product judgment gets made.
-          </p>
-          <h2
-            className="font-semibold tracking-tight mt-10 mb-4"
-            style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
-          >
-            How I got here
-          </h2>
-          <p>
-            I was a business major who didn&apos;t want to be one, so I started building things instead.
+            I&apos;m a product leader in Houston. My wife Elle runs an interior design studio; we have a four-year-old and a newborn.
           </p>
           <p>
-            One company worked. The next - a Foursquare-for-events app - failed spectacularly. That's where I learned the craft of product, in real time alongside the Lean Startup movement, and the lesson stuck: solve problems people actually want solved.
+            I&apos;ve spent fifteen years building SaaS products, most recently as Head of Product at Thread, where we built the category-leading AI inbox for MSPs and grew revenue 10x with a 25-person product, design, and engineering org. Before that: Deep 6 AI (acq. Tempus) in clinical trials, Zipwhip (acq. Twilio) in messaging. Different industries, same job: take something a few people love and make it work for a lot of them.
           </p>
           <p>
-            I&apos;ve grown up in product since - across messaging at Zipwhip (acq. Twilio), clinical-trial matching at Deep 6 AI (acq. Tempus), and AI for MSPs at Thread, where I led a 25+ person product, design, and engineering org across four product lines.
-          </p>
-          <p>
-            My sweet spot is taking something that works for a few people and making it work for a lot of them.
+            I lead close to the craft: Specs, prototypes, customer calls, code.
           </p>
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
             style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
           >
-            Sugo
+            Sugo AI
           </h2>
           <p>
-            I run Sugo AI — a product studio focused on getting AI into production. Most companies talk about AI. <a href="https://garryslist.org/posts/half-the-ai-agent-market-is-one-category-the-rest-is-wide-open" target="_blank" rel="noopener noreferrer">Few actually ship it</a> — less than 5% in legacy industries. I work with founders and exec teams to make the calls that get AI products actually out the door — strategy, sequencing, and the hard product decisions in between.
-          </p>
-          <p>
-            &ldquo;Sugo&rdquo; means sauce in Italian. Every Sunday, my sons and I make it together. The sauce is great to start. We push it a little further — something we learned, or just trying something new.
-          </p>
-          <p>
-            It&apos;s the <em>perfect</em> metaphor for product. You&apos;re always refining it, folding in what you&apos;ve learned, and investing in it over time. The work is never finished.
-          </p>
-          <p>
-            The logo is a pixelated tomato. It started out as a bit, but it fits perfectly.
+            I run Sugo AI, a product studio for companies shipping AI into regulated and legacy industries. Most engagements blend fractional product leadership - strategy, sequencing, direction - with hands-on product work: spec&rsquo;ing, designing, building, deploying. 🚀
           </p>
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
             style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
           >
-            What I&apos;m working on
+            About the name
           </h2>
           <p>
-            Embedded as Head of AI Product Development at TMC Innovation, where I lead product across the organization — building tools for portfolio intelligence, ops automation, and venture diligence.
+            Sugo is Italian for sauce. Every Sunday my sons and I make it - tomatoes, garlic, salt to start, and a little further each week. Something we learned, something we want to try.
           </p>
           <p>
-            I also partner on fractional product leadership engagements, usually with founders shipping AI into regulated or legacy industries.
+            The logo is a pixelated tomato. It started as a joke and stuck because it wasn&apos;t one.
           </p>
         </div>
       </section>
