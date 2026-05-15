@@ -53,10 +53,10 @@ export default function Home() {
         <HomeHero />
         <div className="prose max-w-none">
           <p>
-            I turn products that work into companies that last.
+            I turn early products into companies that last.
           </p>
           <p>
-            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a feature with traction into the category-leading AI Inbox for MSPs — 10x revenue growth.
+            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>. We turned a feature with traction into the category-leading AI Inbox for MSPs.
           </p>
           <p>
             Earlier, I shipped messaging product at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
