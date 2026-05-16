@@ -157,13 +157,13 @@ export default function About() {
             I&apos;ve spent fifteen years building SaaS products, most recently as Head of Product at Thread.
           </p>
           <p>
-            Over three years, we took a chat-based ticketing tool for MSPs and turned it into the category-leading AI service desk — growing revenue 10x while scaling a 25-person product, design, and engineering organization.
+            In under three years, we took a chat-based ticketing tool and turned it into the category-leading AI service desk for MSPs — growing revenue 10x, raising a Series A, while scaling a 25-person product, design, and engineering organization.
           </p>
           <p>
-            Before that, I led data products at Deep 6 AI (<a href="https://investors.tempus.com/news-releases/news-release-details/tempus-announces-acquisition-deep-6-ai" target="_blank" rel="noopener noreferrer">acquired by Tempus</a>), an NLP platform for clinical trial matching, and built messaging products at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
+            Before that, I led data and NLP products at Deep 6 AI (<a href="https://investors.tempus.com/news-releases/news-release-details/tempus-announces-acquisition-deep-6-ai" target="_blank" rel="noopener noreferrer">acquired by Tempus</a>) for clinical trial matching, and built messaging products at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
           </p>
           <p>
-            I take products with early pull and turn them into adoption-worthy tools at scale — tools people stick with and build their workflow around.
+            I take products with early pull and turn them into adoption-worthy tools at scale — tools people stick with, have fun with, and build their workflow around.
           </p>
           <p>
             I lead close to the craft: Specs, prototypes, customer calls, code.
@@ -175,7 +175,7 @@ export default function About() {
             Sugo AI
           </h2>
           <p>
-            I run Sugo AI, a product studio for companies shipping AI into regulated and legacy industries. Most engagements blend fractional product leadership - strategy, sequencing, direction - with hands-on product work: spec&rsquo;ing, designing, building, deploying. 🚀
+            I run Sugo AI, a product studio for companies shipping AI into regulated and legacy industries. Most engagements blend fractional product leadership - strategy, sequencing, direction - with hands-on product work: spec-work, designing, building, deploying. 🚀
           </p>
           <p>
             Sugo is Italian for sauce. Every Sunday, my sons and I make it together — starting from last week&apos;s recipe and pushing it a little further each time. Great software works the same way.
