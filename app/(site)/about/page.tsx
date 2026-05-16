@@ -154,7 +154,16 @@ export default function About() {
             I&apos;m a product leader in Houston. My wife Elle runs an interior design studio; we have a four-year-old and a newborn.
           </p>
           <p>
-            I&apos;ve spent fifteen years building SaaS products, most recently as Head of Product at Thread, where we built the category-leading AI inbox for MSPs and grew revenue 10x with a 25-person product, design, and engineering org. Before that: Deep 6 AI (acq. Tempus) in clinical trials, Zipwhip (acq. Twilio) in messaging. Different industries, same job: take something a few people love and make it work for a lot of them.
+            I&apos;ve spent fifteen years building SaaS products, most recently as Head of Product at Thread.
+          </p>
+          <p>
+            Over three years, we took a chat-based ticketing tool for MSPs and turned it into the category-leading AI service desk — growing revenue 10x while scaling a 25-person product, design, and engineering organization.
+          </p>
+          <p>
+            Before that, I led data products at Deep 6 AI (<a href="https://investors.tempus.com/news-releases/news-release-details/tempus-announces-acquisition-deep-6-ai" target="_blank" rel="noopener noreferrer">acquired by Tempus</a>), an NLP platform for clinical trial matching, and built messaging products at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
+          </p>
+          <p>
+            I take products with early pull and turn them into adoption-worthy tools at scale — tools people stick with and build their workflow around.
           </p>
           <p>
             I lead close to the craft: Specs, prototypes, customer calls, code.
@@ -168,17 +177,11 @@ export default function About() {
           <p>
             I run Sugo AI, a product studio for companies shipping AI into regulated and legacy industries. Most engagements blend fractional product leadership - strategy, sequencing, direction - with hands-on product work: spec&rsquo;ing, designing, building, deploying. 🚀
           </p>
-          <h2
-            className="font-semibold tracking-tight mt-10 mb-4"
-            style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
-          >
-            About the name
-          </h2>
           <p>
-            Sugo is Italian for sauce. Every Sunday my sons and I make it - tomatoes, garlic, salt to start, and a little further each week. Something we learned, something we want to try.
+            Sugo is Italian for sauce. Every Sunday, my sons and I make it together — starting from last week&apos;s recipe and pushing it a little further each time. Great software works the same way.
           </p>
           <p>
-            The logo is a pixelated tomato. It started as a joke and stuck because it wasn&apos;t one.
+            The logo is a pixelated tomato. It&apos;s playful, but surprisingly literal: craft, iteration, and software all in one mark.
           </p>
         </div>
       </section>
