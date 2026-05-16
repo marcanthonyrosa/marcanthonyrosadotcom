@@ -10,7 +10,6 @@ import {
   User,
   PenLine,
   Layers,
-  Baby,
   Sun,
   Moon,
   Monitor,
@@ -22,7 +21,6 @@ const NAV_ITEMS = [
   { href: "/", label: "Home", icon: House, exact: true, devOnly: false },
   { href: "/about", label: "About", icon: User, devOnly: false },
   { href: "/writing", label: "Writing", icon: PenLine, devOnly: false },
-  { href: "/johnny", label: "Johnny", icon: Baby, devOnly: false, beta: true },
   { href: "/work", label: "Work", icon: Layers, devOnly: true },
 ].filter((item) => !item.devOnly || IS_DEV);
 
@@ -33,7 +31,6 @@ function NavItem({
   label,
   icon: Icon,
   exact,
-  beta,
 }: (typeof NAV_ITEMS)[number]) {
   const pathname = usePathname();
   const isActive = exact ? pathname === href : pathname.startsWith(href);
@@ -95,16 +92,6 @@ function NavItem({
         >
           <Icon size={20} strokeWidth={isActive ? 2 : 1.75} />
         </motion.div>
-        {beta && (
-          <span
-            className="absolute top-1 right-1 z-20 w-1.5 h-1.5 rounded-full pointer-events-none"
-            style={{
-              background: "var(--text-3)",
-              boxShadow: "0 0 0 1.5px var(--bg)",
-            }}
-            aria-label="Beta"
-          />
-        )}
       </motion.div>
     </Link>
   );
