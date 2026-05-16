@@ -196,7 +196,7 @@ body {
 }
 .dark {
   --cta-inset:      rgb(255 255 255 / 0.22);
-  --cta-edge:       rgb(0 0 0 / 0.85);
+  --cta-edge:       rgb(55 120 110);
   --cta-ambient:    rgb(0 0 0 / 0.55);
   --cta-ambient-hi: rgb(0 0 0 / 0.7);
   --cta-glow-lo:    rgb(107 194 183 / 0.3);
