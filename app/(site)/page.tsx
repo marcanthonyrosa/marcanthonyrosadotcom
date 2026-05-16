@@ -59,7 +59,7 @@ export default function Home() {
             Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>, where we turned a feature with traction into the category-leading AI service desk for MSPs.
           </p>
           <p>
-            I build opinionated software — products with a clear point of view — that hold up at scale and are delightful enough to live in your daily stack.
+            I build opinionated software — products with a clear point of view — that hold up at scale and are fun enough to live in your daily stack.
           </p>
         </div>
 
