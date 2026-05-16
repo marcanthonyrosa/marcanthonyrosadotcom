@@ -276,6 +276,10 @@ body {
   transition: transform 0.15s ease;
   display: inline-block;
   user-select: none;
+  text-decoration: underline dotted;
+  text-decoration-color: #4A9E95;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
 .dark .fun-word {
   background: linear-gradient(
