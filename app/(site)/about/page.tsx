@@ -157,7 +157,7 @@ export default function About() {
             I&apos;ve spent fifteen years building SaaS products, most recently as Head of Product at Thread.
           </p>
           <p>
-            In under three years, we took a chat-based ticketing tool and turned it into the category-leading AI service desk for MSPs — growing revenue 10x, raising a series A, while scaling a 25-person product, design, and engineering organization.
+            In under three years, we took a chat-based ticketing tool and turned it into the category-leading AI service desk for MSPs — growing revenue 10x, raising a Series A, while scaling a 25-person product, design, and engineering organization.
           </p>
           <p>
             Before that, I led data and NLP products at Deep 6 AI (<a href="https://investors.tempus.com/news-releases/news-release-details/tempus-announces-acquisition-deep-6-ai" target="_blank" rel="noopener noreferrer">acquired by Tempus</a>) for clinical trial matching, and built messaging products at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
