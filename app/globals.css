@@ -260,23 +260,108 @@ body {
   .home-cta-arrow { animation: none; }
 }
 
-/* ─── Home hero confetti burst ─── */
-.hero-confetti {
-  position: absolute;
-  display: block;
+/* ─── "fun" word easter egg ─── */
+.fun-word {
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(
+    90deg,
+    #3D8A82 0%, #4A9E95 30%, #6BC2B7 50%, #4A9E95 70%, #3D8A82 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fun-shimmer 2.5s ease-in-out infinite;
+  transition: transform 0.15s ease;
+  display: inline-block;
+  user-select: none;
+}
+.dark .fun-word {
+  background: linear-gradient(
+    90deg,
+    #5BA8A0 0%, #6BC2B7 30%, #A3E0D7 50%, #6BC2B7 70%, #5BA8A0 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fun-word:hover {
+  transform: scale(1.12);
+}
+.fun-word:active {
+  transform: scale(0.95);
+}
+.fun-word-party {
+  background: linear-gradient(
+    90deg,
+    #FF6B6B, #FECA57, #48DBFB, #FF9FF3,
+    #54A0FF, #5F27CD, #01A3A4, #F368E0,
+    #FF6B6B
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fun-rainbow 3s linear infinite, fun-bounce 0.4s ease;
+}
+@keyframes fun-shimmer {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes fun-rainbow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@keyframes fun-bounce {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.35) rotate(-4deg); }
+  60%  { transform: scale(0.9) rotate(2deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* ── Confetti particles ── */
+.fun-confetti {
+  position: fixed;
+  left: var(--fx);
+  top: var(--fy);
+  width: var(--fw);
+  height: var(--fh);
+  border-radius: 2px;
   pointer-events: none;
-  border-radius: 1px;
-  transform: translate(-50%, -50%);
-  transform-origin: center;
-  box-shadow: 0 0 6px rgb(107 194 183 / 0.55);
-  image-rendering: pixelated;
-  animation: hero-confetti-burst 0.7s cubic-bezier(0.18, 0.55, 0.45, 1) forwards;
+  animation: fun-confetti-fly 0.85s cubic-bezier(0.15, 0.6, 0.35, 1) forwards;
 }
-@keyframes hero-confetti-burst {
-  0%   { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
-  60%  { transform: translate(calc(-50% + var(--cx)), calc(-50% + var(--cy-up))) rotate(calc(var(--crot) * 0.6)) scale(1); opacity: 1; }
-  100% { transform: translate(calc(-50% + var(--cx)), calc(-50% + var(--cy-down))) rotate(var(--crot)) scale(0.7); opacity: 0; }
+@keyframes fun-confetti-fly {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--fdx), var(--fdy)) rotate(var(--fs)) scale(0.4);
+    opacity: 0;
+  }
 }
+
+/* ── Party mode (applied to <html>) ── */
+.party-mode {
+  --bg:              #1a0030;
+  --surface:         #2d0050;
+  --surface-hover:   #3d0070;
+  --text-1:          #FFE66D;
+  --text-2:          #FF9FF3;
+  --text-3:          #54A0FF;
+  --border:          #5F27CD;
+  --border-strong:   #F368E0;
+  --link:            #48DBFB;
+  --link-hover:      #FECA57;
+  --nav-item-hover:  #3d0070;
+  --nav-item-active: #3d0070;
+  --nav-icon-active: #FFE66D;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-confetti { display: none; }
+  .fun-word { animation: none; }
+  .fun-word-party { animation: none; }
+  .fun-confetti { display: none; }
 }
