@@ -160,10 +160,10 @@ export default function About() {
             In three years, we took a chat ticketing tool and turned it into the category-leading AI service desk for MSPs — growing revenue 10x, raising a Series A, and scaling a 25-person product and engineering organization.
           </p>
           <p>
-            Before that, I led data and NLP products at Deep 6 AI (<a href="https://investors.tempus.com/news-releases/news-release-details/tempus-announces-acquisition-deep-6-ai" target="_blank" rel="noopener noreferrer">acquired by Tempus</a>) for clinical trial matching, and built messaging products at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
+            Before that, I led data and NLP products at Deep 6 AI (<a href="https://investors.tempus.com/news-releases/news-release-details/tempus-announces-acquisition-deep-6-ai" target="_blank" rel="noopener noreferrer">acquired by Tempus</a>), and built messaging products at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
           </p>
           <p>
-            I take products with early pull and turn them into tools people stick with, love using, and build into their stack. That means staying close to the craft — specs, prototypes, customer calls, code — to get the tiny details right.
+            I take early features and turn them into platforms - software that scales, has a point of view, and earns a place in people&apos;s daily stack. That means staying close to the craft: coding, customer discovery, prototyping, getting the small details right.
           </p>
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
