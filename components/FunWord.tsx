@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef } from "react";
 
 interface Particle {
   id: number;
@@ -21,8 +21,6 @@ const PARTY_COLORS = [
 ];
 
 const PARTY_DURATION = 2000;
-const HOVER_SCALE = 1.12;
-const HOVER_OVERHANG_RATIO = (HOVER_SCALE - 1) / 2;
 
 let particleId = 0;
 
@@ -33,21 +31,7 @@ interface FunWordProps {
 export function FunWord({ children = "fun" }: FunWordProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [partyMode, setPartyMode] = useState(false);
-  const [overhang, setOverhang] = useState(0);
   const partyTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const wordRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const el = wordRef.current;
-    if (!el) return;
-    const measure = () => {
-      setOverhang(el.offsetWidth * HOVER_OVERHANG_RATIO);
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLSpanElement>) => {
@@ -95,10 +79,8 @@ export function FunWord({ children = "fun" }: FunWordProps) {
   return (
     <>
       <span
-        ref={wordRef}
         onClick={handleClick}
         className={`fun-word${partyMode ? " fun-word-party" : ""}`}
-        style={{ "--fw-overhang": `${overhang}px` } as React.CSSProperties}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {

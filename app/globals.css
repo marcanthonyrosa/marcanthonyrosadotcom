@@ -273,7 +273,7 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: fun-shimmer 2.5s ease-in-out infinite;
-  transition: transform 0.15s ease, margin 0.15s ease;
+  transition: transform 0.15s ease;
   display: inline-block;
   user-select: none;
   text-decoration: underline dotted;
@@ -290,11 +290,6 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-.fun-word:hover {
-  transform: scale(1.12);
-  margin-left: var(--fw-overhang, 0);
-  margin-right: var(--fw-overhang, 0);
 }
 .fun-word:active {
   transform: scale(0.95);
