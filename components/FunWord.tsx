@@ -35,7 +35,8 @@ export function FunWord({ children = "fun" }: FunWordProps) {
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLSpanElement>) => {
-      const rect = e.currentTarget.getBoundingClientRect();
+      const el = e.currentTarget;
+      const rect = el.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       const newParticles: Particle[] = [];
@@ -63,6 +64,10 @@ export function FunWord({ children = "fun" }: FunWordProps) {
           prev.filter((p) => !newParticles.includes(p))
         );
       }, 900);
+
+      el.classList.remove("fun-word-party");
+      void el.offsetWidth;
+      el.classList.add("fun-word-party");
 
       document.documentElement.classList.add("party-mode");
       setPartyMode(true);
