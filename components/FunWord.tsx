@@ -24,7 +24,11 @@ const PARTY_DURATION = 2000;
 
 let particleId = 0;
 
-export function FunWord() {
+interface FunWordProps {
+  children?: React.ReactNode;
+}
+
+export function FunWord({ children = "fun" }: FunWordProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [partyMode, setPartyMode] = useState(false);
   const partyTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -87,7 +91,7 @@ export function FunWord() {
         }}
         aria-label="Click for a surprise"
       >
-        fun
+        {children}
       </span>
 
       {particles.length > 0 && (
