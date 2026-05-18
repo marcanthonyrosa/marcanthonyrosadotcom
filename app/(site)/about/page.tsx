@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import HeadshotOrGame from "@/components/game/HeadshotOrGame";
 import CompanyLogo from "@/components/CompanyLogo";
+import { FunWord } from "@/components/FunWord";
 
 export const metadata: Metadata = {
   title: "About Marc Rosa",
@@ -132,7 +133,11 @@ const VALUES = [
   },
   {
     title: "Personality and joy, not just software.",
-    body: "Products should feel like a great coworker, not just a tool. Tone, taste, and a little humor are what earn software a place in someone's daily stack.",
+    body: (
+      <>
+        Products should feel like a great coworker, not just a tool. Tone, taste, and a little <FunWord>joy</FunWord> are what earn software a place in someone&apos;s daily stack.
+      </>
+    ),
   },
 ];
 
