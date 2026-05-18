@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import HeadshotOrGame from "@/components/game/HeadshotOrGame";
 import CompanyLogo from "@/components/CompanyLogo";
-import { FunWord } from "@/components/FunWord";
 
 export const metadata: Metadata = {
   title: "About Marc Rosa",
@@ -131,6 +130,10 @@ const VALUES = [
     title: "Mandatory spicy conversations.",
     body: "The hard, honest takes - the ones people hesitate to say out loud - are how a product actually gets sharper. I push for them, and expect them back.",
   },
+  {
+    title: "Personality and joy, not just software.",
+    body: "Products should feel like a great coworker, not just a tool. Tone, taste, and a little humor are what earn software a place in someone's daily stack.",
+  },
 ];
 
 export default function About() {
@@ -164,7 +167,7 @@ export default function About() {
             Before that, I led data and NLP products at Deep 6 AI (<a href="https://investors.tempus.com/news-releases/news-release-details/tempus-announces-acquisition-deep-6-ai" target="_blank" rel="noopener noreferrer">acquired by Tempus</a>), and built messaging products at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
           </p>
           <p>
-            I take early features and turn them into platforms - software that scales, has a point of view, and earns a place in people&apos;s daily stack. That means staying close to the craft: coding, customer discovery, prototyping, getting the small details right. It also means building <FunWord>personality and joy</FunWord> into products - so they feel like a great coworker, not just software.
+            I take early features and turn them into platforms - software that scales, has a point of view, and earns a place in people&apos;s daily stack. That means staying close to the craft: coding, customer discovery, prototyping, getting the small details right.
           </p>
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
