@@ -294,7 +294,8 @@ body {
 .fun-word:active {
   transform: scale(0.95);
 }
-.fun-word-party {
+.fun-word.fun-word-party,
+.dark .fun-word.fun-word-party {
   background: linear-gradient(
     90deg,
     #FF6B6B, #FECA57, #48DBFB, #FF9FF3,
