@@ -184,10 +184,10 @@ export default function About() {
             I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a>, a product studio for companies shipping AI into regulated and legacy industries. Our partnerships combine fractional product leadership with hands-on product development.
           </p>
           <p>
-            Sugo is Italian for sauce. Every Sunday, my sons and I make it together — starting from the latest recipe and pushing it a little further each time. My favorite software is built the same way.
+            Sugo is Italian for sauce. Every Sunday, my sons and I make it together - starting from the latest recipe and pushing it a little further each time. My favorite software is built the same way: iterative, thoughtful, and constantly improving.
           </p>
           <p>
-            The logo is a pixelated tomato. It&apos;s both playful and literal: constant improvement, attention to detail, and software all in one mark.
+            The pixelated tomato logo is a small callback to that.
           </p>
         </div>
       </section>
