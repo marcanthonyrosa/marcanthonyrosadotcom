@@ -54,13 +54,13 @@ export default function Home() {
         <HomeHero />
         <div className="prose max-w-none">
           <p>
-            I turn early products into companies that last.
+            I turn early products into growth companies.
           </p>
           <p>
             Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>, where we turned a feature with traction into the category-leading AI service desk for MSPs.
           </p>
           <p>
-            I build opinionated software — products with a clear point of view — that hold up at scale and are <FunWord /> enough to live in your daily stack.
+            I build opinionated software — products with a clear point of view — that hold up at scale and bring <FunWord>joy</FunWord> to your daily stack.
           </p>
         </div>
 
