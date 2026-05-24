@@ -259,8 +259,8 @@ body {
   color: var(--accent-ink);
   font-weight: 600;
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
+  text-decoration: underline dotted var(--accent-ink);
+  text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
   transition: color 0.15s ease;
   -webkit-user-select: none;
