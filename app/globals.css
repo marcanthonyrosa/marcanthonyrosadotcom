@@ -259,11 +259,17 @@ body {
   color: var(--accent-ink);
   font-weight: 600;
   cursor: pointer;
-  text-decoration: underline dotted var(--accent-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  text-decoration-thickness: 1.5px;
+  transition: color 0.15s ease;
   -webkit-user-select: none;
   user-select: none;
+}
+
+.fun-word:hover {
+  color: var(--link-hover);
+  text-decoration-color: var(--accent-ink);
 }
 
 .fun-word::before {
