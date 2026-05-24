@@ -60,8 +60,8 @@ export default function Writing() {
         return (
           <section key={year} className="mb-12">
             <h2
-              className="font-semibold uppercase tracking-widest mb-6"
-              style={{ color: "var(--text-3)", fontSize: "var(--text-micro)" }}
+              className="font-semibold uppercase tracking-widest mb-6 pt-4"
+              style={{ color: "var(--text-3)", fontSize: "var(--text-micro)", borderTop: "1px solid var(--accent-ink)", borderTopColor: "color-mix(in oklch, var(--accent-ink) 25%, transparent)" }}
             >
               {year}
             </h2>
@@ -80,13 +80,14 @@ export default function Writing() {
                       {post.title}
                     </span>
                     <span
-                      className="tabular-nums shrink-0"
+                      className="tabular-nums shrink-0 flex items-center gap-2"
                       style={{
                         color: "var(--text-3)",
                         fontSize: "var(--text-small)",
                         fontFamily: "var(--font-mono)",
                       }}
                     >
+                      <span style={{ color: "var(--accent-ink)", fontSize: "8px", lineHeight: 1 }} aria-hidden="true">●</span>
                       {post.date}
                     </span>
                   </Link>

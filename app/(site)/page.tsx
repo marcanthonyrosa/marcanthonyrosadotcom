@@ -67,7 +67,7 @@ export default function Home() {
         <HomeCTAButton />
       </section>
 
-      <hr style={{ borderColor: "var(--border)" }} className="mb-14" />
+      <hr style={{ borderColor: "var(--accent-ink)", opacity: 0.25 }} className="mb-14" />
 
       {/* ── Writing ── */}
       <div className="flex items-center justify-between mb-7">
@@ -100,13 +100,14 @@ export default function Home() {
                 {post.title}
               </span>
               <span
-                className="tabular-nums shrink-0"
+                className="tabular-nums shrink-0 flex items-center gap-2"
                 style={{
                   color: "var(--text-3)",
                   fontSize: "var(--text-small)",
                   fontFamily: "var(--font-mono)",
                 }}
               >
+                <span style={{ color: "var(--accent-ink)", fontSize: "8px", lineHeight: 1 }} aria-hidden="true">●</span>
                 {post.date.split(",")[0]}
               </span>
             </Link>
@@ -115,7 +116,7 @@ export default function Home() {
       </ul>
 
       {process.env.NODE_ENV === "development" && (
-        <hr style={{ borderColor: "var(--border)" }} className="mb-14" />
+        <hr style={{ borderColor: "var(--accent-ink)", opacity: 0.25 }} className="mb-14" />
       )}
 
       {/* ── Featured Work (dev only) ── */}

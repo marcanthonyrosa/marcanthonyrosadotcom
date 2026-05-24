@@ -96,7 +96,7 @@ export function FunWord({ children = "fun" }: FunWordProps) {
         }}
         aria-label="Click for a surprise"
       >
-        {children}
+        <span className="fun-word__text">{children}</span>
       </span>
 
       {particles.length > 0 && (
