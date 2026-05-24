@@ -29,7 +29,7 @@
 :root {
   /* Backgrounds */
   --bg:               #F8FAFC;
-  --surface:          #FFFFFF;
+  --surface:          #FDFDFD;
   --surface-hover:    #F1F5F9;
 
   /* Borders */
@@ -61,8 +61,11 @@
   --tag-bg:           #F1F5F9;
   --tag-text:         #475569;
 
-  /* Focus ring (kept blue purely for a11y contrast) */
-  --focus-ring:       #2563EB;
+  /* Accent */
+  --accent-ink:       oklch(58% 0.08 185);
+
+  /* Focus ring */
+  --focus-ring:       #4A9E95;
 }
 
 /* ─── Dark mode tokens ─── */
@@ -101,8 +104,11 @@
   --tag-bg:           #1F2937;
   --tag-text:         #94A3B8;
 
+  /* Accent */
+  --accent-ink:       oklch(72% 0.10 185);
+
   /* Focus ring */
-  --focus-ring:       #60A5FA;
+  --focus-ring:       #5BB8AD;
 }
 
 * {
@@ -157,7 +163,10 @@ body {
   font-weight: 500;
   transition: color 0.15s ease;
 }
-.prose a:hover { color: var(--link-hover); }
+.prose a:hover {
+  color: var(--link-hover);
+  text-decoration-color: var(--accent-ink);
+}
 .prose h2 {
   font-size: var(--text-h1);
   font-weight: 600;
@@ -199,12 +208,11 @@ body {
   --cta-edge:       rgb(55 120 110);
   --cta-ambient:    rgb(0 0 0 / 0.55);
   --cta-ambient-hi: rgb(0 0 0 / 0.7);
-  --cta-glow-lo:    rgb(107 194 183 / 0.3);
-  --cta-glow-hi:    rgb(107 194 183 / 0.7);
-  --cta-glow-hover: rgb(107 194 183 / 0.8);
+  --cta-glow-lo:    rgb(130 210 200 / 0.35);
+  --cta-glow-hi:    rgb(130 210 200 / 0.75);
+  --cta-glow-hover: rgb(130 210 200 / 0.85);
 }
 .home-cta {
-  animation: home-cta-pulse 2.4s ease-in-out infinite;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   max-width: 14rem;
   box-shadow:
@@ -214,7 +222,6 @@ body {
     0 0 8px var(--cta-glow-lo);
 }
 .home-cta:hover {
-  animation: none;
   box-shadow:
     inset 0 1px 0 var(--cta-inset),
     0 3px 0 var(--cta-edge),
@@ -222,57 +229,27 @@ body {
     0 0 28px var(--cta-glow-hover);
 }
 .home-cta:active {
-  animation: none;
   transform: translateY(2px);
   box-shadow:
     inset 0 1px 0 var(--cta-inset),
     0 1px 0 var(--cta-edge),
     0 2px 6px var(--cta-ambient-hi);
 }
-@keyframes home-cta-pulse {
-  0%, 100% {
-    box-shadow:
-      inset 0 1px 0 var(--cta-inset),
-      0 3px 0 var(--cta-edge),
-      0 5px 14px var(--cta-ambient),
-      0 0 8px var(--cta-glow-lo);
-  }
-  50% {
-    box-shadow:
-      inset 0 1px 0 var(--cta-inset),
-      0 3px 0 var(--cta-edge),
-      0 5px 20px var(--cta-ambient-hi),
-      0 0 22px var(--cta-glow-hi);
-  }
-}
 
 .home-cta-arrow {
   display: inline-block;
   margin-left: 0.5ch;
-  animation: home-cta-arrow-nudge 2.4s ease-in-out infinite;
+  transition: transform 100ms ease-out;
 }
-@keyframes home-cta-arrow-nudge {
-  0%, 100% { transform: translateX(0); }
-  50%      { transform: translateX(3px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .home-cta { animation: none; }
-  .home-cta-arrow { animation: none; }
+.home-cta:hover .home-cta-arrow {
+  transform: translateX(2px);
 }
 
 /* ─── "fun" word easter egg ─── */
 .fun-word {
   cursor: pointer;
   font-weight: 600;
-  background: linear-gradient(
-    90deg,
-    #3D8A82 0%, #4A9E95 30%, #6BC2B7 50%, #4A9E95 70%, #3D8A82 100%
-  );
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: fun-shimmer 2.5s ease-in-out infinite;
+  color: oklch(58% 0.08 185);
   transition: transform 0.15s ease;
   display: inline-block;
   user-select: none;
@@ -282,15 +259,11 @@ body {
   text-underline-offset: 3px;
   margin-inline: 0.1em;
 }
+.fun-word:hover {
+  text-decoration-style: solid;
+}
 .dark .fun-word {
-  background: linear-gradient(
-    90deg,
-    #5BA8A0 0%, #6BC2B7 30%, #A3E0D7 50%, #6BC2B7 70%, #5BA8A0 100%
-  );
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: oklch(72% 0.10 185);
 }
 .fun-word:active {
   transform: scale(0.95);
@@ -308,10 +281,6 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: fun-rainbow 3s linear infinite, fun-bounce 0.4s ease;
-}
-@keyframes fun-shimmer {
-  0%   { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 @keyframes fun-rainbow {
   0%   { background-position: 0% 50%; }
@@ -364,7 +333,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fun-word { animation: none; }
   .fun-word-party { animation: none; }
   .fun-confetti { display: none; }
 }
