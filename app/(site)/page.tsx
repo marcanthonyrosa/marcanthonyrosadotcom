@@ -25,27 +25,6 @@ const RECENT_POSTS = [
   { slug: "your-market-will-show-you", title: "Your market will show you the right one", date: "February 10, 2026" },
 ].slice(0, 3);
 
-const FEATURED_WORK = [
-  {
-    title: "Scaling a B2B product from 0 to 10k customers",
-    tags: ["Product Strategy", "Growth", "B2B"],
-    description:
-      "Led product for a vertical SaaS platform from early beta to Series B. Rebuilt pricing, repositioned for mid-market, and cut time-to-value by 60%.",
-  },
-  {
-    title: "Consumer app redesign · 4.2 → 4.8 App Store rating",
-    tags: ["Consumer", "Redesign", "Mobile"],
-    description:
-      "Owned a ground-up redesign of a consumer iOS app while maintaining weekly releases. Improved retention D7 by 34% and D30 by 22%.",
-  },
-  {
-    title: "Internal tooling that shipped to 500 enterprise teams",
-    tags: ["Enterprise", "Tooling", "Platform"],
-    description:
-      "What started as a skunkworks project to solve an internal pain point became a standalone product line generating $2M ARR.",
-  },
-];
-
 export default function Home() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 sm:px-10">
@@ -114,54 +93,6 @@ export default function Home() {
           </li>
         ))}
       </ul>
-
-      {process.env.NODE_ENV === "development" && (
-        <hr style={{ borderColor: "var(--accent-ink)", opacity: 0.25 }} className="mb-14" />
-      )}
-
-      {/* ── Featured Work (dev only) ── */}
-      {process.env.NODE_ENV === "development" && (
-        <section className="mb-16">
-          <div className="flex items-center justify-between mb-7">
-            <h2
-              className="font-semibold uppercase tracking-widest"
-              style={{ color: "var(--text-3)", fontSize: "var(--text-micro)" }}
-            >
-              Selected Work
-            </h2>
-            <Link
-              href="/work"
-              className="transition-opacity hover:opacity-70"
-              style={{ color: "var(--text-2)", fontSize: "var(--text-micro)" }}
-            >
-              All case studies →
-            </Link>
-          </div>
-          <div className="flex flex-col gap-8">
-            {FEATURED_WORK.map((item) => (
-              <div key={item.title}>
-                <h3
-                  className="font-semibold mb-2 leading-snug"
-                  style={{ color: "var(--text-1)", fontSize: "var(--text-h2)" }}
-                >
-                  {item.title}
-                </h3>
-                <p
-                  className="leading-relaxed mb-2"
-                  style={{ color: "var(--text-2)", fontSize: "var(--text-body)" }}
-                >
-                  {item.description}
-                </p>
-                <p
-                  style={{ color: "var(--text-3)", fontSize: "var(--text-small)" }}
-                >
-                  {item.tags.join(" · ")}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
 
       <SocialLinks />
     </div>

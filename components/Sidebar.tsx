@@ -9,20 +9,16 @@ import {
   House,
   User,
   PenLine,
-  Layers,
   Sun,
   Moon,
   Monitor,
 } from "lucide-react";
 
-const IS_DEV = process.env.NODE_ENV === "development";
-
 const NAV_ITEMS = [
-  { href: "/", label: "Home", icon: House, exact: true, devOnly: false },
-  { href: "/about", label: "About", icon: User, devOnly: false },
-  { href: "/writing", label: "Writing", icon: PenLine, devOnly: false },
-  { href: "/work", label: "Work", icon: Layers, devOnly: true },
-].filter((item) => !item.devOnly || IS_DEV);
+  { href: "/", label: "Home", icon: House, exact: true },
+  { href: "/about", label: "About", icon: User },
+  { href: "/writing", label: "Writing", icon: PenLine },
+];
 
 const HOVER_TRANSITION = { type: "spring" as const, stiffness: 400, damping: 22 };
 
