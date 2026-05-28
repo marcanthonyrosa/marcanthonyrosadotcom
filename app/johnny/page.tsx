@@ -49,7 +49,7 @@ export default function JohnnyPage() {
       <nav className={styles.nav}>
         <a className={styles.navLogo} href="/">
           <Image
-            src="/headshot.jpeg"
+            src="/headshot-v2.jpeg"
             alt="Marc Anthony Rosa"
             width={32}
             height={32}

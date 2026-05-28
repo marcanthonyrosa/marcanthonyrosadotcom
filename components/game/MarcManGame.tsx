@@ -364,7 +364,7 @@ export default function MarcManGame({ onExit }: { onExit: () => void }) {
   // pre-load headshot
   useEffect(() => {
     const head = new Image();
-    head.src = "/headshot.jpeg";
+    head.src = "/headshot-v2.jpeg";
     head.onload = () => { imgRef.current = head; };
   }, []);
 

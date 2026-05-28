@@ -238,7 +238,7 @@ export default function HeadshotOrGame() {
   // Pre-load headshot on mount
   useEffect(() => {
     const img = new window.Image();
-    img.src = "/headshot.jpeg";
+    img.src = "/headshot-v2.jpeg";
     img.onload = () => {
       imgRef.current = img;
       imgSizeRef.current = { w: img.naturalWidth, h: img.naturalHeight };
@@ -533,7 +533,7 @@ export default function HeadshotOrGame() {
         <MarcManGame onExit={startExit} />
       ) : (
         <Image
-          src="/headshot.jpeg"
+          src="/headshot-v2.jpeg"
           alt="Marc Anthony Rosa"
           width={1200}
           height={1200}
