@@ -8,7 +8,7 @@ export function HomeHero() {
     <div className="flex items-start gap-4 mb-8">
       <div className="mt-[3px]" style={{ flexShrink: 0 }}>
         <Image
-          src="/headshot.jpeg"
+          src="/headshot-v2.jpeg"
           alt="Marc Anthony Rosa"
           width={AVATAR_SIZE}
           height={AVATAR_SIZE}
