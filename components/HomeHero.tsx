@@ -27,7 +27,7 @@ export function HomeHero() {
           className="font-medium mt-2.5 leading-none"
           style={{ color: "var(--text-2)", fontSize: "var(--text-h2)" }}
         >
-          Head of Product
+          Full-stack product creator
         </p>
       </div>
     </div>

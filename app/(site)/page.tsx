@@ -3,17 +3,16 @@ import type { Metadata } from "next";
 import { SocialLinks } from "@/components/SocialLinks";
 import { HomeHero } from "@/components/HomeHero";
 import { HomeCTAButton } from "@/components/HomeCTAButton";
-import { FunWord } from "@/components/FunWord";
 
 export const metadata: Metadata = {
-  title: "Marc Rosa - Head of Product (Houston, TX)",
+  title: "Marc Rosa — Full-Stack Product Creator | Sugo AI (Houston, TX)",
   description:
-    "Marc Rosa is a Houston-based Head of Product and tech founder. Previously Thread, Twilio/Zipwhip, Tempus AI, Getty Images. Writing on product strategy, leadership, and the craft of building.",
+    "Houston-based full-stack product creator and founder of Sugo AI, a product development studio helping traditional companies bring AI to market. Previously Head of Product at Thread.",
   alternates: { canonical: "https://marcrosa.com/" },
   openGraph: {
-    title: "Marc Rosa - Head of Product (Houston, TX)",
+    title: "Marc Rosa — Full-Stack Product Creator | Sugo AI (Houston, TX)",
     description:
-      "Houston-based Head of Product and tech founder. Writing on product strategy, leadership, and the craft of building.",
+      "Full-stack product creator. I run Sugo AI, a studio helping traditional companies bring AI to market. Previously Head of Product at Thread.",
     url: "https://marcrosa.com/",
   },
 };
@@ -33,13 +32,13 @@ export default function Home() {
         <HomeHero />
         <div className="prose max-w-none">
           <p>
-            I turn early products into growth companies.
+            I help traditional companies bring AI to market — from strategy to shipped code.
           </p>
           <p>
-            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>, where we turned a feature with traction into the category-leading AI service desk for MSPs.
+            I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a>, a product development studio. Most companies talk about AI. Few actually ship it. I build the thing — specs, code, in production.
           </p>
           <p>
-            I build opinionated software — products with a clear point of view — that hold up at scale and bring <FunWord>joy</FunWord> to your daily stack.
+            Before that, I spent 15 years building SaaS — most recently as Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>, where a feature with traction became the category-leading AI service desk for MSPs.
           </p>
         </div>
 

@@ -27,11 +27,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://marcrosa.com"),
   title: {
-    default: "Marc Rosa — Head of Product (Houston, TX)",
+    default: "Marc Rosa — Full-Stack Product Creator | Sugo AI (Houston, TX)",
     template: "%s · Marc Rosa",
   },
   description:
-    "Marc Anthony Rosa is a Houston-based product leader and tech founder. Head of Product, former Thread, Twilio/Zipwhip, Tempus AI, Getty Images. Writing on product strategy, leadership, and the craft of building.",
+    "Houston-based full-stack product creator and founder of Sugo AI, a product development studio helping traditional companies bring AI to market. Previously Head of Product at Thread, Twilio/Zipwhip, Tempus AI, Getty Images.",
   applicationName: "Marc Anthony Rosa",
   authors: [{ name: "Marc Anthony Rosa", url: "https://marcrosa.com" }],
   creator: "Marc Anthony Rosa",
@@ -52,6 +52,9 @@ export const metadata: Metadata = {
     "Houston tech",
     "fractional product leader Houston",
     "product strategy",
+    "full-stack product creator",
+    "AI product studio",
+    "Sugo AI Houston",
   ],
   alternates: {
     canonical: "https://marcrosa.com/",
@@ -72,9 +75,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://marcrosa.com",
     siteName: "Marc Anthony Rosa",
-    title: "Marc Anthony Rosa — Head of Product (Houston, TX)",
+    title: "Marc Anthony Rosa — Full-Stack Product Creator | Sugo AI (Houston, TX)",
     description:
-      "Houston-based product leader and tech founder. Head of Product at Thread, formerly Twilio/Zipwhip, Tempus AI, Getty Images, Buffer.",
+      "Full-stack product creator. I run Sugo AI, a studio helping traditional companies bring AI to market. Previously Head of Product at Thread.",
     images: [
       {
         url: "/headshot-v2.jpeg",
@@ -86,9 +89,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Marc Anthony Rosa — Head of Product (Houston, TX)",
+    title: "Marc Anthony Rosa — Full-Stack Product Creator (Houston, TX)",
     description:
-      "Houston-based product leader and tech founder. Head of Product at Thread, formerly Twilio/Zipwhip, Tempus AI.",
+      "Houston-based full-stack product creator and founder of Sugo AI. Bringing AI to market for traditional companies. Previously Thread.",
     images: ["/headshot-v2.jpeg"],
     creator: "@marcanthonyrosa",
   },
@@ -119,9 +122,9 @@ export default function RootLayout({
               familyName: "Rosa",
               url: "https://marcrosa.com",
               image: "https://marcrosa.com/headshot-v2.jpeg",
-              jobTitle: "Head of Product",
+              jobTitle: "Full-Stack Product Creator",
               description:
-                "Houston-based product leader and tech founder. Head of Product, formerly Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer.",
+                "Houston-based full-stack product creator and founder of Sugo AI. Bringing AI to market for traditional companies. Previously Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer.",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Houston",
@@ -166,7 +169,7 @@ export default function RootLayout({
               url: "https://marcrosa.com",
               name: "Marc Anthony Rosa",
               description:
-                "Personal site of Marc Anthony Rosa — Houston-based Head of Product and tech founder.",
+                "Personal site of Marc Anthony Rosa — Houston-based full-stack product creator and founder of Sugo AI.",
               inLanguage: "en-US",
               publisher: { "@id": "https://marcrosa.com/#person" },
             }),

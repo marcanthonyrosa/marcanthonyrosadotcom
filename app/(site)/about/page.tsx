@@ -6,12 +6,12 @@ import { FunWord } from "@/components/FunWord";
 export const metadata: Metadata = {
   title: "About Marc Rosa",
   description:
-    "About Marc Anthony Rosa - Houston-based Head of Product and tech founder. 15+ years building SaaS products at Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer, and Tribune Media.",
+    "About Marc Anthony Rosa — Houston-based full-stack product creator and founder of Sugo AI. 15+ years building SaaS products at Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer, and Tribune Media.",
   alternates: { canonical: "https://marcrosa.com/about" },
   openGraph: {
     title: "About Marc Anthony Rosa",
     description:
-      "Houston-based Head of Product and tech founder. 15+ years building SaaS products.",
+      "Houston-based full-stack product creator and founder of Sugo AI. 15+ years building SaaS products.",
     url: "https://marcrosa.com/about",
   },
 };
@@ -163,7 +163,7 @@ export default function About() {
             I&apos;m a product builder in Houston, formerly Seattle. My wife Elle runs an interior design studio; we have a four-year-old and a newborn.
           </p>
           <p>
-            I&apos;ve spent fifteen years building SaaS products, most recently as Head of Product at Thread.
+            I&apos;ve spent 15 years building SaaS products. I&apos;m a full-stack product creator — I like staying close to the work: writing specs, shipping code, getting things in front of users fast.
           </p>
           <p>
             In three years, we took a chat ticketing tool and turned it into the category-leading AI service desk for MSPs — growing revenue 10x, raising a Series A, and scaling a 25-person product and engineering organization.
@@ -172,7 +172,7 @@ export default function About() {
             Before that, I led data and NLP products at Deep 6 AI (<a href="https://investors.tempus.com/news-releases/news-release-details/tempus-announces-acquisition-deep-6-ai" target="_blank" rel="noopener noreferrer">acquired by Tempus</a>), and built messaging products at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
           </p>
           <p>
-            I take early features and turn them into platforms - software that scales, has a point of view, and earns a place in people&apos;s daily stack. That means staying close to the craft: coding, customer discovery, prototyping, getting the small details right.
+            I build opinionated software — products with a clear point of view — that hold up at scale and bring <FunWord>joy</FunWord> to your daily stack. That means staying close to the craft: coding, customer discovery, prototyping, getting the small details right.
           </p>
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
@@ -181,7 +181,7 @@ export default function About() {
             Sugo AI
           </h2>
           <p>
-            I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a>, a product studio for companies shipping AI into regulated and legacy industries. Our partnerships combine fractional product leadership with hands-on product development.
+            I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a> — a small product development studio that helps traditional businesses get AI into production. Most companies talk about AI. Few actually ship it — less than 5% in legacy industries. That&apos;s the part I build.
           </p>
           <p>
             Sugo is Italian for sauce. Every Sunday, my sons and I make it together - starting from the latest recipe and pushing it a little further each time. My favorite software is built the same way: iterative, thoughtful, and constantly improving.
