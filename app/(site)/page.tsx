@@ -31,15 +31,28 @@ export default function Home() {
       {/* ── Header ── */}
       <section className="mb-16">
         <HomeHero />
+        <div
+          aria-hidden="true"
+          style={{ width: "2.5rem", height: 2, borderRadius: 2, background: "rgb(107, 194, 183)", marginBottom: "0.9rem" }}
+        />
+        <h2
+          className="font-bold tracking-tight leading-snug mb-6"
+          style={{ color: "var(--text-1)", fontSize: "var(--text-h1)" }}
+        >
+          I build software that grows real businesses.
+        </h2>
         <div className="prose max-w-none">
           <p>
-            I turn early products into growth companies.
+            I spent 15 years building products and product teams. Somehow, AI got me writing code again.
           </p>
           <p>
-            Most recently, I was Head of Product at <a href="https://getthread.com/" target="_blank" rel="noopener noreferrer">Thread</a>, where we turned a feature with traction into the category-leading AI service desk for MSPs.
+            Today, I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a>, building AI software for legacy businesses with complicated workflows.
           </p>
           <p>
-            I build opinionated software — products with a clear point of view — that hold up at scale and bring <FunWord>joy</FunWord> to your daily stack.
+            Before that, I was Head of Product at <a href="https://www.getthread.com" target="_blank" rel="noopener noreferrer">Thread</a>, where we turned a product with early pull into the category-leading AI service desk for MSPs.
+          </p>
+          <p>
+            I like opinionated software. Products with a clear point of view that people stick with and bring <FunWord>joy</FunWord> into their daily stack.
           </p>
         </div>
 
