@@ -31,22 +31,12 @@ export default function Home() {
       {/* ── Header ── */}
       <section className="mb-16">
         <HomeHero />
-        <div
-          aria-hidden="true"
-          style={{ width: "2.5rem", height: 2, borderRadius: 2, background: "rgb(107, 194, 183)", marginBottom: "0.9rem" }}
-        />
-        <h2
-          className="font-bold tracking-tight leading-snug mb-6"
-          style={{ color: "var(--text-1)", fontSize: "var(--text-h1)" }}
-        >
-          I build software that grows real businesses.
-        </h2>
         <div className="prose max-w-none">
           <p>
-            I spent 15 years building products and product teams. Somehow, AI got me writing code again.
+            I&apos;ve spent 15 years leading product - now I build AI software for regulated and legacy industries.
           </p>
           <p>
-            Today, I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a>, building AI software for legacy businesses with complicated workflows.
+            Today, I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a>, a product studio for companies shipping AI into complicated, high-stakes workflows.
           </p>
           <p>
             Before that, I was Head of Product at <a href="https://www.getthread.com" target="_blank" rel="noopener noreferrer">Thread</a>, where we turned a product with early pull into the category-leading AI service desk for MSPs.
