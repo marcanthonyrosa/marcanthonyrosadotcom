@@ -36,13 +36,13 @@ export default function Home() {
             I&apos;ve spent 15 years leading product - now I build AI software for regulated and legacy industries.
           </p>
           <p>
-            Today, I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a>, a product studio for companies shipping AI into complicated, high-stakes workflows.
+            Today, I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a>, a product studio for companies that aren&apos;t software companies.
           </p>
           <p>
-            Before that, I was Head of Product at <a href="https://www.getthread.com" target="_blank" rel="noopener noreferrer">Thread</a>, where we turned a product with early pull into the category-leading AI service desk for MSPs.
+            Before that, I was Head of Product at <a href="https://www.getthread.com" target="_blank" rel="noopener noreferrer">Thread</a>, where we turned an early product into the category-leading AI service desk for MSPs.
           </p>
           <p>
-            I like opinionated software. Products with a clear point of view that people stick with and bring <FunWord>joy</FunWord> into their daily stack.
+            I like opinionated software - products with a clear point of view that people stick with and bring <FunWord>joy</FunWord> into their daily stack.
           </p>
         </div>
 
