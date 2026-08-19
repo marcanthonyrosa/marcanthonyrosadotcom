@@ -160,19 +160,19 @@ export default function About() {
             Hi, I&apos;m Marc 👋
           </p>
           <p>
-            I&apos;m a product builder in Houston, formerly Seattle. My wife Elle runs an interior design studio; we have a four-year-old and a newborn.
+            I&apos;m a product builder in Houston, by way of Seattle. My wife Elle runs an interior design studio, and we have a four-year-old and a newborn.
           </p>
           <p>
             I&apos;ve spent fifteen years building SaaS products, most recently as Head of Product at Thread.
           </p>
           <p>
-            In three years, we took a chat ticketing tool and turned it into the category-leading AI service desk for MSPs — growing revenue 10x, raising a Series A, and scaling a 25-person product and engineering organization.
+            In three years, we took Thread from a chat ticketing tool to the category-leading AI service desk for MSPs: 10x revenue growth, a Series A, and a 25-person product and engineering org.
           </p>
           <p>
-            Before that, I led data and NLP products at Deep 6 AI (<a href="https://investors.tempus.com/news-releases/news-release-details/tempus-announces-acquisition-deep-6-ai" target="_blank" rel="noopener noreferrer">acquired by Tempus</a>), and built messaging products at Zipwhip through its <a href="https://www.twilio.com/en-us/press/releases/twilio-completes-acquisition-of-zipwhip-a-leading-provider-of-toll-free-messaging-in-the-united-states" target="_blank" rel="noopener noreferrer">acquisition by Twilio</a>.
+            Before that, I led data and NLP products at Deep 6 AI, later acquired by Tempus, and built messaging products at Zipwhip through its acquisition by Twilio.
           </p>
           <p>
-            I take early features and turn them into platforms - software that scales, has a point of view, and earns a place in people&apos;s daily stack. That means staying close to the craft: coding, customer discovery, prototyping, getting the small details right.
+            I like building opinionated software: products with a clear point of view that hold up at scale, feel good to use, and deserve their place in your daily stack. That means staying close to the craft: coding, customer discovery, prototyping, and getting the details right.
           </p>
           <h2
             className="font-semibold tracking-tight mt-10 mb-4"
@@ -181,13 +181,13 @@ export default function About() {
             Sugo AI
           </h2>
           <p>
-            I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a>, a product studio for companies shipping AI into regulated and legacy industries. Our partnerships combine fractional product leadership with hands-on product development.
+            I run <a href="https://sugoai.com" target="_blank" rel="noopener noreferrer">Sugo AI</a>, a small product studio for companies bringing AI into regulated and legacy industries.
           </p>
           <p>
-            Sugo is Italian for sauce. Every Sunday, my sons and I make it together - starting from the latest recipe and pushing it a little further each time. My favorite software is built the same way: iterative, thoughtful, and constantly improving.
+            Sugo means &quot;sauce&quot; in Italian. Making Sunday sauce with my kids is hands down my favorite thing to do.
           </p>
           <p>
-            The pixelated tomato logo is a small callback to that.
+            Like making Sunday sauce, the best products are built with taste, many cycles of fine-tuning, and a little sprinkle of sugar.
           </p>
         </div>
       </section>
