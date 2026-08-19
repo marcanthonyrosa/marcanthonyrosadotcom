@@ -189,6 +189,15 @@ export default function About() {
           <p>
             Like making Sunday sauce, the best products are built with taste, many cycles of fine-tuning, and a little sprinkle of sugar.
           </p>
+          <div className="mt-3 flex justify-center" aria-hidden="true">
+            <img
+              src="/logos/sugo.png"
+              alt=""
+              width="18"
+              height="18"
+              style={{ opacity: 0.72 }}
+            />
+          </div>
         </div>
       </section>
 
