@@ -8,6 +8,30 @@ export const metadata: Metadata = {
   description:
     "After 2.5 years at Thread, the market taught me where the real opportunity was. Your customers will show you the right market — if you're willing to watch.",
   alternates: { canonical: "https://marcrosa.com/writing/your-market-will-show-you" },
+  openGraph: {
+    type: "article",
+    title: "Your market will show you the right one",
+    description:
+      "After 2.5 years at Thread, the market taught me where the real opportunity was. Your customers will show you the right market — if you're willing to watch.",
+    url: "https://marcrosa.com/writing/your-market-will-show-you",
+    publishedTime: "2026-02-10T00:00:00-06:00",
+    authors: ["Marc Anthony Rosa"],
+    images: [
+      {
+        url: "/writing/your-market.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Your market will show you the right one",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Your market will show you the right one",
+    description:
+      "After 2.5 years at Thread, the market taught me where the real opportunity was. Your customers will show you the right market — if you're willing to watch.",
+    images: ["/writing/your-market.jpeg"],
+  },
 };
 
 const LINKEDIN_URL =

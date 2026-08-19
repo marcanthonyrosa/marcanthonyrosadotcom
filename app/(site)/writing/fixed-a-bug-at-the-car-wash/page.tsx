@@ -7,6 +7,30 @@ export const metadata: Metadata = {
   description:
     "I shipped a production bug fix from my phone while waiting at a car wash using Claude Code on iOS. The barrier between idea and live code keeps collapsing.",
   alternates: { canonical: "https://marcrosa.com/writing/fixed-a-bug-at-the-car-wash" },
+  openGraph: {
+    type: "article",
+    title: "Fixed a bug at the car wash",
+    description:
+      "I shipped a production bug fix from my phone while waiting at a car wash using Claude Code on iOS. The barrier between idea and live code keeps collapsing.",
+    url: "https://marcrosa.com/writing/fixed-a-bug-at-the-car-wash",
+    publishedTime: "2026-03-02T00:00:00-06:00",
+    authors: ["Marc Anthony Rosa"],
+    images: [
+      {
+        url: "/headshot-v2.jpeg",
+        width: 1200,
+        height: 1200,
+        alt: "Marc Anthony Rosa",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fixed a bug at the car wash",
+    description:
+      "I shipped a production bug fix from my phone while waiting at a car wash using Claude Code on iOS. The barrier between idea and live code keeps collapsing.",
+    images: ["/headshot-v2.jpeg"],
+  },
 };
 
 const LINKEDIN_URL =
@@ -112,11 +136,11 @@ export default function FixedABugAtTheCarWash() {
         <p style={{ color: "var(--text-3)", fontSize: "var(--text-small)" }}>
           (PS: try playing the game on{" "}
           <a
-            href="https://marcanthonyrosa.com"
+            href="https://marcrosa.com"
             className="underline underline-offset-2 hover:opacity-70"
             style={{ color: "var(--text-3)" }}
           >
-            marcanthonyrosa.com
+            marcrosa.com
           </a>{" "}
           from your phone — no-jiggle swiping courtesy of Anthropic.)
         </p>

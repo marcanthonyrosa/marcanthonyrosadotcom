@@ -8,6 +8,30 @@ export const metadata: Metadata = {
   description:
     "In the age of AI-generated vaporware, quality and support are the new competitive moat. A lesson from shipping at Thread.",
   alternates: { canonical: "https://marcrosa.com/writing/stop-shipping-fast" },
+  openGraph: {
+    type: "article",
+    title: "Stop shipping fast. Make it actually hold up.",
+    description:
+      "In the age of AI-generated vaporware, quality and support are the new competitive moat. A lesson from shipping at Thread.",
+    url: "https://marcrosa.com/writing/stop-shipping-fast",
+    publishedTime: "2026-02-12T00:00:00-06:00",
+    authors: ["Marc Anthony Rosa"],
+    images: [
+      {
+        url: "/writing/albert.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Stop shipping fast. Make it actually hold up.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stop shipping fast. Make it actually hold up.",
+    description:
+      "In the age of AI-generated vaporware, quality and support are the new competitive moat. A lesson from shipping at Thread.",
+    images: ["/writing/albert.jpeg"],
+  },
 };
 
 const LINKEDIN_URL =
