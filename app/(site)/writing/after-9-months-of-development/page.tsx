@@ -8,6 +8,30 @@ export const metadata: Metadata = {
   description:
     "The Rosa Family has a new launch to share. Shipping above projections. Immediately disruptive. Not yet taking meetings.",
   alternates: { canonical: "https://marcrosa.com/writing/after-9-months-of-development" },
+  openGraph: {
+    type: "article",
+    title: "After 9 months of development",
+    description:
+      "The Rosa Family has a new launch to share. Shipping above projections. Immediately disruptive. Not yet taking meetings.",
+    url: "https://marcrosa.com/writing/after-9-months-of-development",
+    publishedTime: "2026-03-06T00:00:00-06:00",
+    authors: ["Marc Anthony Rosa"],
+    images: [
+      {
+        url: "/headshot-v2.jpeg",
+        width: 1200,
+        height: 1200,
+        alt: "Marc Anthony Rosa",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "After 9 months of development",
+    description:
+      "The Rosa Family has a new launch to share. Shipping above projections. Immediately disruptive. Not yet taking meetings.",
+    images: ["/headshot-v2.jpeg"],
+  },
 };
 
 const LINKEDIN_URL =
