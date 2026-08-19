@@ -6,12 +6,12 @@ import { FunWord } from "@/components/FunWord";
 export const metadata: Metadata = {
   title: "About Marc Rosa",
   description:
-    "About Marc Anthony Rosa - Houston-based Head of Product and tech founder. 15+ years building SaaS products at Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer, and Tribune Media.",
+    "About Marc Anthony Rosa — Houston-based product builder and founder of Sugo AI. Fifteen years building SaaS products at Thread, Twilio/Zipwhip, Tempus AI, Getty Images, Buffer, and Tribune Media.",
   alternates: { canonical: "https://marcrosa.com/about" },
   openGraph: {
     title: "About Marc Anthony Rosa",
     description:
-      "Houston-based Head of Product and tech founder. 15+ years building SaaS products.",
+      "Houston-based product builder and founder of Sugo AI. Fifteen years building SaaS products.",
     url: "https://marcrosa.com/about",
   },
 };

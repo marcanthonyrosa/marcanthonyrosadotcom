@@ -6,14 +6,14 @@ import { HomeCTAButton } from "@/components/HomeCTAButton";
 import { FunWord } from "@/components/FunWord";
 
 export const metadata: Metadata = {
-  title: "Marc Rosa - Head of Product (Houston, TX)",
+  title: "Marc Rosa — Product Builder | Sugo AI (Houston, TX)",
   description:
-    "Marc Rosa is a Houston-based Head of Product and tech founder. Previously Thread, Twilio/Zipwhip, Tempus AI, Getty Images. Writing on product strategy, leadership, and the craft of building.",
+    "Houston-based product builder and founder of Sugo AI. I build AI software for regulated and legacy industries. Previously Head of Product at Thread, Twilio/Zipwhip, Tempus AI, and Getty Images.",
   alternates: { canonical: "https://marcrosa.com/" },
   openGraph: {
-    title: "Marc Rosa - Head of Product (Houston, TX)",
+    title: "Marc Rosa — Product Builder | Sugo AI (Houston, TX)",
     description:
-      "Houston-based Head of Product and tech founder. Writing on product strategy, leadership, and the craft of building.",
+      "Houston-based product builder and founder of Sugo AI. I build AI software for regulated and legacy industries.",
     url: "https://marcrosa.com/",
   },
 };
